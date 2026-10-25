@@ -1,0 +1,340 @@
+1. CARD TOPOLOGY & INEFFICIENT POOL IDENTIFICATION
+A. Structural Pool Diagnosis: Why "Zero Formal [F-]" Creates Three De Facto Nuclear Vacuums
+On the surface, today’s 11-race "Stars of Tomorrow I" all-juvenile card at Churchill Downs yields zero horses that trip every strict boolean gate of the [F-] algorithm. A game-theoretic inspection of the boundary conditions reveals why—and exposes three massive "Quasi-[F-]" public money traps where the retail pool is functionally just as dead:
+1. Race 1 — #5 Broadway Girl (ML 1.6) & #3 Seaton Springs (ML 2.5): #5 Broadway Girl is an unproven First-Time Starter (Prime_Power = FTS_0, 0.0% meet rider stat for Irad Ortiz Jr., sluggish 48.8B 4f breeze averaging 12.20s/furlong). She passes Archetype B Gate 1 and Gate 3, missing Gate 2 strictly because the four experienced horses in Race 1 top out at Last_Fig = 72 (below Par_Spd = 82.0). Paired with overbet FTS #3 Seaton Springs (2.5 ML, FTS_0, 11% debut win rate), the public is pouring 50%–55% of the opening Win and Early Pick 5 pool into two zero-figure debut runners while ignoring #8 Tess Me Not (4.5 ML, 119.28 Prime Power, 88 E1, 72 Fig on GD dirt).
+2. Race 7 — #11 Scarlet Ribbons (ML 2.5) & #2 Ghostline (ML 6.0, DRF "Best Bet"): #11 Scarlet Ribbons (FTS_0, ordinary 48.8B work) escapes a formal [F-] tag only because her Morning Line is 2.5 (above the 2.00 cutoff) and she draws Post 11. In actual tote trading, the Baffert/Prat ("52.9% / 30.4%") name tax will hammer #11 down toward 7/5 (1.40), while DRF’s sheet "Best Bet" #2 Ghostline (FTS_0, Post 2) absorbs the secondary retail flow. Meanwhile, #7 Stand By Me (4.5 ML) already owns an above-par 84 Last_Fig (Par_Spd = 82.0) and a 90 Last_LP (Par_LP = 82.0).
+3. Race 9 — #2 Wharfie (ML 1.8), #7 First Laugh (ML 3.5), & #1 Intraosseous (ML 10.0): This is the single largest parimutuel market dislocation on the card. The `<retail_herd_radar>` consensus (1-2-7) selects the #6, #4, and #7 (dead-last) ranked horses in Prime_Power! Heavy 1.8 ML favorite #2 Wharfie ranks 4th in Prime_Power (120.21, 11.38 points behind #3 Oh She Said Yes at 131.59), holds a sub-par 77 Last_Fig (Par_Spd = 91.0), ranks 5th in Last_LP (82 vs Par_LP = 86.0), and carries 0.0% meet stats for Mott/Alvarado. She misses formal [F-] Archetype A by just 2 QSP points (QSP = 4 vs 6) and 2 LP points. Even worse, DRF #3 pick #7 First Laugh (3.5 ML) ranks dead last (7th of 7) in Prime_Power (114.12) with a field-worst 68 Last_Fig stepping up from $32,000 to $200,000.
+B. Master Card Topology & Pool Inefficiency Matrix
+Race
+	Conditions & Active Pace Regime
+	Primary Leverage Node ([F-] / Retail Trap)
+	Est. Dead Pool (q_{\text{trap}})
+	Zero-Entropy Anchor / Primary Key (p_i vs. q_i)
+	Asymmetric Alpha Nodes ([W] / [UNSEEN BY RETAIL])
+	R1
+	1760y D | Md Sp Wt Lone Speed (QSP: 12)
+	#5 Broadway Girl (1.6) [F] #3 Seaton Springs (2.5) [F]
+	52%
+	#8 Tess Me Not (4.5) A[W] (p_i = 0.34 vs. q_i = 0.15)
+	#8 Tess Me Not (4.5) A[W] [UNSEEN] #4 My Pal Al (10.0) B[W][E] [UNSEEN] #7 Secret Light (8.0) D [UNSEEN]
+	R2
+	1870y T | Md Sp Wt Honest (QSP: 22)
+	#1 Special Butterfly (6.0) [F] #7 Daddy's Nugget (5.0) [F]
+	28%
+	#11 Novo Mesto (3.5) A (p_i = 0.30 vs. q_i = 0.18)
+	#11 Novo Mesto (3.5) A [UNSEEN] #16 Play Along (10.0) B[W] [UNSEEN] #10 Just a Song (15.0) D [UNSEEN]
+	R3
+	1320y D | Md Sp Wt Lone Speed (QSP: 11)
+	#7 Mo Octane (6.0) [F] (Slow 62.8Bg 5f gate work)
+	14%
+	#5 Pirate Ship (3.5) A (p_i = 0.31 vs. q_i = 0.22)
+	#2 My Birthday Gift (4.5) A[W] [UNSEEN] #4 Karajan (4.0) B[W][E] #8 Epic Max (5.0) D [UNSEEN] (-46.4B)
+	R4
+	1320y D | Md Sp Wt Honest (QSP: 18)
+	#12 Nauti Talk (3.5) [F] #13 Fiery Rufina (20.0) [F] #8 Chasing Aces (5.0) [F]
+	38%
+	#3 Flaming Verdict (6.0) A[W] (p_i = 0.28 vs. q_i = 0.14)
+	#14 Your Choice (10.0) A[W][E] [UNSEEN] #11 Racheli (6.0) B[W] [UNSEEN] #4 Voli Te (4.5) D [UNSEEN]
+	R5
+	1760y T | Md Sp Wt Meltdown (QSP: 36)
+	#3 Freddy Tauber (8.0) [F] #7 San Moritz (5.0) [F] (#14 Castle Pines 3.0 is Post 14 underlay)
+	32%
+	#6 Ideation (3.5) A (p_i = 0.26 vs. q_i = 0.20)
+	#1 Quigley (4.5) A[W] [UNSEEN] #9 Mined That Gold (15.0) D[W] [UNSEEN] #2 Kotetsu (5.0) C [UNSEEN]
+	R6
+	1320y D | Md Sp Wt Honest (QSP: 25)
+	#3 Lord Mischief (4.0) [F] (DRF #1 #6 Essen Lane is FTS)
+	35%
+	#9 Vukota (2.5) [A+] (p_i = 0.48 vs. q_i = 0.26)
+	#5 Ever Royal (10.0) A[W] [UNSEEN] #2 Saveurequity (12.0) B [UNSEEN] #11 Oren's Flyer (12.0) B[W] [UNSEEN]
+	R7
+	1320y D | Md Sp Wt Lone Speed (QSP: 10)
+	#11 Scarlet Ribbons (2.5) [F] #2 Ghostline (6.0) [F] (DRF Best Bet)
+	48%
+	#7 Stand By Me (4.5) A[W] (p_i = 0.36 vs. q_i = 0.16)
+	#4 Cosmic Creed (15.0) B[W][E] [UNSEEN] #12 Luxdomina (5.0) D [UNSEEN] (47.8B) #9 Emmas Pearl (15.0) D [UNSEEN]
+	R8
+	1100y T | Alw 127k N2L Meltdown (QSP: 33)
+	#10 Gal Pal (6.0) [F] (FTS vs. winners) (#8 Medinah 1.2 is 33-QSP underlay)
+	20% (+#8 overbet)
+	#8 Medinah (1.2) A (Saver) (p_i = 0.34 vs. q_i = 0.44)
+	#5 Ciarlatano (10.0) B[W] [UNSEEN] (86 Fig) #7 Moxie Girl (15.0) C[W] [UNSEEN] (#1 LP) #4 Epernay (15.0) D [UNSEEN]
+	R9
+	1870y D | Rags to Riches L Honest (QSP: 28)
+	#2 Wharfie (1.8) [F] (Quasi-F-) #7 First Laugh (3.5) [F] (Rank #7 PP)
+	58%
+	#3 Oh She Said Yes (2.5) A (p_i = 0.38 vs. q_i = 0.22)
+	#3 Oh She Said Yes (2.5) A [UNSEEN] #6 Juana Margarita (6.0) A[W] [UNSEEN] #4 Countthetrue (12.0) B[W][E] [UNSEEN] #5 Lunar Velocity (8.0) B[W] [UNSEEN]
+	R10
+	1870y D | Street Sense G3 Meltdown (QSP: 41)
+	#4 Mystik Bayou (1.8) A (Underlay) (8.45 PP pts behind #3 Card Man)
+	35% (Underlay)
+	#3 Card Man (2.5) [A+][E] (p_i = 0.44 vs. q_i = 0.25)
+	#2 Blessed Flyer (3.5) B [UNSEEN] (93 Fig) #7 Staunch (5.0) C[W] [UNSEEN] (#1 LP 94) #6 Jas (6.0) D[W] (#2 PP 132.67)
+	R11
+	1760y D | Md Sp Wt Meltdown (QSP: 54)
+	#9 Ramp In (6.0) [F] #3 Monnie (15.0) [F] (58 LP in 54 QSP)
+	22%
+	#1 Fullback (6.0) A[W] (p_i = 0.27 vs. q_i = 0.13)
+	#1 Fullback (6.0) A[W] (#1 PP, #1 Fig, #1 E1) #12 Better Quality (8.0) C [UNSEEN] (87 LP) #4 Automatic Press (10.0) D[E] [UNSEEN]
+	C. Zero-Entropy Card Anchors ([A+])
+1. Race 6 — #9 Vukota (ML 2.5) — [A+] (p_i = 0.48, Market q_i = 0.26, Edge +22.0\%):
+   * Mathematical Proof: Holds a +4.74 Prime_Power advantage (127.29 vs. #5 Ever Royal at 122.55), is the only runner in the field exceeding Par_Spd = 84.0 with a towering 90 Last_Fig (and 83 Fig_2Back), and leads the active roster in both early velocity (Last_E1 = 95 vs. Par_E1 = 93.0) and late resistance (Last_LP = 88 vs. Par_LP = 84.0). Drawn outside in Post 9 where he can stalk or clear cleanly, while DRF’s Top 2 consensus picks (#6 Essen Lane and #3 Lord Mischief) are unproven FTS_0 colts.
+2. Race 10 — #3 Card Man (ML 2.5) — [A+][E] (p_i = 0.44, Market q_i = 0.25, Edge +19.0\%):
+   * Mathematical Proof: Commands a massive +6.30 Prime_Power edge over #2 #6 Jas (138.97 vs. 132.67) and +8.45 points over 1.8 ML favorite #4 Mystik Bayou (130.52). Both his Last_Fig = 94 and Fig_2Back = 92 beat or match Grade 3 Par_Spd = 92.0, his Last_LP = 88 exceeds Par_LP = 87.0, and he owns the [E] Controlling Speed tag via a 96 Last_E1 (+5.0 pts faster than #8 Never a Doubt at 91 and +8.0 pts faster than #4 Mystik Bayou at 88) from inside Post 3 with 30.4% Flavien Prat.
+2. HORIZONTAL TICKET ARCHITECTURE (Pick 4 / Pick 5 / Daily Doubles)
+Game-Theoretic Design Principles Applied:
+* Zero Opening-Leg Chalk Dependency: In every multi-race sequence below, we never use the Morning Line favorite on our primary opening-leg keys:
+   * Early Pick 5 (Race 1 Opener): Complete fade of 1.6 ML #5 Broadway Girl and 2.5 ML #3 Seaton Springs; we initiate with 3rd choice #8 Tess Me Not (4.5), 4th/5th choice #1 Jetsetter (8.0) / #7 Secret Light (8.0), and 6th choice #4 My Pal Al (10.0).
+   * Early Pick 4 (Race 2 Opener): Primary press initiates with 2nd choice #11 Novo Mesto (3.5, [UNSEEN BY RETAIL]) and 3rd/6th choices #12 Glassing (6.0) / #2 Rumbelievable (8.0) / #16 Play Along (10.0), relegating 3.0 ML favorite #14 Anywhere With You (Post 14) to a defensive saver.
+   * Middle Pick 4 (Race 4 Opener): Complete fade of 3.5 ML favorite #12 Nauti Talk; we initiate with 3rd/4th choice #3 Flaming Verdict (6.0) and #11 Racheli (6.0), and 6th choice #14 Your Choice (10.0).
+   * Middle Pick 5 (Race 5 Opener): Primary ticket omits 3.0 ML favorite #14 Castle Pines (Post 14, Rank #7 PP), launching instead with #1 Quigley (4.5), #6 Ideation (3.5), #2 Kotetsu (5.0), and #9 Mined That Gold (15.0).
+   * Late Pick 5 (Race 7 Opener): Complete fade of 2.5 ML favorite #11 Scarlet Ribbons and DRF Best Bet #2 Ghostline (6.0); we open with #7 Stand By Me (4.5) and #4 Cosmic Creed (15.0).
+   * Late Pick 4 (Race 8 Opener): Primary ticket opposes 1.2 ML favorite #8 Medinah in Leg 1, initiating with #3 Bee Crazy (3.0), #5 Ciarlatano (10.0), #7 Moxie Girl (15.0), and #4 Epernay (15.0), using #8 Medinah strictly on a separate low-allocation defensive saver.
+Sequence 1: Early Pick 5 (Races 1–5) — The Unseen Prime Power Opener
+* Target Pool: $0.50 Base Minimum. Exploits the 52% dead FTS chalk in Race 1 and the 38% dead FTS chalk in Race 4.
+* Ticket 1A — $1.00 Primary Conviction Ticket ([A] / [W] / [E] Concentration):
+   * R1: #4 My Pal Al (10.0 B[W][E]), #8 Tess Me Not (4.5 A[W])
+   * R2: #11 Novo Mesto (3.5 A [UNSEEN]), #14 Anywhere With You (3.0 A)
+   * R3: #2 My Birthday Gift (4.5 A[W] [UNSEEN]), #5 Pirate Ship (3.5 A)
+   * R4: #3 Flaming Verdict (6.0 A[W]), #14 Your Choice (10.0 A[W][E] [UNSEEN])
+   * R5: #1 Quigley (4.5 A[W] [UNSEEN]), #6 Ideation (3.5 A)
+   * Math: 2 \times 2 \times 2 \times 2 \times 2 = 32\text{ combinations} \times \$1.00 = \mathbf{\$32.00\text{ (6.4 Units)}}
+* Ticket 1B — $0.50 Asymmetric Alpha / Chaos Backup (Rotating in [B], [C], and [D] Bombs, Fading R5 ML Fav #14):
+   * R1: #1 Jetsetter (8.0 B[W]), #4 My Pal Al (10.0 B[W][E]), #7 Secret Light (8.0 D), #8 Tess Me Not (4.5 A[W])
+   * R2: #11 Novo Mesto (3.5 A), #12 Glassing (6.0 B), #16 Play Along (10.0 B[W])
+   * R3: #2 My Birthday Gift (4.5 A[W]), #4 Karajan (4.0 B[W][E]), #5 Pirate Ship (3.5 A), #8 Epic Max (5.0 D)
+   * R4: #3 Flaming Verdict (6.0 A[W]), #4 Voli Te (4.5 D), #11 Racheli (6.0 B[W]), #14 Your Choice (10.0 A[W][E])
+   * R5: #1 Quigley (4.5 A[W]), #2 Kotetsu (5.0 C), #6 Ideation (3.5 A), #9 Mined That Gold (15.0 D[W])
+   * Math: 4 \times 3 \times 4 \times 4 \times 4 = 768\text{ combinations} → Trimmed via Key-Linkage to anchor #8 Tess Me Not in R1 AND #11 Novo Mesto in R2:
+      * #8 (1) \times #11 (1) \times #2, #4, #5, #8 (4) \times #3, #4, #11, #14 (4) \times #1, #2, #6, #9, #13, #15 (6) = 96\text{ combinations} \times \$0.50 = \mathbf{\$48.00\text{ (9.6 Units)}}
+Sequence 2: Middle Pick 4 (Races 4–7) — The [A+] Vukota Fulcrum
+* Target Pool: Crosses three heavy FTS trap races (R4, R6, R7) plus the R5 turf meltdown by singling Zero-Entropy Anchor #9 Vukota ([A+]) in Race 6 and completely fading the ML favorite in Race 4 (#12 Nauti Talk) and Race 7 (#11 Scarlet Ribbons).
+* Ticket 2A — $1.00 Main Ticket (Fading R4 ML Fav #12, R5 ML Fav #14, and R7 ML Fav #11):
+   * R4: #3 Flaming Verdict (6.0 A[W]), #11 Racheli (6.0 B[W]), #14 Your Choice (10.0 A[W][E])
+   * R5: #1 Quigley (4.5 A[W]), #6 Ideation (3.5 A), #9 Mined That Gold (15.0 D[W])
+   * R6: #9 Vukota (2.5 [A+]) — SINGLE
+   * R7: #4 Cosmic Creed (15.0 B[W][E]), #7 Stand By Me (4.5 A[W])
+   * Math: 3 \times 3 \times 1 \times 2 = 18\text{ combinations} \times \$1.00 = \mathbf{\$18.00\text{ (3.6 Units)}}
+* Ticket 2B — $0.50 Wide Chaos Press (Adding [C] & [D] Meltdown/Smell-Test Bombs around #9 Vukota):
+   * R4: #2 Resilient Lady (15.0 D), #3 Flaming Verdict (6.0 A[W]), #4 Voli Te (4.5 D), #11 Racheli (6.0 B[W]), #14 Your Choice (10.0 A[W][E])
+   * R5: #1 Quigley (4.5 A[W]), #2 Kotetsu (5.0 C), #6 Ideation (3.5 A), #8 Biathlon (30.0 D), #9 Mined That Gold (15.0 D[W]), #13 Travelin (4.0 B), #15 American Veteran (4.5 B)
+   * R6: #9 Vukota (2.5 [A+]) — SINGLE
+   * R7: #4 Cosmic Creed (15.0 B[W][E]), #7 Stand By Me (4.5 A[W]), #9 Emmas Pearl (15.0 D), #12 Luxdomina (5.0 D)
+   * Math: 5 \times 7 \times 1 \times 4 = 140\text{ combinations} \times \$0.50 = \mathbf{\$70.00\text{ (14.0 Units)}}
+Sequence 3: Late Pick 5 (Races 7–11) — The Primary Session Strike
+* Structural Edge: This sequence contains two massive Retail Trap vacuums (Race 7 and Race 9), a vulnerable 1.2 ML sprint favorite in a 33-QSP pace (Race 8 #8 Medinah), a Zero-Entropy [A+][E] Single in Race 10 (#3 Card Man over 1.8 ML #4 Mystik Bayou), and a 54 QSP finale where 6.0 ML #1 Fullback (A[W]) holds #1 Prime_Power, #1 Last_Fig, and #1 Last_E1.
+* Ticket 3A — $1.00 Primary Alpha Ticket (Zero Favorites in Leg 1 [R7] or Leg 2 [R8]; Single #3 Card Man in R10):
+   * R7: #4 Cosmic Creed (15.0 B[W][E]), #7 Stand By Me (4.5 A[W]) (Fades 2.5 ML #11 & 6.0 DRF Best Bet #2)
+   * R8: #3 Bee Crazy (3.0 B), #5 Ciarlatano (10.0 B[W]), #7 Moxie Girl (15.0 C[W]) (Opposes 1.2 ML #8 Medinah)
+   * R9: #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #5 Lunar Velocity (8.0 B[W]), #6 Juana Margarita (6.0 A[W]) (100% [UNSEEN BY RETAIL]; fades 1.8 ML #2 Wharfie & 3.5 ML #7 First Laugh)
+   * R10: #3 Card Man (2.5 [A+][E]) — SINGLE (Fades 1.8 ML #4 Mystik Bayou)
+   * R11: #1 Fullback (6.0 A[W]), #5 Fools Rush In (3.0 A), #12 Better Quality (8.0 C)
+   * Math: 2 \times 3 \times 4 \times 1 \times 3 = 72\text{ combinations} \times \$1.00 = \mathbf{\$72.00\text{ (14.4 Units)}}
+* Ticket 3B — $0.50 Defensive Saver + Deep Chaos Backup (Covering R8 #8 Medinah and R7/R11 [D] Bombs while Keeping #3 Card Man Singled):
+   * R7: #4 Cosmic Creed (15.0 B[W][E]), #7 Stand By Me (4.5 A[W]), #12 Luxdomina (5.0 D)
+   * R8: #3 Bee Crazy (3.0 B), #4 Epernay (15.0 D), #5 Ciarlatano (10.0 B[W]), #8 Medinah (1.2 A Saver)
+   * R9: #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #6 Juana Margarita (6.0 A[W])
+   * R10: #3 Card Man (2.5 [A+][E]) — SINGLE
+   * R11: #1 Fullback (6.0 A[W]), #4 Automatic Press (10.0 D[E]), #5 Fools Rush In (3.0 A), #6 Runnin Out of Time (4.0 B[W]), #12 Better Quality (8.0 C)
+   * Math: 3 \times 4 \times 3 \times 1 \times 5 = 180\text{ combinations} \times \$0.50 = \mathbf{\$90.00\text{ (18.0 Units)}}
+Sequence 4: Late Pick 4 (Races 8–11) — Anti-Chalk Opening Leg Architecture
+* Opening-Leg Rule: Because #8 Medinah is 1.2 ML (q_i \approx 0.44) running into a 5-speed 33 QSP turf sprint burner, we exclude #8 Medinah completely from our primary Late Pick 4 ticket, initiating with 2nd, 3rd, 5th, and 6th choices (#3, #5, #7, #4, #9).
+* Ticket 4A — $1.00 Anti-Medinah Main Ticket (Fading #8 Medinah in R8, #2 Wharfie in R9, and #4 Mystik Bayou in R10):
+   * R8: #3 Bee Crazy (3.0 B), #4 Epernay (15.0 D), #5 Ciarlatano (10.0 B[W]), #7 Moxie Girl (15.0 C[W])
+   * R9: #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #5 Lunar Velocity (8.0 B[W]), #6 Juana Margarita (6.0 A[W])
+   * R10: #3 Card Man (2.5 [A+][E]) — SINGLE
+   * R11: #1 Fullback (6.0 A[W]), #5 Fools Rush In (3.0 A), #12 Better Quality (8.0 C)
+   * Math: 4 \times 4 \times 1 \times 3 = 48\text{ combinations} \times \$1.00 = \mathbf{\$48.00\text{ (9.6 Units)}}
+* Ticket 4B — $0.50 R10 Meltdown Backup (Guarding against a 41-QSP collapse in R10 with #2 Blessed Flyer and #7 Staunch):
+   * R8: #3 Bee Crazy (3.0 B), #5 Ciarlatano (10.0 B[W])
+   * R9: #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #6 Juana Margarita (6.0 A[W])
+   * R10: #2 Blessed Flyer (3.5 B [UNSEEN]), #7 Staunch (5.0 C[W] [UNSEEN])
+   * R11: #1 Fullback (6.0 A[W]), #5 Fools Rush In (3.0 A)
+   * Math: 2 \times 3 \times 2 \times 2 = 24\text{ combinations} \times \$0.50 = \mathbf{\$12.00\text{ (2.4 Units)}}
+Sequence 5: High-Leverage Rolling Daily Doubles (Single-Takeout Sniper Strikes)
+* Races 6–7 Double (Bridging [A+] #9 Vukota into the R7 Retail Trap Vacuum):
+   * $5.00 Main Double: R6 #9 Vukota (2.5 [A+]) \times R7 #4 Cosmic Creed (15.0 B[W][E]), #7 Stand By Me (4.5 A[W]) = \mathbf{\$10.00\text{ (2.0 Units)}}
+* Races 9–10 Double (Bridging the R9 1-2-7 Retail Trap Vacuum into [A+][E] #3 Card Man):
+   * $4.00 Main Double: R9 #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #6 Juana Margarita (6.0 A[W]) \times R10 #3 Card Man (2.5 [A+][E]) = \mathbf{\$12.00\text{ (2.4 Units)}}
+   * $2.00 Backup Double: R9 #5 Lunar Velocity (8.0 B[W]) \times R10 #3 Card Man (2.5 [A+][E]) = \mathbf{\$2.00\text{ (0.4 Units)}}
+3. VERTICAL EXOTIC & CONDITIONAL PACE EXPLOITATION
+A. The Retail Trap Exotic Vacuums (Complete Top-3 Exclusion of Dead Chalk)
+1. RACE 1 EXOTIC VACUUM — Excluding #5 Broadway Girl (1.6 ML) & #3 Seaton Springs (2.5 ML) from All Slots:
+   * Pool Thesis: When two unproven FTS taking over 50% of the win/exotic pool finish off the board against experienced dirt routers, $1 Exactas and $0.50 Trifectas linking the four proven Prime Power runners pay 3x–5x their fair conditional probability.
+   * Exacta Key-Box Structure:
+      * $3.00 Exacta: #4 My Pal Al (10.0 B[W][E]), #8 Tess Me Not (4.5 A[W]) OVER #1 Jetsetter (8.0 B[W]), #4 My Pal Al (10.0), #7 Secret Light (8.0 D), #8 Tess Me Not (4.5) (6 combinations = $18.00 / 3.6 Units)
+   * Trifecta Vacuum Structure:
+      * $0.50 Trifecta: #4 My Pal Al, #8 Tess Me Not WITH #1 Jetsetter, #4 My Pal Al, #7 Secret Light, #8 Tess Me Not WITH #1 Jetsetter, #4 My Pal Al, #7 Secret Light, #8 Tess Me Not (12 combinations = $6.00 / 1.2 Units)
+2. RACE 7 EXOTIC VACUUM — Excluding #11 Scarlet Ribbons (2.5 ML) & #2 Ghostline (6.0 DRF Best Bet) from All Slots:
+   * Pool Thesis: #7 Stand By Me (4.5 ML, 84 Last_Fig, 90 Last_LP) and #4 Cosmic Creed (15.0 ML, #1 Last_E1 = 92, [UNSEEN BY RETAIL]) control both ends of the pace in a 10 QSP Lone Speed race while 48% of the pool burns on debut fillies #11 and #2.
+   * Exacta Structure:
+      * $4.00 Cold Exacta Box: #4 Cosmic Creed (15.0 B[W][E]) / #7 Stand By Me (4.5 A[W]) (2 combinations = $8.00 / 1.6 Units)
+      * $2.00 Exacta: #4 Cosmic Creed, #7 Stand By Me OVER #9 Emmas Pearl (15.0 D), #12 Luxdomina (5.0 D) (4 combinations = $8.00 / 1.6 Units)
+3. RACE 9 EXOTIC VACUUM — Complete Exclusion of #2 Wharfie (1.8 ML) & #7 First Laugh (3.5 ML) from 1st, 2nd, and 3rd:
+   * Pool Thesis: This is the highest-kurtosis vertical opportunity of the afternoon. With DRF’s 1-2-7 consensus trapping nearly 60% of the vertical pools on the #6, #4, and #7 Prime Power runners, we lock out #2 Wharfie (1.8 ML) and #7 First Laugh (3.5 ML) completely, and relegate DRF #1 pick #1 Intraosseous (10.0 ML, C closer) strictly to the 3rd-place Trifecta rung.
+   * Exacta Structure:
+      * $3.00 Exacta: #3 Oh She Said Yes (2.5 A), #4 Countthetrue (12.0 B[W][E]), #6 Juana Margarita (6.0 A[W]) OVER #3 Oh She Said Yes, #4 Countthetrue, #5 Lunar Velocity (8.0 B[W]), #6 Juana Margarita (9 combinations = $27.00 / 5.4 Units)
+   * Trifecta Vacuum Structure:
+      * $0.50 Trifecta: #3 Oh She Said Yes, #4 Countthetrue, #6 Juana Margarita WITH #3 Oh She Said Yes, #4 Countthetrue, #5 Lunar Velocity, #6 Juana Margarita WITH #1 Intraosseous (10.0 C), #3 Oh She Said Yes, #4 Countthetrue, #5 Lunar Velocity, #6 Juana Margarita (27 combinations = $13.50 / 2.7 Units)
+B. Bifurcated Pace Scripts (Active QSP Sum >= 20 Contentious Regimes)
+1. RACE 5 (1760y Turf — Active QSP Sum = 36 Meltdown):
+   * Pace Topology: Four QSP = 6 runners (#5 Yalta, #6 Ideation, #14 Castle Pines [E1=100 from Post 14], #15 American Veteran [Post 15]) plus two QSP = 4 pressers (#1 Quigley, #11 Bardstown [E1=94]) guarantee ferocious early friction into the clubhouse turn.
+   * Script 1 (Inside Tactical Stalker Survival): #1 Quigley (4.5 ML, Post 1, #1 Last_LP = 85) and #6 Ideation (3.5 ML, #1 Prime_Power = 126.45) sit pocketed behind the wide speed duel (#14 and #15) and get first run.
+      * Play: $2.00 Exacta Box: #1 Quigley / #6 Ideation ($4.00 / 0.8 Units)
+   * Script 2 (Full 36-QSP Pace Meltdown): The front end craters completely, launching 15.0 ML D[W] bomb #9 Mined That Gold (tied-#1 Last_LP = 85 after debut traffic Bit tght erly;3p;7p1/4 for 31.8% Kenny McPeek) and 5.0 ML C closer #2 Kotetsu (Last_LP = 81, Jose Ortiz).
+      * Play: $1.00 Meltdown Exacta: #1 Quigley, #2 Kotetsu, #9 Mined That Gold OVER #1 Quigley, #2 Kotetsu, #6 Ideation, #8 Biathlon (30.0 D), #9 Mined That Gold (12 combinations = $12.00 / 2.4 Units)
+2. RACE 8 (1100y Turf Sprint — Active QSP Sum = 33 Meltdown):
+   * Pace Topology: Five E / E/P burners (#8 Medinah E1=106 QSP=6, #5 Ciarlatano E1=100 QSP=6, #9 Sharpie Girl E1=95 QSP=7, #3 Bee Crazy E1=93 QSP=5, #6 Sharply E1=89 QSP=7) collide over 5.5 furlongs.
+   * Script 1 (Stalking Class-Drop Survival): #3 Bee Crazy (3.0 ML) and #5 Ciarlatano (10.0 ML, 86 Fig_2Back) drop out of $350,000 Kentucky Downs stakes and overhaul a softened #8 Medinah (1.2 ML).
+      * Play: $2.00 Exacta: #3 Bee Crazy, #5 Ciarlatano OVER #3 Bee Crazy, #5 Ciarlatano, #8 Medinah (4 combinations = $8.00 / 1.6 Units)
+   * Script 2 (Total Speed Burnout): #7 Moxie Girl (15.0 ML C[W], QSP = 0, tied-#1 Last_LP = 77) and #4 Epernay (15.0 ML D, checked at the 5/8 pole last out) pick up the pieces late.
+      * Play: $1.00 Meltdown Exacta: #4 Epernay, #7 Moxie Girl OVER #3 Bee Crazy, #4 Epernay, #5 Ciarlatano, #7 Moxie Girl, #9 Sharpie Girl (30.0 D[W]) (8 combinations = $8.00 / 1.6 Units)
+3. RACE 10 (1870y Dirt G3 Street Sense — Active QSP Sum = 41 Meltdown):
+   * Pace Topology: Despite a 41 QSP sum, #3 Card Man (2.5 ML, [A+][E]) holds a +5.0 point Last_E1 advantage (96 vs. #8 Never a Doubt at 91 and #4 Mystik Bayou at 88) from inside Post 3 while owning a 94 Last_Fig and 88 Last_LP. Meanwhile, 1.8 ML favorite #4 Mystik Bayou (E/P, QSP = 6) is caught pressing outside #3 and inside #6 and #8.
+   * Script 1 ([A+][E] Controlling Speed + Closer Underneath, Fading #4 Mystik Bayou Out of Exacta):
+      * Play: $3.00 Exacta: #3 Card Man (2.5 [A+][E]) OVER #2 Blessed Flyer (3.5 B [UNSEEN], 93 Fig, new gelding), #6 Jas (6.0 D[W]), #7 Staunch (5.0 C[W] [UNSEEN], #1 Last_LP = 94) (3 combinations = $9.00 / 1.8 Units)
+   * Script 2 (41-QSP Late Inversion): #3 Card Man duels #4 Mystik Bayou and #8 Never a Doubt into submission, setting up #2 Blessed Flyer (90 LP) and #7 Staunch (94 LP) to sweep past #3 Card Man in deep stretch.
+      * Play: $1.50 Exacta: #2 Blessed Flyer, #7 Staunch OVER #2 Blessed Flyer, #3 Card Man, #7 Staunch (4 combinations = $6.00 / 1.2 Units)
+4. RACE 11 (1760y Dirt — Active QSP Sum = 54 Nuclear Meltdown):
+   * Pace Topology: Highest early friction on the card (Active QSP Sum = 54), driven by #4 Automatic Press (QSP = 8), #2, #6, #7, #10 (QSP = 6 each), and #3 Monnie (QSP = 5, E1 = 93).
+   * Script 1 (Inside Prime Power Stalker): #1 Fullback (6.0 ML A[W], #1 Prime_Power = 128.47, #1 Last_Fig = 84, #1 Last_E1 = 95, P style QSP = 4) uses the rail to draft behind the Kamikaze E types and spurts clear at the quarter pole, holding off #5 Fools Rush In (3.0 ML A, #1 Last_LP = 90).
+      * Play: $3.00 Exacta: #1 Fullback OVER #5 Fools Rush In, #6 Runnin Out of Time (4.0 B[W]), #12 Better Quality (8.0 C) (3 combinations = $9.00 / 1.8 Units)
+   * Script 2 (54-QSP Deep Closer Avalanche): #5 Fools Rush In (90 LP) and unseen #12 Better Quality (8.0 ML C, QSP = 1, #2 Last_LP = 87 after 3w;7w upr;rally place) swallow the field inside the final sixteenth.
+      * Play: $1.50 Meltdown Exacta: #5 Fools Rush In, #12 Better Quality OVER #1 Fullback, #5 Fools Rush In, #6 Runnin Out of Time, #12 Better Quality (6 combinations = $9.00 / 1.8 Units)
+4. LONG-TERM BANKROLL & KELLY ALLOCATION RULES
+A. Fractional Kelly Sizing Calibration
+* Session Bankroll Definition: Standardized 100.0 Units = $500.00 (representing 5.0\% of a \$10,000 total roll, where \mathbf{1\text{ Unit} = \$5.00}).
+* Fractional Kelly Multiplier (\gamma = 0.25): For single-race overlays where p_i is our conditional Bayesian win probability, q_i is the tote market implied probability, and b is net decimal odds: f^* = 0.25 \cdot \left( \frac{b \cdot p_i - (1 - p_i)}{b} \right)
+* Pass Rule Execution: We allocate 0.0 Units to standalone vertical/win pools in Race 2, Race 3, Race 4, and Race 6. Why?
+   * In Race 3 (Active QSP Sum = 11, small 9-horse field) and Race 6 (#9 Vukota at 2.5 ML), the vertical pool edges are compressed by track takeout (t \approx 17.5\%\text{–}22\%), whereas their value is maximized by compounding them inside single-takeout horizontal sequences.
+   * In Race 2 and Race 4, wide 15–16 horse fields introduce post/trip variance best absorbed inside multi-race grids rather than high-vigorish vertical boxes.
+B. Master 100-Unit Session Capital Allocation Table
+Wager Category
+	Race(s)
+	Specific Wager & Ticket Structure
+	Mathematical Edge / Kelly Justification
+	Dollar Cost
+	Session Units (1\text{U} = \$5)
+	Horizontal
+	R1–R5
+	Early Pick 5 — Ticket 1A ($1.00 Main): 4,8 \times 11,14 \times 2,5 \times 3,14 \times 1,6
+	Fades 52% dead FTS chalk in R1 (#5, #3) & 38% dead FTS chalk in R4 (#12); zero opening-leg favorites.
+	\$32.00
+	6.4 U
+	Horizontal
+	R1–R5
+	Early Pick 5 — Ticket 1B ($0.50 Alpha Link): 8 \times 11 \times 2,4,5,8 \times 3,4,11,14 \times 1,2,6,9,13,15
+	Anchors #8 Tess Me Not (R1) + #11 Novo Mesto (R2) to press [C]/[D] bombs in R3–R5.
+	\$48.00
+	9.6 U
+	Horizontal
+	R4–R7
+	Middle Pick 4 — Ticket 2A ($1.00 Main): 3,11,14 \times 1,6,9 \times 9 [A+] \times 4,7
+	Singles [A+] #9 Vukota (p_i = 0.48) while fading ML favorites in R4 (#12), R5 (#14), and R7 (#11).
+	\$18.00
+	3.6 U
+	Horizontal
+	R4–R7
+	Middle Pick 4 — Ticket 2B ($0.50 Chaos Press): 2,3,4,11,14 \times 1,2,6,8,9,13,15 \times 9 [A+] \times 4,7,9,12
+	Leverages #9 Vukota single to capture 15/1–30/1 [D] bombs across R4, R5, and R7.
+	\$70.00
+	14.0 U
+	Horizontal
+	R7–R11
+	Late Pick 5 — Ticket 3A ($1.00 Primary Strike): 4,7 \times 3,5,7 \times 3,4,5,6 \times 3 [A+][E] \times 1,5,12
+	Highest +EV vehicle on the card: fades R7 chalk (#11, #2), opposes R8 #8 Medinah (1.2), sweeps 100% [UNSEEN] R9 quad, singles #3 Card Man in R10.
+	\$72.00
+	14.4 U
+	Horizontal
+	R7–R11
+	Late Pick 5 — Ticket 3B ($0.50 Saver/Chaos): 4,7,12 \times 3,4,5,8 \times 3,4,6 \times 3 [A+][E] \times 1,4,5,6,12
+	Defensive coverage on R8 #8 Medinah (1.2 ML) while expanding R7 and R11 [D] bombers.
+	\$90.00
+	18.0 U
+	Horizontal
+	R8–R11
+	Late Pick 4 — Ticket 4A ($1.00 Anti-Medinah): 3,4,5,7 \times 3,4,5,6 \times 3 [A+][E] \times 1,5,12
+	Complete opening-leg fade of 1.2 ML #8 Medinah in a 33-QSP sprint + complete R9 1-2-7 trap fade.
+	\$48.00
+	9.6 U
+	Horizontal
+	R8–R11
+	Late Pick 4 — Ticket 4B ($0.50 R10 Meltdown): 3,5 \times 3,4,6 \times 2,7 \times 1,5
+	Protects against a 41-QSP pace collapse in R10 with #2 Blessed Flyer (93 Fig) & #7 Staunch (94 LP).
+	\$12.00
+	2.4 U
+	Horizontal
+	R6–R7
+	Rolling Daily Double ($5.00 Main): R6 #9 Vukota \times R7 #4 Cosmic Creed, #7 Stand By Me
+	Bridges [A+] anchor #9 Vukota directly into the 48% dead-money vacuum of Race 7.
+	\$10.00
+	2.0 U
+	Horizontal
+	R9–R10
+	Rolling Daily Doubles ($4.00 Main / $2.00 Backup): R9 #3, #4, #6 ($4) & #5 ($2) \times R10 #3 Card Man
+	Bridges the 58% dead-money R9 Retail Trap (1-2-7 fade) directly into [A+][E] #3 Card Man.
+	\$14.00
+	2.8 U
+	Vertical
+	R1
+	R1 Exotic Vacuum (Fading #5 & #3): $3 Ex 4,8 / 1,4,7,8 ($18) + $0.50 Tri 4,8 / 1,4,7,8 / 1,4,7,8 ($6)
+	Excludes 1.6 ML #5 & 2.5 ML #3 from all slots; keys #8 Tess Me Not (p_i=0.34) & lone-E #4 My Pal Al.
+	\$24.00
+	4.8 U
+	Vertical
+	R5
+	R5 Bifurcated 36-QSP Turf Scripts: Script 1 $2 Ex Box 1,6 ($4) + Script 2 $1 Ex 1,2,9 / 1,2,6,8,9 ($12)
+	Captures both inside stalker survival (#1, #6) and 15/1 #1 Last_LP bomb #9 Mined That Gold.
+	\$16.00
+	3.2 U
+	Vertical
+	R7
+	R7 Exotic Vacuum (Fading #11 & #2): $4 Ex Box 4,7 ($8) + $2 Ex 4,7 / 9,12 ($8)
+	Excludes 2.5 ML #11 & DRF Best Bet #2; keys #7 Stand By Me (84 Fig) & #4 Cosmic Creed ([E]).
+	\$16.00
+	3.2 U
+	Vertical
+	R8
+	R8 Bifurcated 33-QSP Turf Sprint Scripts: Script 1 $2 Ex 3,5 / 3,5,8 ($8) + Script 2 $1 Ex 4,7 / 3,4,5,7,9 ($8)
+	Demands #8 Medinah (1.2 ML) lose on top to class-droppers #3/#5 or meltdown closers #4/#7.
+	\$16.00
+	3.2 U
+	Vertical
+	R9
+	R9 Exotic Vacuum (Fading #2 Wharfie & #7 First Laugh): $3 Ex 3,4,6 / 3,4,5,6 ($27) + $0.50 Tri 3,4,6 / 3,4,5,6 / 1,3,4,5,6 ($13.50)
+	Maximum vertical distortion on card: locks out 1.8 ML #2 & 3.5 ML #7 completely; sweeps [UNSEEN] Top 4.
+	\$40.50
+	8.1 U
+	Vertical
+	R10
+	R10 Bifurcated 41-QSP G3 Street Sense Scripts: Script 1 $3 Ex 3 / 2,6,7 ($9) + Script 2 $1.50 Ex 2,7 / 2,3,7 ($6)
+	Excludes 1.8 ML underlay #4 Mystik Bayou from the Exacta in both Controlling Speed and Collapse scripts.
+	\$15.00
+	3.0 U
+	Vertical
+	R11
+	R11 Bifurcated 54-QSP Finale Scripts: Script 1 $3 Ex 1 / 5,6,12 ($9) + Script 2 $1.50 Ex 5,12 / 1,5,6,12 ($9)
+	Pairs 6.0 ML #1 Prime_Power leader #1 Fullback (A[W]) with 54 QSP closers #5 (90 LP) & #12 (87 LP).
+	\$18.00
+	3.6 U
+	Win Overlay
+	R9 & R11
+	Fractional Kelly Win Strikes (\gamma = 0.25): R9 #4 Countthetrue (12.0 ML, p_i=0.18) — \$10.50 Win (2.1 U) R11 #1 Fullback (6.0 ML, p_i=0.27) — \$10.00 Win (2.0 U)
+	Direct win overlays where b \cdot p_i - q_i exceeds +100\% ROI: #4 Countthetrue (#1 Fig/E1/LP at 12/1) & #1 Fullback (#1 PP/Fig/E1 at 6/1).
+	\$20.50
+	4.1 U
+	Pass Rule
+	R2, R3, R4, R6
+	0.0 Units in Standalone Vertical/Win Pools
+	Capital preserved from high-takeout vertical pools in R2/R3/R4/R6 and concentrated into multi-race leverage legs.
+	\$0.00
+	0.0 U
+	TOTAL
+	All Card
+	62.8% Horizontal (62.8 U) / 37.2% Vertical & Win (37.2 U)
+	Portfolio Convexity Optimized Around R6 #9 Vukota & R10 #3 Card Man Singles + R1/R7/R9 Chalk Vacuums
+	\$500.00
+	100.0 U
+	ReplyForward
+Add reaction

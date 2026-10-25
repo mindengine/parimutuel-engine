@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "track": "BEL",
+  "race_date": "2026-10-25",
+  "generated_by": "handicapping-prompt v?",
+  "races": [
+    {
+      "race": 6,
+      "surface": "D",
+      "distance_yds": 1540,
+      "race_type": "STK",
+      "field_size": 5,
+      "qsp_sum": 48,
+      "pace_scenario": "MELTDOWN",
+      "par_spd": 90.0,
+      "par_lp": 90.0,
+      "runners": [
+        {
+          "pgm": "1",
+          "name": "Sorority Prank",
+          "ml_odds": 8.0,
+          "bucket": "B",
+          "modifiers": [],
+          "tags": [],
+          "last_lp": 82
+        },
+        {
+          "pgm": "4",
+          "name": "East Coast Girl",
+          "ml_odds": 3.5,
+          "bucket": "A",
+          "modifiers": [],
+          "tags": []
+        },
+        {
+          "pgm": "5",
+          "name": "Pantherian",
+          "ml_odds": 3.0,
+          "bucket": "B",
+          "modifiers": [
+            "E"
+          ],
+          "tags": [],
+          "last_e1": 99
+        },
+        {
+          "pgm": "6",
+          "name": "Mo for the King",
+          "ml_odds": 1.2,
+          "bucket": "F-",
+          "modifiers": [],
+          "tags": [
+            "RETAIL_TRAP"
+          ],
+          "qsp": 5,
+          "last_e1": 94,
+          "last_lp": 73
+        },
+        {
+          "pgm": "7",
+          "name": "Example Runner",
+          "ml_odds": 6.0,
+          "bucket": "F",
+          "modifiers": [],
+          "tags": [],
+          "last_e1": 95
+        },
+        {
+          "pgm": "3",
+          "name": "Scratched Runner",
+          "ml_odds": 10.0,
+          "bucket": null,
+          "scratched": true
+        }
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "label": "R6 F- exclusion trifecta",
+      "structure": "VERTICAL",
+      "pool": "TRI",
+      "race": 6,
+      "base": 2.0,
+      "positions": [
+        [
+          "4",
+          "5"
+        ],
+        [
+          "1",
+          "4",
+          "5"
+        ],
+        [
+          "1",
+          "4",
+          "5"
+        ]
+      ],
+      "claimed_combos": 6,
+      "claimed_cost": 12.0
+    },
+    {
+      "label": "R6 exacta key",
+      "structure": "VERTICAL",
+      "pool": "EX",
+      "race": 6,
+      "base": 3.0,
+      "positions": [
+        [
+          "4",
+          "5"
+        ],
+        [
+          "1",
+          "4",
+          "5"
+        ]
+      ],
+      "claimed_combos": 4,
+      "claimed_cost": 12.0
+    },
+    {
+      "label": "Late P4 main",
+      "structure": "MAIN",
+      "pool": "P4",
+      "race": 6,
+      "base": 1.0,
+      "legs": [
+        [
+          "1",
+          "4",
+          "5"
+        ],
+        [
+          "3",
+          "5"
+        ],
+        [
+          "5"
+        ],
+        [
+          "5",
+          "7",
+          "10",
+          "12"
+        ]
+      ],
+      "claimed_combos": 24,
+      "claimed_cost": 24.0
+    }
+  ]
+}

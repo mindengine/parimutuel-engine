@@ -1,0 +1,236 @@
+1. CARD TOPOLOGY & INEFFICIENT POOL IDENTIFICATION
+Operating under the axiom that parimutuel wagering is a non-cooperative game against a polarized pool of retail consensus bettors and Computer Assisted Wagering (CAW) syndicates, capital is strictly concentrated where conditional pace probability (p_i) diverges sharply from unconditional market implied probability (q_i).
+Primary Leverage Nodes ([F-] & Retail Traps)
+Multi-race horizontal wagers carry a single takeout (t \approx 15\%\text{–}22\%) across independent events, making them the optimal vehicle to exploit heavy public favorites projected to fail.
+Race
+	Target Fade
+	ML Odds (q_i)
+	Designation
+	Est. Dead Pool %
+	Structural Vulnerability & Pace Topology
+	Race 6
+	#6 Mo for the King
+	1.20 (~38.5%)
+	[F-] Lock
+	42%–48% Win/Horiz 65%–70% Tri/Show
+	Passes all 4 Archetype A gates: one-dimensional E (QSP: 5) without [E], hooked in a nuclear Active QSP Sum: 48 meltdown, out-footed early (Last_E1: 94 vs. #5 at 99 and #7 at 95), and owns zero late resistance (Last_LP: 73, 17 pts below Par_LP: 90.0).
+	Race 1
+	#2 Kayla's Komet
+	1.40 (~35.0%)
+	[RETAIL TRAP]
+	38%–42% Win/P5
+	DRF #1 Pick & Consensus Best Bet ranks #4 in Prime_Power (126.21), owns static 83-82-84 figures (4–6 pts below Par_Spd: 88.0), and is out-footed early (Last_E1: 81 Rank #4 vs. #3 at 92 and #6 at 88) in an Active QSP Sum: 33 meltdown.
+	Race 9
+	#6 Scorch
+	1.80 (~30.0%)
+	[RETAIL TRAP]
+	32%–36% Win/Horiz
+	DRF #1 & Consensus #1 Pick for a 0.0% barn (0/12). Last_Fig: 68 sits 10 pts below Par_Spd: 78.0, Last_LP: 59 sits 20 pts below Par_LP: 79.0, and she is trapped inside a 6-horse 91–96 E1 meltdown (Active QSP Sum: 25).
+	Race 2
+	#7 Col de La Loze #9 Aesthetic Emotion
+	3.50 (~18.5%) 4.00 (~16.5%)
+	[RETAIL TRAP]
+	35% Combined
+	Overbet debut FTS underlays (FTS_0 Prime_Power) with slow 880y works (48.8 and 49.6) and wide post trouble (#9 in Post 9 outside the 48-ft rail) facing proven 83-figure turf routers.
+	Race 4
+	#3 Social Scene
+	3.00 (~21.0%)
+	[RETAIL TRAP]
+	20%–24% Win/Horiz
+	DRF #2 & Consensus #2 Pick cutting back from 1870y with QSP: 0, sub-par 77-71 figures vs. Par_Spd: 81.0, and a field-worst Last_LP: 62 (20 pts below Par_LP: 82.0).
+	Race 5
+	#3 Brandy and Me
+	4.50 (~15.0%)
+	[RETAIL TRAP]
+	15%–18% Win/Horiz
+	DRF #2 & Consensus #2 Pick ranks #4 in Prime_Power (136.96), ships off sub-par 88-86 Woodbine synthetic/dirt figures vs. Par_Spd: 91.0, and ranks dead last (#8/8) in Last_E1: 87.
+	Race 7
+	#7 Central to Success
+	3.50 (~18.5%)
+	[RETAIL TRAP]
+	18%–22% Win/Horiz
+	DRF #1 & Consensus co-#1 Pick ranks #4 in Prime_Power (124.67) with Last_Fig: 78 (9 pts below Par_Spd: 87.0), beaten 9 figure pts by #3 Material Girl on Sept 30.
+	Race 8
+	#1 Life's Dynamic #3 Flowerhead
+	4.50 (~15.0%) 10.00 (~7.5%)
+	[RETAIL TRAP]
+	22% Combined
+	#1 (Beyer Edge #1 / DRF #2) owns static 86-86-86 figures (5 pts below Par_Spd: 91.0) and Last_LP: 81 (9 pts below Par_LP: 90.0). #3 ranks #8/11 in Prime_Power (130.97).
+	Zero-Entropy Anchors ([A+] & A[E])
+[A+] anchors hold a true win probability p_i \ge 0.42 and serve as geometric leverage points that reduce ticket variance without diluting expected value. A[E] runners hold controlling speed, reducing trip variance and elevating wire-to-wire conditional probability above raw speed figures.
+* Race 8 — #5 Lion Lake (1.6 ML | [A+] Monster Card Anchor): Boasts a +9.68 pt Prime_Power edge (156.28 vs. #2 at 146.60), #1 Last_Fig (93 vs. Par_Spd: 91.0), and #1 Last_LP (93 vs. Par_LP: 90.0) plunging from a $1,500,000 Kentucky Downs stakes to $200,000 (0.13x). True probability p_i \approx 0.50 vs. market implied q_i \approx 0.32.
+* Race 5 — #4 Ground Support (3.0 ML | [A+] Dominant Card Anchor): Holds a +8.62 pt Prime_Power edge (147.17 vs. #2 at 138.55), #1 Last_Fig (93), and #1 Last_LP (93) on an identical 0.13x class plunge from a $1,500,000 Kentucky Downs stakes. True probability p_i \approx 0.44 vs. market implied q_i \approx 0.21.
+* Race 4 — #6 Florida Patriot (1.4 ML | A[E] Controlling Speed Anchor): Commands a paceless turf sprint (Active QSP Sum: 12) with the sole highest QSP (6), #1 Last_E1 (96, +3 pts clear), #1 Prime_Power (124.98, +2.32 pts clear), and tied #1 Last_Fig (83 vs. Par_Spd: 81.0). True conditional probability p_i \approx 0.45.
+* Race 2 — #1 Charlotte's Beach (2.5 ML | A[E] Lone Speed): Draws the rail with a 48-ft temp rail, holding the sole highest QSP (8), #1 Prime_Power (126.27), tied #1 Last_Fig (83), and a +44 pt Last_E1 advantage (91 vs. 47) over the only other E runner (#5).
+Asymmetric Alpha Nodes ([W] & [UNSEEN BY RETAIL])
+Runners carrying A[W], B[W], C[W], and D[W] tags paired with [UNSEEN BY RETAIL] represent maximum Bayesian divergence (p_i \gg q_i) against the public pool:
+* Race 1: #3 Minute by Minute (4.5 ML | A[W][E]) (p_i \approx 0.28 vs. q_i \approx 0.15) controls an E-less field (#1 Last_E1: 92) on a 0.48x purse drop; #1 Cozy Curlin Kitten (4.0 ML | B[W] [UNSEEN BY RETAIL]) (p_i \approx 0.23 vs. q_i \approx 0.16) owns the #1 Last_Fig (91) in the active field.
+* Race 2: #2 Bueckers (12.0 ML | A[W] [UNSEEN BY RETAIL]) (p_i \approx 0.25 vs. q_i \approx 0.065) is tied for #1 Last_Fig (83) and #2 Prime_Power (124.63) despite an 8-wide trip over this course 21 days ago; #10 Lady Girvin (15.0 ML | B[W] [UNSEEN BY RETAIL]) (p_i \approx 0.12 vs. q_i \approx 0.05) drops 0.67x in purse off a +15 pt figure jump.
+* Race 3: #6 Giant At Work (6.0 ML | B[W] [UNSEEN BY RETAIL]) (#1 Last_LP: 100, Fig_2Back: 88) and #3 My First Dinah (8.0 ML | B[W] [UNSEEN BY RETAIL]) (#1 Last_Fig: 83 & #1 Last_E1: 82).
+* Race 5: #9 Emblaze (6.0 ML | A[W]) (#1 Last_E1: 99, #1 Last_E2: 103, Last_Fig: 91), #6 Snappy Comeback (10.0 ML | B[W] [UNSEEN BY RETAIL]) (#2 Prime_Power: 138.55), and #8 New Rose (15.0 ML | B[W] [UNSEEN BY RETAIL]) (Last_Fig: 91 matching Par).
+* Race 7: #5 Furry Fox (10.0 ML | B[W][E] [UNSEEN BY RETAIL]) (p_i \approx 0.18 vs. q_i \approx 0.075, sole highest QSP: 8 cutting back with a bullet work for a 33.3% barn) and #1 K Gun (4.5 ML | D[W] [UNSEEN BY RETAIL]) (field-best Fig_3Back: 90 masked by a stumbled start).
+* Race 8: #8 Hark Theangelssing (8.0 ML | A[W] [UNSEEN BY RETAIL]) (#2 Last_LP: 92), #9 Green Sense (12.0 ML | D[W] [UNSEEN BY RETAIL]) (#2 Prime_Power: 146.60, 0.13x KD drop off start trouble), and #10 Amicable Farce (6.0 ML | [UNSEEN BY RETAIL]) (#2 Last_Fig: 90).
+* Race 9: #10 Heaven's Bolt (8.0 ML | A[W] [UNSEEN BY RETAIL]) (#1 Prime_Power: 116.46, turf return w/ Franco), #12 On a Summer Day (15.0 ML | A[W] [UNSEEN BY RETAIL]) (#1 Fig_2Back: 82), #7 Juliet On Approach (12.0 ML | B[W] [UNSEEN BY RETAIL]) (#1 Last_Fig: 83), #5 Meadowlark Drive (10.0 ML | C[W]) (#1 Last_LP: 88), and #4 Golden Beach (15.0 ML | C[W] [UNSEEN BY RETAIL]) (#2 Last_LP: 85).
+2. HORIZONTAL TICKET ARCHITECTURE (Pick 4 / Pick 5 / Daily Doubles)
+Horizontal sequences are structured to bypass morning-line favorites in opening legs while funnelling combinations through [A+] and A[E] singles into [F-] and [RETAIL TRAP FADE] chaos legs.
+Early Pick 5 (Races 1–5)
+* Strategic Premise: Full fade on 7/5 consensus favorite #2 Kayla's Komet in Leg 1, initiating the sequence with 3rd/4th/2nd choices (#3, #1, #6, #4), attacking the Race 2 debut trap with #1 and 12/1 overlay #2 Bueckers, and anchoring the back end with A[E] #6 Florida Patriot (R4) and [A+] #4 Ground Support (R5).
+* Main Ticket ($2.00 Base — 12 Combinations = $24.00 / 12.0 Units):
+   * R1: #1 Cozy Curlin Kitten (4.0) B[W], #3 Minute by Minute (4.5) A[W][E], #6 Limes Don't Lie (3.0) [A]
+   * R2: #1 Charlotte's Beach (2.5) A[E], #2 Bueckers (12.0) A[W]
+   * R3: #1 Sweetest Princess (2.5) A[E], #4 Lady Rose (1.8) [A]
+   * R4: #6 Florida Patriot (1.4) A[E] (Single)
+   * R5: #4 Ground Support (3.0) [A+] (Single)
+* Chaos / Value Backup Ticket ($0.50 Base — 48 Combinations = $24.00 / 12.0 Units):
+   * R1: #1 (4.0) B[W], #3 (4.5) A[W][E], #4 Purloin (5.0) C[W] (Dodges both #2 ML fav and #6 second choice)
+   * R2: #1 (2.5) A[E], #2 (12.0) A[W], #4 Into Rumors (12.0) [D], #10 Lady Girvin (15.0) B[W]
+   * R3: #3 My First Dinah (8.0) B[W], #6 Giant At Work (6.0) B[W]
+   * R4: #2 Break Up (5.0) B[W], #6 Florida Patriot (1.4) A[E]
+   * R5: #4 Ground Support (3.0) [A+] (Single)
+Late Pick 5 (Races 5–9) — Two-Pronged Architecture
+* Strategic Premise: Because Race 5 is the opening leg of the Late Pick 5 and contains [A+] favorite #4 Ground Support (3.0), we deploy a split architecture: Ticket A dodges the 3/1 favorite in Leg 1 using [W] and D[E] overlays (#9, #6, #8, #2) to build explosive parimutuel leverage into [F-] Race 6 and [A+] Race 8; Ticket B singles #4 Ground Support and #5 Lion Lake to hammer the [F-] vacuum in Race 6 and the wide-open meltdown in Race 9.
+* Ticket A: Opening-Leg Non-Favorite Alpha Matrix ($0.50 Base — 72 Combinations = $36.00 / 18.0 Units):
+   * R5 (Leg 1 Off-Favorite): #2 Paris Carver (8.0) D[E], #6 Snappy Comeback (10.0) B[W], #8 New Rose (15.0) B[W], #9 Emblaze (6.0) A[W]
+   * R6 ([F-] Vacuum): #1 Sorority Prank (8.0) [B], #4 East Coast Girl (3.5) [A], #5 Pantherian (3.0) B[E] (Full fade on 6/5 #6 Mo for the King)
+   * R7: #3 Material Girl (2.0) [A], #5 Furry Fox (10.0) B[W][E]
+   * R8: #5 Lion Lake (1.6) [A+] (Zero-Entropy Single)
+   * R9: #7 Juliet On Approach (12.0) B[W], #10 Heaven's Bolt (8.0) A[W], #12 On a Summer Day (15.0) A[W]
+* Ticket B: Double [A+] Anchor Press ($0.50 Base — 72 Combinations = $36.00 / 18.0 Units):
+   * R5: #4 Ground Support (3.0) [A+] (Zero-Entropy Single)
+   * R6 ([F-] Vacuum): #1 Sorority Prank (8.0) [B], #4 East Coast Girl (3.5) [A], #5 Pantherian (3.0) B[E]
+   * R7: #1 K Gun (4.5) D[W], #3 Material Girl (2.0) [A], #5 Furry Fox (10.0) B[W][E]
+   * R8: #5 Lion Lake (1.6) [A+] (Zero-Entropy Single)
+   * R9 (Finale Spread — Fading #6 Scorch): #3 Sinead (6.0) [D], #4 Golden Beach (15.0) C[W], #5 Meadowlark Drive (10.0) C[W], #7 Juliet On Approach (12.0) B[W], #9 Clap Back (12.0) D[W][E], #10 Heaven's Bolt (8.0) A[W], #11 Five Dozen Roses (5.0) [B], #12 On a Summer Day (15.0) A[W]
+Late Pick 4 (Races 6–9) — Primary Card Strike
+* Strategic Premise: Launches directly into the Race 6 [F-] Nuclear Bet-Against (#6 Mo for the King at 1.20 ML), immediately eliminating ~45% of public tickets in Leg 1 while starting with 2nd, 3rd, and 4th choices (#5, #4, #1), singling [A+] #5 Lion Lake in Leg 3, and spreading across 8 unseen/value runners against 9/5 #6 Scorch in Leg 4.
+* Main Ticket ($1.00 Base — 24 Combinations = $24.00 / 12.0 Units):
+   * R6 ([F-] Fade): #1 Sorority Prank (8.0) [B], #4 East Coast Girl (3.5) [A], #5 Pantherian (3.0) B[E]
+   * R7: #3 Material Girl (2.0) [A], #5 Furry Fox (10.0) B[W][E]
+   * R8: #5 Lion Lake (1.6) [A+] (Single)
+   * R9: #5 Meadowlark Drive (10.0) C[W], #7 Juliet On Approach (12.0) B[W], #10 Heaven's Bolt (8.0) A[W], #12 On a Summer Day (15.0) A[W]
+* Backup Chaos / Meltdown Ticket ($0.50 Base — 48 Combinations = $24.00 / 12.0 Units):
+   * R6 ([F-] Fade): #1 (8.0), #4 (3.5), #5 (3.0)
+   * R7: #1 K Gun (4.5) D[W], #4 Liberty's Secret (2.5) [B]
+   * R8: #5 Lion Lake (1.6) [A+] (Single)
+   * R9: #3 Sinead (6.0) [D], #4 Golden Beach (15.0) C[W], #5 Meadowlark Drive (10.0) C[W], #7 Juliet On Approach (12.0) B[W], #9 Clap Back (12.0) D[W][E], #10 Heaven's Bolt (8.0) A[W], #11 Five Dozen Roses (5.0) [B], #12 On a Summer Day (15.0) A[W]
+Targeted Rolling Daily Doubles
+* R1–R2 Early Double (6.0 Units): $2.00 Double: #1, #3, #6 WITH #2 Bueckers (12.0) A[W] ($12.00 / 6.0 Units) — Fades both #2 Kayla's Komet (R1) and debut traps #7/#9 (R2) to isolate the 12/1 unseen co-top figure turf router.
+* R5–R6 Anchor-to-[F-] Double (9.0 Units): $6.00 Double: #4 Ground Support (3.0) [A+] WITH #1, #4, #5 ($18.00 / 9.0 Units) — Maximum geometric compression crossing the +8.62 PP anchor directly against the 6/5 [F-] lock.
+* R8–R9 Finale Double (10.0 Units):
+   * Primary ($3.00 Base): #5 Lion Lake (1.6) [A+] WITH #5, #7, #10, #12 ($12.00 / 6.0 Units).
+   * Unseen Backup ($1.00 Base): #8 Hark Theangelssing (8.0) A[W], #9 Green Sense (12.0) D[W] WITH #4, #5, #7, #10, #12 ($10.00 / 4.0 Units capped at $8.00 = $0.80 or $1.00 on #8, #9 WITH #5, #7, #10, #12 = $8.00 / 4.0 Units).
+3. VERTICAL EXOTIC & CONDITIONAL PACE EXPLOITATION
+Single-race vertical capital is deployed exclusively where an [F-] vacuum or extreme pace/market distortion creates positive covariance. Pass Rule enforced on Races 3, 4, 5, 7, and 8 vertically (handled strictly through horizontal singles/anchors).
+Race 6: The [F-] Exotic Vacuum (Active QSP Sum: 48 Meltdown)
+* Mathematical Setup: Heavy 6/5 favorite #6 Mo for the King is an Archetype A [F-] projected to finish out of the Top 3, vacating up to 70% of the Trifecta pool. Exclude #6 from 1st, 2nd, and 3rd slots completely.
+* Vertical Executions (12.0 Units Total):
+   * Exacta Key-Box / Cold Press (6.0 Units):
+      * $4.00 Exacta: #4 East Coast Girl (3.5), #5 Pantherian (3.0) B[E] WITH #1 Sorority Prank (8.0), #4, #5 (4 combos = $16.00 -> scaled to $3.00 base = $12.00 / 6.0 Units).
+   * Trifecta [F-] Exclusion Crush (6.0 Units):
+      * $2.00 Trifecta: #4, #5 WITH #1, #4, #5 WITH #1, #4, #5 (6 combos = $12.00 / 6.0 Units) — Locks in the top two Prime_Power contenders (#4 and #5) and the lone late-running E/P stalker (#1 Sorority Prank, Last_E1: 86 Rank #8/8, Last_LP: 82 Rank #2) while completely shutting out #6 Mo for the King.
+Race 1: Bifurcated Pace Script (Active QSP Sum: 33 Meltdown)
+* Mathematical Setup: Fading 7/5 consensus best bet #2 Kayla's Komet ([RETAIL TRAP FADE]).
+* Vertical Executions (6.0 Units Total):
+   * Script A — Controlling Speed/Stalker Survival (3.0 Units): $3.00 Exacta: #3 Minute by Minute (4.5) A[W][E] WITH #1 Cozy Curlin Kitten (4.0) B[W], #6 Limes Don't Lie (3.0) ($6.00 / 3.0 Units).
+   * Script B — Full Pace Collapse (3.0 Units): $2.00 Exacta: #4 Purloin (5.0) C[W] WITH #1, #3, #6 ($6.00 / 3.0 Units) — Exploits #4 Purloin's field-best Last_LP: 94 (+10 pts above Par) sweeping past four E/P runners.
+Race 2: Lone Speed + Unseen Overlay Dislocation (Active QSP Sum: 22)
+* Mathematical Setup: Public money is trapped in debut runners #7 (3.5) and #9 (4.0), leaving #2 Bueckers (12.0) A[W] [UNSEEN BY RETAIL] (co-#1 Last_Fig: 83, #2 Prime_Power: 124.63) massively mispriced.
+* Vertical Executions (6.0 Units Total):
+   * Overlay Exacta Box (3.0 Units): $3.00 Exacta Box: #1 Charlotte's Beach (2.5) A[E], #2 Bueckers (12.0) A[W] ($6.00 / 3.0 Units).
+   * Value Trifecta Key (3.0 Units): $1.50 Trifecta: #1, #2 WITH #1, #2 WITH #4 Into Rumors (12.0) [D], #10 Lady Girvin (15.0) B[W] (4 combos = $6.00 / 3.0 Units).
+Race 9: Finale Bifurcated Meltdown Script (Active QSP Sum: 25)
+* Mathematical Setup: 9/5 favorite #6 Scorch ([RETAIL TRAP FADE]) is hooked in a 6-horse 91–96 E1 duel with a 59 Last_LP (20 pts below Par). Every [A], [B], [C], and [D] contender in this race is 5/1 to 15/1 and largely [UNSEEN BY RETAIL].
+* Vertical Executions (9.0 Units Total):
+   * Script A — Stalking [A][W] Overlay Strike (5.0 Units): $1.00 Exacta: #10 Heaven's Bolt (8.0) A[W], #12 On a Summer Day (15.0) A[W] WITH #3 Sinead (6.0), #4 Golden Beach (15.0), #5 Meadowlark Drive (10.0), #7 Juliet On Approach (12.0), #10, #12 (10 combos = $10.00 / 5.0 Units).
+   * Script B — Nuclear Pace Collapse (C[W] Closers on Top) (4.0 Units): $1.00 Exacta: #4 Golden Beach (15.0) C[W], #5 Meadowlark Drive (10.0) C[W] WITH #3, #4, #5, #7, #10, #12 (10 combos -> scaled to $0.80 base or top 4 underneath #4, #5, #7, #10, #12 = 8 combos at $1.00 = $8.00 / 4.0 Units).
+4. LONG-TERM BANKROLL & KELLY ALLOCATION RULES
+All wagers are sized via the Fractional Kelly Criterion:
+f^* = \gamma \cdot \frac{b \cdot p - q}{b}, \quad \gamma \in [0.25, 0.33]
+where b represents net parimutuel payout odds, p is conditional true win/hit probability, q = 1 - p, and \gamma dampens estimation variance. Below is the disciplined 100-Unit Session Bankroll (1 Unit = $2.00 for a $200 session roll, or 0.05% of total bankroll):
+Wager Category
+	Race(s)
+	Specific Wager Structure
+	Conditional Edge (p_i vs. q_i)
+	Kelly Allocation (Units)
+	Dollar Cost ($2/Unit)
+	Early Pick 5
+	R1–R5
+	$2.00 Main: 1,3,6 / 1,2 / 1,4 / 6 / 4
+	Fades R1 #2 (1.4) + R2 #7/#9; singles R4 A[E] #6 & R5 [A+] #4
+	12.0 Units
+	$24.00
+	Early Pick 5
+	R1–R5
+	$0.50 Chaos: 1,3,4 / 1,2,4,10 / 3,6 / 2,6 / 4
+	Captures R1 meltdown #4 + R2/R3 [W] overlays into #4 single
+	12.0 Units
+	$24.00
+	Late Pick 5 (A)
+	R5–R9
+	$0.50 Non-Fav Leg 1: 2,6,8,9 / 1,4,5 / 3,5 / 5 / 7,10,12
+	Dodges R5 3/1 fav in Leg 1; crosses R6 [F-] fade + R8 [A+] #5
+	18.0 Units
+	$36.00
+	Late Pick 5 (B)
+	R5–R9
+	$0.50 Double [A+]: 4 / 1,4,5 / 1,3,5 / 5 / 3,4,5,7,9,10,11,12
+	Singles both [A+] anchors (#4 & #5) to spread 8-deep vs R9 #6
+	18.0 Units
+	$36.00
+	Late Pick 4
+	R6–R9
+	$1.00 Main: 1,4,5 / 3,5 / 5 / 5,7,10,12
+	Launches directly into R6 [F-] #6 fade + R8 [A+] #5 single
+	12.0 Units
+	$24.00
+	Late Pick 4
+	R6–R9
+	$0.50 Chaos: 1,4,5 / 1,4 / 5 / 3,4,5,7,9,10,11,12
+	Covers R7 D[W] #1 K Gun + full 8-horse R9 meltdown spread
+	12.0 Units
+	$24.00
+	Daily Double
+	R1–R2
+	$2.00 Double: #1, #3, #6 WITH #2 Bueckers (12.0)
+	Isolates 12/1 A[W] #2 Bueckers (p_i \approx 0.25 vs. q_i \approx 0.065)
+	6.0 Units
+	$12.00
+	Daily Double
+	R5–R6
+	$6.00 Double: #4 Ground Support [A+] WITH #1, #4, #5
+	Direct geometric bridge from [A+] anchor into [F-] vacuum
+	9.0 Units
+	$18.00
+	Daily Double
+	R8–R9
+	$3.00 Main: #5 WITH #5, #7, #10, #12 $1.00 Backup: #8, #9 WITH #5, #7, #10, #12
+	Bridges [A+] #5 Lion Lake (and unseen #8, #9) into R9 [W] bombs
+	10.0 Units
+	$20.00
+	Vertical Pass
+	R3, R4, R5, R7, R8
+	0 Units Allocated Vertically (Pass Rule)
+	Chalk/anchor-dominated on top; leveraged exclusively in horizontals
+	0.0 Units
+	$0.00
+	Vertical Exactas
+	R1, R2
+	R1 Bifurcated (#3 & #4 keys: 6.0u) R2 #1/#2 Box & Tri Key (6.0u)
+	Exploits R1 #2 retail trap & R2 #2 Bueckers (12.0) overlay
+	12.0 Units
+	$24.00
+	Vertical [F-] Vacuum
+	Race 6
+	$3.00 Ex: #4, #5 / #1, #4, #5 (6.0u) $2.00 Tri: #4, #5 / #1, #4, #5 / #1, #4, #5 (6.0u)
+	Full exclusion of 6/5 [F-] #6 Mo for the King from all 3 slots
+	12.0 Units
+	$24.00
+	Vertical Meltdown
+	Race 9
+	$1.00 Ex A[W] #10, #12 Keys (5.0u) $1.00 Ex C[W] #4, #5 Keys (4.0u)
+	Full fade on 9/5 #6 Scorch in a 6-horse E1 pace collapse
+	9.0 Units
+	$18.00
+	(Note: To hold the session strictly at 100.0 Units / $200.00, trim the Early Pick 5 Chaos backup (-12.0u), Late Pick 5 Ticket B (-18.0u), or scale the Late Pick 5 base to configure your preferred balance between the Early and Late grids; the full menu above totals 142.0 units across all grids, or 100.0 Units exactly when focusing horizontally on the Early Pick 5 Main [12u] + Late Pick 5 Ticket A [18u] + Late Pick 4 Main & Chaos [24u] + Rolling Doubles [13u] + Vertical Strikes [33u]).
+ReplyForward
+Add reaction

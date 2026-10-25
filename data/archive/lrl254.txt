@@ -1,0 +1,223 @@
+1. CARD TOPOLOGY & INEFFICIENT POOL IDENTIFICATION
+Operating within a non-cooperative parimutuel pool where track takeout (t \approx 15\%\text{–}22\%) penalizes naive diversification, capital must be concentrated exclusively where conditional pace topology (Active QSP Sum) and intrinsic class/speed (Prime_Power, speed figures) diverge sharply from public consensus.
+Primary Leverage Nodes ([F-] & Retail Traps)
+While no morning-line favorite officially cleared every simultaneous gate into the [F-] tier (with Race 3's #5 RECKLESS missing Archetype A Gate 3 by just 3 Late Pace points), six heavy retail/consensus underlays function as de facto pool-vacating catalysts:
+* Race 3 — #5 RECKLESS (2.0 ML | [RETAIL TRAP FADE]): Runaway Consensus and DRF #1 Pick (17 consensus points) carrying an E/P (QSP = 7, Last_E1 = 79) profile into a blistering 42-QSP Meltdown while out-footed early by #10 (E1 = 97), #4 (92), and #3 (80), and ranking 7th of 10 in Last_LP (78 vs. Par_LP = 81.0). Estimated Dead Public Money: 40%–45%.
+* Race 4 — #10 REGENCY TALE (1.6 ML | [RETAIL TRAP FADE]): 8/5 morning-line favorite and Consensus/Beyer #1 Pick (16 points) returning from a 119-day layoff in wide Post 10 with a sub-par Last_Fig = 70 (-5 pts vs. Par_Spd = 75.0) and Rank #9 of 11 Last_LP = 63 (-14 pts vs. Par_LP = 77.0). Estimated Dead Public Money: 42%–48%.
+* Race 6 — #10 GREY BIGGSY (2.5 ML | [RETAIL TRAP FADE]): Beyer Edge #1 Pick and Consensus/DRF #2 Pick at 5/2 odds carrying 0.0% trainer/jockey win rates, a Last_Fig = 67 (-11 pts below Par_Spd = 78.0), and a Last_LP = 58 (-21 pts below Par_LP = 79.0) into a nuclear 67-QSP pace jam. Estimated Dead Public Money: 25%–30%.
+* Race 8 — #3 NORMANDY HERO (3.5 ML | [RETAIL TRAP FADE]): Inherited morning-line favorite after #9 War Humor's scratch, entering a 45-QSP turf sprint buzzsaw (Last_E1 = 103 hooked immediately by #8 [102], #10 [100], and #14 [98]) off a tiring Last_Fig = 76 and Rank #11 of 12 Last_LP = 64. Estimated Dead Public Money: 28%–33%.
+* Race 1 — #4 SHORT BURN (3.0 ML | [Chalk Underlay Fade]) & Traps #12 / #13: 3/1 favorite #4 SHORT BURN ranks 5th in Prime_Power (99.89, -12.32 pts behind #1 TAMARIN) with sub-par speed figures (66, 59), alongside Beyer #1 Pick #12 HONORARY AMERICAN (Rank #8 PP, cooked in a 31-QSP duel) and DRF #2 Pick #13 POWER BY EIGHT (Rank #12 of 12 PP at 65.80). Estimated Dead Public Money: 32%–38%.
+* Race 10 — #6 SUNNYRIDGE SUNSET (6.0 ML | [RETAIL TRAP FADE]): Elevated to #2 active Consensus/DRF pick after #1 Stanza's scratch despite ranking dead last (#6 of 6) among experienced runners in Prime_Power (99.98), posting Last_Fig = 59 (-17 pts vs. Par) for a 0.0% barn, and getting pinched between faster E1 = 95 speeds #2 and #8. Estimated Dead Public Money: 18%–22%.
+Zero-Entropy Anchors ([A+] & A[E])
+* Race 1 — #1 TAMARIN (4.0 ML | A+[W]): The lone [A+] Card Anchor (p_i \ge 0.42), towering over the field in Prime_Power (112.21, +4.19 pts clear of #2), holding a par-breaking Fig_2Back = 74, plunging in purse from a $59,000 Belmont race to $24,000 (0.41x), and drawing the rail for Miguel Clement (25.0%) and Jorge Ruiz (23.1%) behind a 31-QSP speed duel. Offered as the 3rd choice on the morning line behind #4 (3.0) and #2 (3.5), #1 TAMARIN provides an elite non-favorite opening-leg single.
+* Race 5 — #8 VIRGINIA FAB (4.0 ML | A[W][E]): Following the scratch of 1/1 program Best Bet #1 Instant Stardom, #8 VIRGINIA FAB controls a Lone Speed topology (QSP = 6, +2 QSP edge over the field, #1 Last_E1 = 96 by +11 pts) while plunging in purse from $87,500 to $30,000 (0.34x) with the field's top contender figures (56, 60).
+* Race 2 — #5 WOODLINE (3.5 ML | A[E]) & #4 GRAND OPENING (4.5 ML | A[W]): A high-probability non-favorite brace combining the lone QSP = 7 speed controller (#5 WOODLINE, Fig_2Back = 94, 0.40x purse drop) with the Rank #1 Prime_Power class plunger (#4 GRAND OPENING, 127.96, Fig_3Back = 95, 0.27x drop from Belmont), allowing horizontal tickets to bypass 3/1 morning-line favorite #6 PERFECT FORCE (B) on primary lines.
+Asymmetric Alpha Nodes ([W] & [UNSEEN BY RETAIL])
+Horses where conditional true win probability (p_i) vastly exceeds market implied probability (q_i) while remaining invisible to public handicappers:
+Race
+	Runner (ML Odds)
+	Grade & Modifiers
+	Structural Dislocation (p_i \gg q_i)
+	Race 1
+	#8 STAR ATLAS (20.0) #3 MANTUA MAN (20.0)
+	C[W] [UNSEEN BY RETAIL] D[W] [UNSEEN BY RETAIL]
+	#8 holds tied-#1 Last_LP (80) and tied-#1 Fig_2Back (74) closing into a 31-QSP meltdown; #3 masks a par-beating 73 behind a muddy/bumped line while switching D to T (0.58x drop).
+	Race 3
+	#4 TIMSHEL (6.0) #8 FREEDOM GLIDER (20.0)
+	B [UNSEEN BY RETAIL] D[W] [UNSEEN BY RETAIL]
+	#4 matches Par_Spd (82) with 33.3%/21.9% connections; #8 posted tied-#1 Last_LP (94, +13 pts above Par) after an unprepared start for a 41.7% trainer into a 42-QSP duel.
+	Race 4
+	#3 BEAUTIFUL QUALITY (10.0) #4 GRAN CORREDOR (30.0)
+	B [UNSEEN BY RETAIL] C[W] [UNSEEN BY RETAIL]
+	#3 ranks #4 PP with a bullet 47.0s gate work and Jorge Ruiz (23.1%); #4 owns the #1 Last_LP (85, +8 pts over Par) at 30/1.
+	Race 6
+	#2 NILAMBAR (6.0) #11 DYNAFLAME (15.0)
+	A[W] B [UNSEEN BY RETAIL]
+	#2 is the lone 3-race par-breaker (80) and owns #1 Last_LP (84) closing into a 67-QSP cauldron; #11 owns #1 Last_Fig (74) and #3 Last_LP (78) on a 0.70x drop.
+	Race 7
+	#1 AIR KISS (12.0) #11 RUSSIAN IRIS (8.0)
+	A[W] [UNSEEN BY RETAIL] A[W]
+	With 7/5 favorite #8 Ayni scratched, #11 (Rank #1 PP 108.47) and #1 (Rank #2 PP 108.40, #1 back-fig 69) crush the 4.5 ML FTS favorite #4 BUBBLING (D) on proven metrics.
+	Race 8
+	#12 ALEXIS ZORBA (8.0) #1 INCINERATOR (8.0)
+	A[W] [UNSEEN BY RETAIL] C[W]
+	#12 leads the field in Prime_Power (127.08, +1.54 pts) dropping from $55k to $29k (0.53x) for McMahon/Marquez; #1 holds #1 Last_LP (88, +6 pts clear) closing into a 45-QSP meltdown.
+	Race 9
+	#7 DR. STEVE (6.0)
+	D[W][E] [UNSEEN BY RETAIL]
+	Ultimate Smell-Test/Pace Dislocation: sloppy-track 65 masks field-best 99 and 97 speed figures (+4/+2 over Par 95.0), Rank #2 PP (130.96), and Lone Controlling Speed (QSP = 6 in a 12-QSP paceless race) off a bullet 59.4s work.
+	Race 10
+	#8 LIFE BOAT (8.0) #2 COOL CUSTOMER (5.0)
+	B[W] [UNSEEN BY RETAIL] A[W]
+	#8 ranks #1 in Prime_Power (112.53, +3.66 pts clear of #2) with tied-#1 Last_E1 (95); #2 owns a par-crushing Fig_2Back = 82 (+6 over Par).
+	2. HORIZONTAL TICKET ARCHITECTURE (Pick 4 / Pick 5 / Daily Doubles)
+Multi-race wagers apply a single takeout across independent events, maximizing geometric leverage when anchored by Zero-Entropy nodes ([A+], A[E]) and spread across high-kurtosis [W], [C], and [D] overlays against overbet retail favorites. All horizontal sequences below bypass morning-line favorites in the opening leg on primary tickets.
+Early Pick 5 (Races 1–5) — Zero-Entropy Anchor into Retail Trap Fades
+Per the [A+] game-theoretic translation, #1 TAMARIN (4.0) (A+[W]) (3rd ML choice) is singled across all Early Pick 5 tickets without dilution, funneling bankroll power into the Race 3 (#5 RECKLESS 2/1 fade) and Race 4 (#10 REGENCY TALE 8/5 fade) leverage legs:
+* Ticket 1 — Primary [A+] / [A] / [W] Core ($1.00 Base):
+   * R1: #1 TAMARIN (1)
+   * R2: #4 GRAND OPENING, #5 WOODLINE (2)
+   * R3: #4 TIMSHEL, #6 DUCHESSA, #10 VESTING (3)
+   * R4: #2 PRESIDENT CAMACHO (1)
+   * R5: #8 VIRGINIA FAB, #12 MARIA ELENA (2)
+   * Cost: 1 \times 2 \times 3 \times 1 \times 2 = 12 \text{ combinations} \times \$1.00 = \mathbf{\$12.00\text{ (12.0 Units)}}.
+* Ticket 2 — Meltdown & [UNSEEN BY RETAIL] Press ($0.50 Base):
+   * R1: #1 TAMARIN (1)
+   * R2: #4 GRAND OPENING, #5 WOODLINE (2)
+   * R3: #1 PARKES, #4 TIMSHEL, #6 DUCHESSA, #8 FREEDOM GLIDER, #9 KING COVEE, #10 VESTING (6)
+   * R4: #2 PRESIDENT CAMACHO, #5 PUTTER MAN (2)
+   * R5: #8 VIRGINIA FAB (1 — A[W][E] Lone Speed controller)
+   * Cost: 1 \times 2 \times 6 \times 2 \times 1 = 24 \text{ combinations} \times \$0.50 = \mathbf{\$12.00\text{ (12.0 Units)}}.
+Early Pick 4 (Races 2–5) & Race 1–2 Daily Double
+* Early Pick 4 Non-Chalk Opener ($0.50 Base): Fades 3/1 favorite #6 PERFECT FORCE in the opening leg (Race 2), 2/1 favorite #5 RECKLESS in Race 3, and 8/5 favorite #10 REGENCY TALE in Race 4:
+   * R2: #4 GRAND OPENING (4.5), #5 WOODLINE (3.5) (2)
+   * R3: #4 TIMSHEL (6.0), #6 DUCHESSA (4.0), #9 KING COVEE (10.0), #10 VESTING (4.5) (4)
+   * R4: #2 PRESIDENT CAMACHO (2.0), #5 PUTTER MAN (8.0) (2)
+   * R5: #8 VIRGINIA FAB (4.0) (1)
+   * Cost: 2 \times 4 \times 2 \times 1 = 16 \text{ combinations} \times \$0.50 = \mathbf{\$8.00\text{ (8.0 Units)}}.
+* Race 1–2 Daily Double Anchor Press ($2.00 Base):
+   * R1: #1 TAMARIN (4.0) (1) \times R2: #4 GRAND OPENING (4.5), #5 WOODLINE (3.5) (2) = 2 \text{ combinations} \times \$2.00 = \mathbf{\$4.00\text{ (4.0 Units)}}.
+Late Pick 5 (Races 6–10) — Bifurcated Opening-Leg Strategy
+In Race 6 (Active QSP Sum = 67), 3/2 favorite #9 CITRINE (A) is a legitimate contender (p_i > 0.30) but will be over-singled by retail players alongside 5/2 trap #10 GREY BIGGSY (F). We deploy a two-tiered architecture: Ticket 1 completely bypasses #9 CITRINE in the opening leg using [W] and [UNSEEN BY RETAIL] overlays (#2 NILAMBAR at 6/1 and #11 DYNAFLAME at 15/1), while Ticket 2 uses #9 CITRINE strictly as a defensive saver keyed into 6/1 Lone Speed [UNSEEN BY RETAIL] bomb #7 DR. STEVE (D[W][E]) in Race 9:
+* Ticket 1 — Non-Favorite Opening Leg Alpha ($0.50 Base):
+   * R6: #2 NILAMBAR (6.0), #11 DYNAFLAME (15.0) (2)
+   * R7: #1 AIR KISS (12.0), #11 RUSSIAN IRIS (8.0) (2)
+   * R8: #8 CACTUS (6.0), #12 ALEXIS ZORBA (8.0) (2)
+   * R9: #5 ZERO BLITZ (1.6), #7 DR. STEVE (6.0) (2)
+   * R10: #2 COOL CUSTOMER (5.0), #8 LIFE BOAT (8.0) (2)
+   * Cost: 2 \times 2 \times 2 \times 2 \times 2 = 32 \text{ combinations} \times \$0.50 = \mathbf{\$16.00\text{ (16.0 Units)}}.
+* Ticket 2 — Defensive #9 CITRINE Saver Keyed to #7 DR. STEVE ($0.50 Base):
+   * R6: #9 CITRINE (1.5) (1)
+   * R7: #1 AIR KISS (12.0), #7 PURELY ASSURED (12.0), #11 RUSSIAN IRIS (8.0) (3)
+   * R8: #8 CACTUS (6.0), #12 ALEXIS ZORBA (8.0) (2)
+   * R9: #7 DR. STEVE (6.0) (1 — D[W][E] Lone Speed single)
+   * R10: #2 COOL CUSTOMER (5.0), #8 LIFE BOAT (8.0) (2)
+   * Cost: 1 \times 3 \times 2 \times 1 \times 2 = 12 \text{ combinations} \times \$0.50 = \mathbf{\$6.00\text{ (6.0 Units)}}.
+Late Pick 4 (Races 7–10) & Race 8–9 Daily Double
+With 7/5 favorite #8 Ayni scratched out of Race 7, the public will default to Jamie Ness's first-time starter #4 BUBBLING (4.5) (D). We fade #4 BUBBLING in the opening leg of the Late Pick 4 and launch exclusively with the three 8/1 to 12/1 [W] Prime Power leaders:
+* Late Pick 4 Unseen-Alpha Matrix ($0.50 Base):
+   * R7: #1 AIR KISS (12.0), #7 PURELY ASSURED (12.0), #11 RUSSIAN IRIS (8.0) (3)
+   * R8: #1 INCINERATOR (8.0), #8 CACTUS (6.0), #12 ALEXIS ZORBA (8.0) (3)
+   * R9: #7 DR. STEVE (6.0) (1 — D[W][E] asymmetric leverage key)
+   * R10: #2 COOL CUSTOMER (5.0), #8 LIFE BOAT (8.0) (2)
+   * Cost: 3 \times 3 \times 1 \times 2 = 18 \text{ combinations} \times \$0.50 = \mathbf{\$9.00\text{ (9.0 Units)}}.
+* Race 8–9 Daily Double — Unseen Alpha Strike ($1.00 Base):
+   * R8: #1 INCINERATOR (8.0), #8 CACTUS (6.0), #12 ALEXIS ZORBA (8.0) (3) \times R9: #7 DR. STEVE (6.0) (1) = 3 \text{ combinations} \times \$1.00 = \mathbf{\$3.00\text{ (3.0 Units)}}.
+3. VERTICAL EXOTIC & CONDITIONAL PACE EXPLOITATION
+Vertical exotics are restricted to the five races exhibiting severe conditional pace asymmetry or retail pool distortion, completely excluding [F] and [RETAIL TRAP FADE] runners from all slots (1st, 2nd, and 3rd):
+1. Race 1 (Active QSP Sum: 31 — Meltdown | Excluding 3/1 Fav #4 SHORT BURN & Traps #12, #13):
+   * Script A (Card Anchor Over Stalkers): $1.00 Exacta #1 TAMARIN over #2 DANNER, #5 SALTWATER CREW, #6 FORTUNE HILL = 3 combinations = $3.00 (3.0 Units).
+   * Script B (Full 31-QSP Pace Collapse): $1.00 Exacta #1 TAMARIN over [UNSEEN BY RETAIL] 20/1 bombs #3 MANTUA MAN (D[W]) and #8 STAR ATLAS (C[W]) = 2 combinations = $2.00 (2.0 Units).
+2. Race 3 (Active QSP Sum: 42 — Meltdown | Near-[F-] Exotic Vacuum Excluding 2/1 Fav #5 RECKLESS):
+   * Script A (Sharp Stalker Survival): $1.00 Exacta keying #6 DUCHESSA (4.0) (A[W]) over #4 TIMSHEL (6.0) (B) and #10 VESTING (4.5) (B[W]), plus #4, #10 over #6 = 4 combinations = $4.00 (4.0 Units).
+   * Script B (Full 42-QSP Meltdown Collapse): $0.50 Exacta keying #6 DUCHESSA (4.0) with [UNSEEN BY RETAIL] closers/smell-test bombs #1 PARKES (12.0), #8 FREEDOM GLIDER (20.0), and #9 KING COVEE (10.0) on top and underneath (#6 / #1, #8, #9 and #1, #8, #9 / #6) = 6 combinations = $3.00 (3.0 Units).
+3. Race 6 (Active QSP Sum: 67 — Nuclear Meltdown | Excluding 5/2 Beyer #1 Pick #10 GREY BIGGSY):
+   * Script A (Primary Stalker Box/Key): $0.50 Exacta #2 NILAMBAR (6.0), #9 CITRINE (1.5) over #2, #6 COCO NO LOCO (15.0), #9, #11 DYNAFLAME (15.0) = 6 combinations = $3.00 (3.0 Units).
+   * Script B (67-QSP Deep Collapse Press): $0.50 Exacta #2 NILAMBAR (6.0) over #6 COCO NO LOCO (15.0), #11 DYNAFLAME (15.0), #14 HIGH YIELD HUNK (20.0), #16 MUNGO (15.0) (4 combos) + $0.50 Exacta #16 MUNGO (15.0) over #2, #9 (2 combos) = 6 combinations = $3.00 (3.0 Units).
+4. Race 8 (Active QSP Sum: 45 — Turf Sprint Meltdown | Excluding 7/2 Fav #3 NORMANDY HERO):
+   * Script A (Tactical Class Droppers): $1.00 Exacta #8 CACTUS (6.0), #12 ALEXIS ZORBA (8.0) over #8, #10 CONGRATS ON FIFTY (5.0), #12 = 4 combinations = $4.00 (4.0 Units).
+   * Script B (Full 45-QSP Duel Collapse): $0.50 Exacta #1 INCINERATOR (8.0) (C[W]) over #6 VEX (20.0), #8 CACTUS (6.0), #10 CONGRATS ON FIFTY (5.0), #12 ALEXIS ZORBA (8.0) = 4 combinations = $2.00 (2.0 Units).
+5. Race 9 (Active QSP Sum: 12 — Lone Speed Dislocation):
+   * Script A (Wire-to-Wire Overlay Strike): $2.00 Exacta keying [UNSEEN BY RETAIL] lone speed #7 DR. STEVE (6.0) (D[W][E]) on top of #5 ZERO BLITZ (1.6) (A) and #6 DERBYNESS (3.0) (B) = 2 combinations = $4.00 (4.0 Units).
+   * Script B (Trifecta Press): $0.50 Trifecta #5 ZERO BLITZ, #7 DR. STEVE over #5, #7 over #4 WORCESTER, #6 DERBYNESS = 4 combinations = $2.00 (2.0 Units).
+4. LONG-TERM BANKROLL & KELLY ALLOCATION RULES
+All wagers are sized via the Fractional Kelly Criterion:
+f^* = \gamma \cdot \frac{b \cdot p - q}{b}, \quad \gamma \in [0.25, 0.33]
+where b represents net fractional pool odds, p is the conditional win/hit probability, q = 1 - p, and \gamma dampens estimation variance across a standardized 100.0-Unit Session Bankroll (5% of total bankroll, where 1\text{ Unit} = \$1.00 for scaling):
+Race(s)
+	Wager Vehicle & Strategic Description
+	Combinations & Base
+	Session Units
+	% of Session
+	Races 1–5
+	Early Pick 5 (Main): #1 \times #4,#5 \times #4,#6,#10 \times #2 \times #8,#12
+	12 combos @ $1.00
+	12.0 U
+	12.0%
+	Races 1–5
+	Early Pick 5 (Meltdown Press): #1 \times #4,#5 \times #1,#4,#6,#8,#9,#10 \times #2,#5 \times #8
+	24 combos @ $0.50
+	12.0 U
+	12.0%
+	Races 1–2
+	Daily Double: Zero-Entropy Anchor #1 \times #4, #5
+	2 combos @ $2.00
+	4.0 U
+	4.0%
+	Races 2–5
+	Early Pick 4 (Non-Chalk Opener): #4,#5 \times #4,#6,#9,#10 \times #2,#5 \times #8
+	16 combos @ $0.50
+	8.0 U
+	8.0%
+	Race 1
+	Vertical Exactas (31-QSP Bifurcated): #1 / #2,#5,#6 ($1) + #1 / #3,#8 ($1)
+	5 combos @ $1.00
+	5.0 U
+	5.0%
+	Race 2
+	Standalone Verticals: PASS (Value captured via R1–R2 Double, Early P5, and Early P4)
+	—
+	0.0 U
+	0.0%
+	Race 3
+	Vertical Exactas (Excl. #5 Reckless): #6 w/ #4,#10 ($1) + #6 w/ #1,#8,#9 ($0.50)
+	4 @ $1.00 + 6 @ $0.50
+	7.0 U
+	7.0%
+	Race 4–5
+	Standalone Verticals: PASS (#2 President Camacho & #8 Virginia Fab leveraged horizontally)
+	—
+	0.0 U
+	0.0%
+	Races 6–10
+	Late Pick 5 (Non-Chalk Opener): #2,#11 \times #1,#11 \times #8,#12 \times #5,#7 \times #2,#8
+	32 combos @ $0.50
+	16.0 U
+	16.0%
+	Races 6–10
+	Late Pick 5 (Citrine-to-Dr. Steve Saver): #9 \times #1,#7,#11 \times #8,#12 \times #7 \times #2,#8
+	12 combos @ $0.50
+	6.0 U
+	6.0%
+	Race 6
+	Vertical Exactas (67-QSP Meltdown Excl. #10): Script A (3 U)
+	12 combos @ $0.50
+	6.0 U
+	6.0%
+	Races 7–10
+	Late Pick 4 (Unseen-Alpha Matrix): #1,#7,#11 \times #1,#8,#12 \times #7 \times #2,#8
+	18 combos @ $0.50
+	9.0 U
+	9.0%
+	Race 7
+	Standalone Verticals: PASS (Wide-open maiden spread captured in Late P5 & Late P4)
+	—
+	0.0 U
+	0.0%
+	Races 8–9
+	Daily Double (Unseen Alpha Strike): #1, #8, #12 \times #7 DR. STEVE
+	3 combos @ $1.00
+	3.0 U
+	3.0%
+	Race 8
+	Vertical Exactas (45-QSP Meltdown Excl. #3): #8,#12 / #8,#10,#12 ($1) + #1 / #6,#8,#10,#12 ($0.50)
+	4 @ $1.00 + 4 @ $0.50
+	6.0 U
+	6.0%
+	Race 9
+	Vertical Exotics (12-QSP Lone Speed): #7 / #5,#6 Exacta ($2) + #5,#7 / #5,#7 / #4,#6 Tri ($0.50)
+	2 @ $2.00 + 4 @ $0.50
+	6.0 U
+	6.0%
+	Race 10
+	Standalone Verticals: PASS (Maximized as the closing leg of the Late Pick 5 and Late Pick 4)
+	—
+	0.0 U
+	0.0%
+	TOTAL
+	Full-Card Convex Optimization Portfolio
+	70.0 U Horiz / 30.0 U Vert
+	100.0 U
+	100.0%
+	ReplyForward
+Add reaction
