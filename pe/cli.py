@@ -5,6 +5,7 @@
   legacy  <card.txt> [--track BEL] [--date 2026-10-25]   parse an archived chat output
   results <results.csv>        load official finish order
   payouts <payouts.csv>        load official payouts
+  brisnet <charts.zip>...      load Brisnet Comprehensive Charts ZIPs (finish, odds, payouts)
   validate <tail_block.json>   check a tail block without loading it
   report                       print flags, hit rates and the LOTT audit
 """
@@ -31,6 +32,7 @@ def main(argv=None):
     p.add_argument("--track"); p.add_argument("--date")
     p = sub.add_parser("results"); p.add_argument("file")
     p = sub.add_parser("payouts"); p.add_argument("file")
+    p = sub.add_parser("brisnet"); p.add_argument("files", nargs="+")
     p = sub.add_parser("validate"); p.add_argument("file")
     sub.add_parser("report")
     a = ap.parse_args(argv)
@@ -63,6 +65,10 @@ def main(argv=None):
         print(db.import_results_csv(con, a.file), "result rows")
     elif a.cmd == "payouts":
         print(db.import_payouts_csv(con, a.file), "payout rows")
+    elif a.cmd == "brisnet":
+        from .brisnet import import_brisnet_zip
+        for f in a.files:
+            print(f, import_brisnet_zip(con, f))
     elif a.cmd == "report":
         pd.set_option("display.width", 200, "display.max_columns", 30)
         print("== Data quality flags ==")

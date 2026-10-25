@@ -87,7 +87,7 @@ elif page == "Data quality":
 
 elif page == "Load data":
     st.title("Load data")
-    kind = st.radio("Type", ["Tail block JSON", "Archived chat output (.txt)", "Results CSV", "Payouts CSV"], horizontal=True)
+    kind = st.radio("Type", ["Tail block JSON", "Archived chat output (.txt)", "Brisnet charts ZIP", "Results CSV", "Payouts CSV"], horizontal=True)
     date = st.text_input("Race date for archive (YYYY-MM-DD, optional)") if kind.startswith("Archived") else None
     f = st.file_uploader("File")
     if f and st.button("Load"):
@@ -100,6 +100,9 @@ elif page == "Load data":
             Path(tmp.name).rename(src)
             cid, stats = ingest_legacy(con, src, race_date=date or None)
             st.success(f"Loaded {cid}: {stats}")
+        elif kind.startswith("Brisnet"):
+            from pe.brisnet import import_brisnet_zip
+            st.success(f"Loaded: {import_brisnet_zip(con, tmp.name)}")
         elif kind.startswith("Results"):
             st.success(f"{db.import_results_csv(con, tmp.name)} result rows")
         else:

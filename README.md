@@ -33,7 +33,7 @@ pytest -q
 `results.csv`: `track,race_date,race,pgm,finish_pos,final_odds[,scratched]`
 `payouts.csv`: `track,race_date,race,pool,winning_combo,base,payout`. `race` is the race the pool closed. Use `4-1-5` for verticals and `3/1/1/6/4` (winner per leg) for horizontals.
 
-No scraper ships yet: the source (Equibase/Brisnet charts or a paid feed) and its terms decide what gets built.
+Brisnet Comprehensive Charts ZIPs load directly: `python -m pe brisnet charts.zip` (or the dashboard's Load data page). The importer follows Brisnet's published layout and still needs checking against a real file.
 
 ## Known limits
 
