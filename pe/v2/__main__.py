@@ -4,6 +4,7 @@
   slips  <slips.json>                               log disjoint ADW slips (fails on any overlap)
   settle --track MVR --date 20261026 [--results r.csv] [--pools p.csv]   stage 4
   report                                            print the three diagnostic views
+  rebuild [--cards data/cards]                      recreate the database from every card folder
 """
 from __future__ import annotations
 
@@ -29,10 +30,16 @@ def main(argv=None):
     p = sub.add_parser("settle"); p.add_argument("--track", required=True); p.add_argument("--date", required=True)
     p.add_argument("--results"); p.add_argument("--pools")
     sub.add_parser("report")
+    p = sub.add_parser("rebuild"); p.add_argument("--cards", default="data/cards")
     a = ap.parse_args(argv)
+    if a.cmd == "rebuild":
+        from pathlib import Path
+        Path(a.db).unlink(missing_ok=True)
     con = etl.connect(a.db)
 
-    if a.cmd == "ingest":
+    if a.cmd == "rebuild":
+        rebuild(con, a.cards)
+    elif a.cmd == "ingest":
         ids = etl.ingest_card(con, a.file, a.extras)
         print(f"loaded {len(ids)} races: {ids[0]} .. {ids[-1]}")
     elif a.cmd == "slips":
@@ -58,6 +65,29 @@ def main(argv=None):
                                 ("C. Parameter leaks", "v_parameter_leaks", "sample_size DESC")]:
             print(f"\n== {title} ==")
             print(pd.read_sql_query(f"SELECT * FROM {v} ORDER BY {order}", con).to_string(index=False))
+
+
+def rebuild(con, cards_dir):
+    """Each card folder: TRACK_YYYYMMDD/ with distilled.csv and optional extras.json,
+    slips/*.json, results.csv, pools.csv."""
+    from pathlib import Path
+    folders = sorted(f for f in Path(cards_dir).iterdir() if (f / "distilled.csv").exists())
+    for f in folders:
+        track, date = f.name.split("_")[:2]
+        ex = f / "extras.json"
+        ids = etl.ingest_card(con, f / "distilled.csv", ex if ex.exists() else None)
+        n_slips = 0
+        for s in sorted((f / "slips").glob("*.json")) if (f / "slips").exists() else []:
+            d = json.load(open(s))
+            pid = etl.ensure_pool(con, track, date, d["first_race"], d["pool_type"], d.get("takeout", 0.0),
+                                  d.get("carryover", 0.0))
+            n_slips += len(etl.log_slips(con, pid, d["slips"]))
+        res, pl = f / "results.csv", f / "pools.csv"
+        settled = ""
+        if res.exists() or pl.exists():
+            settled = etl.settle_card(con, track, date, res if res.exists() else None, pl if pl.exists() else None)
+        print(f"{f.name}: {len(ids)} races, {n_slips} slips {settled or '(not settled)'}")
+    print(f"rebuilt from {len(folders)} card folders")
 
 
 if __name__ == "__main__":
