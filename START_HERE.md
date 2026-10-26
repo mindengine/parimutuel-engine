@@ -23,6 +23,7 @@ Activate the environment first (`source .venv/bin/activate` on Mac, `.venv\Scrip
 | Check slips for overlap and cost | `python -m pe.v2 slips my_slips.json` |
 | Open the v1 dashboard | `streamlit run app.py` |
 | Run the tests | `pytest -q` |
+| Refresh the explorer page | `python tools/build_explorer.py`, then open `frontend/explorer.html` |
 
 ## 3. Folder map
 
