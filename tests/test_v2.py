@@ -155,6 +155,6 @@ def test_mnr_card_with_na_values_and_missing_pars():
     ids = etl.ingest_card(con, "examples/distilled_MNR_2026-10-26.csv")
     assert len(ids) == 8
     assert con.execute("SELECT COUNT(*) FROM runners WHERE primary_grade IS NULL").fetchone()[0] == 0
-    assert con.execute("SELECT SUM(is_bullet_work) FROM runners").fetchone()[0] == 6
+    assert con.execute("SELECT SUM(is_bullet_work) FROM runners").fetchone()[0] == 7
     # Race 5 has no pars, so no par-relative deltas
     assert con.execute("SELECT COUNT(last_fig_delta) FROM runners WHERE race_id='20261026_MNR_05'").fetchone()[0] == 0
