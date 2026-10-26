@@ -26,7 +26,7 @@ R_DIST, R_UNIT, R_SURF, R_FIELD, R_COND = 4, 5, 8, 36, 37
 POOL_PATTERNS = [  # order matters: most specific first. Verified names on BEL 2026-10-25:
     # Exacta, Trifecta, Superfecta, Quinella, Daily Double, Pick Three/Four/Five/Six,
     # Consolation Double, Consolation Pick Three, Grand Slam.
-    (r"consolation|grand\s*slam", None),    # not main pools
+    (r"consolation|grand\s*slam|odd\s*or\s*even", None),    # not main pools
     (r"super\s*hi|hi\s*5|pentafecta", "SH5"),
     (r"superfecta", "SUP"),
     (r"trifecta", "TRI"),
@@ -50,7 +50,7 @@ def pool_code(wager_text: str) -> str | None:
 
 
 def is_ignored_wager(wager_text: str) -> bool:
-    return bool(re.search(r"consolation|grand\s*slam", wager_text.lower()))
+    return bool(re.search(r"consolation|grand\s*slam|odd\s*or\s*even", wager_text.lower()))
 
 
 def _num(v):
@@ -140,7 +140,7 @@ def import_brisnet_zip(con, path: str | Path) -> dict:
         pool = pool_code(wager)
         if not pool:
             stats["skipped_payouts"] += 1
-            if not is_ignored_wager(wager) and wager not in seen_unknown:
+            if wager and not is_ignored_wager(wager) and wager not in seen_unknown:
                 seen_unknown.add(wager)
                 stats["warnings"].append(f"unmapped wager type '{wager}'")
             continue

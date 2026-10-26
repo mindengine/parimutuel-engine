@@ -88,6 +88,15 @@ def grade_tickets(con) -> pd.DataFrame:
         if pool in HORIZONTAL_POOLS:
             close = r["race"] + len(sel) - 1
             combo, pay_base, pay = _horizontal_payout(con, r["track"], r["race_date"], close, pool)
+            pool_offered = con.execute("SELECT 1 FROM payouts WHERE track=? AND race_date=? AND pool=? LIMIT 1",
+                                       (r["track"], r["race_date"], pool)).fetchone()
+            if combo is None and pool_offered:
+                # Payouts for this pool are loaded, but none closes here: the track
+                # didn't offer this sequence, so the ticket could not have been bet.
+                out.append(dict(card_id=r["card_id"], ticket_id=r["ticket_id"], label=r["label"], pool=pool,
+                                race=r["race"], cost=r["cost"], result="(sequence not offered)", hit=None,
+                                returned=0.0, net=None))
+                continue
             if combo is None:   # no official payout loaded: fall back to race winners
                 res = _winners(con, r["track"], r["race_date"], list(range(r["race"], close + 1)))
                 combo = "-".join(x or "?" for x in res)
