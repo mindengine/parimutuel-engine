@@ -16,6 +16,16 @@ streamlit run app.py                                      # dashboard
 pytest -q
 ```
 
+## v2 database (handicapping + pool efficiency)
+
+The four-stage pipeline from `docs/v2_spec.md` lives in `pe/v2/`. See `docs/v2_implementation_notes.md`
+for commands, input formats and where the code differs from the spec.
+
+```bash
+python -m pe.v2 ingest examples/distilled_BEL_2026-10-22.csv --extras examples/v2_extras_BEL_2026-10-22.json
+python -m pe.v2 report
+```
+
 ## Layout
 
 | Path | What |

@@ -1,0 +1,5 @@
+{"track": "BEL", "date": 20261022, "first_race": 1, "pool_type": "DD", "takeout": 0.20,
+ "slips": [
+   {"slip_tier": "Slip_1_Primary", "matrix": "5 / 1,2,3", "base": 2.00},
+   {"slip_tier": "Slip_2_Backup",  "matrix": "1,3 / 1,2",  "base": 1.00}
+ ]}

@@ -1,0 +1,14 @@
+{
+  "track_cond": "FT",
+  "scratches": {"1": ["2"]},
+  "herd_radar": [
+    {"race": 1, "prog": "5", "drf_pick_rank": 1, "beyer_edge_rank": 1, "consensus_pts": 15, "consensus_rank": 1,
+     "is_drf_best_bet": 1, "beyer_1": 82, "beyer_2": 78, "beyer_3": 75},
+    {"race": 1, "prog": "1", "drf_pick_rank": 2, "consensus_pts": 6, "consensus_rank": 2, "beyer_1": 79},
+    {"race": 1, "prog": "3", "drf_pick_rank": 0, "consensus_rank": 0, "beyer_1": 74, "eq_change": "b-on"},
+    {"race": 1, "prog": "4", "drf_pick_rank": 3, "consensus_rank": 3, "beyer_1": 76, "retail_trap": true}
+  ],
+  "grades": [
+    {"race": 1, "prog": "5", "grade": "A+", "tags": ["E"], "p": 0.45, "source": "grant"}
+  ]
+}
