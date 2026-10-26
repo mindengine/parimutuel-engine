@@ -52,3 +52,13 @@ Brisnet Comprehensive Charts ZIPs load directly: `python -m pe brisnet charts.zi
 `tools/distill.py` is Grant's script, unchanged. It turns a Brisnet single-file PP download (`.drf`/`.csv`) into one row per horse:
 `python tools/distill.py --file BEL1025.DRF --output distilled_card.csv`. A sample output is in `examples/distilled_BEL_2026-10-22.csv`.
 It does not assign grades, remove scratches, or compute the Active QSP sum or pace scenario; those happen in the grading step.
+
+## Rules grader
+
+`pe/grading.py` grades every starter from a distilled card: QSP sum, pace scenario, A+/A/B/C/D/F-/F and W/E, with the reason for each grade. It's a deterministic approximation of Grant's LLM grading, built from the dossier's definitions and tuned only against his own grades (59% exact agreement on the 204 horses he graded on Oct 25, 2026). All thresholds are in `RULES`.
+
+```bash
+python -m pe brisnet charts.zip                       # results first, so scratches are known
+python -m pe grade distilled_BEL.csv --track BEL --date 2026-10-25
+PYTHONPATH=. python tools/build_audit_xlsx.py RULES_DB BREAKDOWN_DB out.xlsx "Oct 25, 2026"
+```

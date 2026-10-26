@@ -15,7 +15,16 @@ import pandas as pd
 NON_F = {"A+", "A", "B", "C", "D"}
 
 
+def _rows(con):
+    """Analytics reads columns by name; accept connections opened without pe.db.connect."""
+    import sqlite3
+    if con.row_factory is None:
+        con.row_factory = sqlite3.Row
+    return con
+
+
 def _df(con, sql, params=()):
+    _rows(con)
     return pd.read_sql_query(sql, con, params=params)
 
 

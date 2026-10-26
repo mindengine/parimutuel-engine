@@ -6,6 +6,7 @@
   results <results.csv>        load official finish order
   payouts <payouts.csv>        load official payouts
   brisnet <charts.zip>...      load Brisnet Comprehensive Charts ZIPs (finish, odds, payouts)
+  grade <distilled.csv> --track BEL --date 2026-10-25   rules-grade every starter (load results first)
   validate <tail_block.json>   check a tail block without loading it
   report                       print flags, hit rates and the LOTT audit
 """
@@ -33,6 +34,7 @@ def main(argv=None):
     p = sub.add_parser("results"); p.add_argument("file")
     p = sub.add_parser("payouts"); p.add_argument("file")
     p = sub.add_parser("brisnet"); p.add_argument("files", nargs="+")
+    p = sub.add_parser("grade"); p.add_argument("file"); p.add_argument("--track", required=True); p.add_argument("--date", required=True)
     p = sub.add_parser("validate"); p.add_argument("file")
     sub.add_parser("report")
     a = ap.parse_args(argv)
@@ -69,6 +71,9 @@ def main(argv=None):
         from .brisnet import import_brisnet_zip
         for f in a.files:
             print(f, import_brisnet_zip(con, f))
+    elif a.cmd == "grade":
+        from .grading import load_graded_card
+        print("graded", load_graded_card(con, a.file, a.track.upper(), a.date))
     elif a.cmd == "report":
         pd.set_option("display.width", 200, "display.max_columns", 30)
         print("== Data quality flags ==")
