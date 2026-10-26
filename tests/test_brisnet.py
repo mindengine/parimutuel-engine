@@ -44,6 +44,8 @@ def test_pool_codes():
     assert pool_code("$1 Exacta") == "EX" and pool_code("$0.10 Superfecta") == "SUP"
     assert pool_code("$0.50 Pick 5") == "P5" and pool_code("$2 Daily Double") == "DD"
     assert pool_code("Bingo") is None
+    assert pool_code("Pick Five") == "P5" and pool_code("Pick Three") == "P3"
+    assert pool_code("Consolation Pick Three") is None and pool_code("Grand Slam") is None
 
 
 def test_brisnet_zip_end_to_end(tmp_path):
@@ -55,6 +57,6 @@ def test_brisnet_zip_end_to_end(tmp_path):
     assert stats["starts"] == 6 and stats["payouts"] == 3 and stats["skipped_payouts"] == 2
     assert any("Mystery" in w for w in stats["warnings"])
     p5 = con.execute("SELECT winning_combo FROM payouts WHERE pool='P5'").fetchone()[0]
-    assert p5 == "4/6/3/5/10"
+    assert p5 == "4-6-3-5-10"
     g = analytics.grade_tickets(con)
     assert bool(g[g.pool == "TRI"].iloc[0].hit)

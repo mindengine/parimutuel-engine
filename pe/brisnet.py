@@ -23,16 +23,19 @@ S_POST, S_PGM, S_ODDS, S_DQ, S_OFF_FIN, S_VOID = 7, 8, 30, 35, 60, 87
 X_WAGER, X_BET, X_PAYOFF, X_NCORRECT, X_NUMBERS, X_POOL, X_CARRY = 4, 5, 6, 7, 8, 9, 10
 R_DIST, R_UNIT, R_SURF, R_FIELD, R_COND = 4, 5, 8, 36, 37
 
-POOL_PATTERNS = [  # order matters: most specific first
+POOL_PATTERNS = [  # order matters: most specific first. Verified names on BEL 2026-10-25:
+    # Exacta, Trifecta, Superfecta, Quinella, Daily Double, Pick Three/Four/Five/Six,
+    # Consolation Double, Consolation Pick Three, Grand Slam.
+    (r"consolation|grand\s*slam", None),    # not main pools
     (r"super\s*hi|hi\s*5|pentafecta", "SH5"),
     (r"superfecta", "SUP"),
     (r"trifecta", "TRI"),
     (r"exacta|perfecta", "EX"),
     (r"quinella", "QU"),
-    (r"pick\s*6|place\s*pick", "P6"),
-    (r"pick\s*5|big\s*5", "P5"),
-    (r"pick\s*4", "P4"),
-    (r"pick\s*3", "P3"),
+    (r"pick\s*(?:6|six)", "P6"),
+    (r"pick\s*(?:5|five)|big\s*5", "P5"),
+    (r"pick\s*(?:4|four)", "P4"),
+    (r"pick\s*(?:3|three)", "P3"),
     (r"double", "DD"),
 ]
 HORIZONTAL_LEGS = {"DD": 2, "P3": 3, "P4": 4, "P5": 5, "P6": 6}
@@ -44,6 +47,10 @@ def pool_code(wager_text: str) -> str | None:
         if re.search(pat, t):
             return code
     return None
+
+
+def is_ignored_wager(wager_text: str) -> bool:
+    return bool(re.search(r"consolation|grand\s*slam", wager_text.lower()))
 
 
 def _num(v):
@@ -62,7 +69,14 @@ def _get(row, i, default=""):
     return row[i].strip() if i < len(row) else default
 
 
+SUFFIX_KIND = {"1": "race", "2": "start", "3": "itm", "4": "exotic", "5": "breeding", "6": "footnotes"}
+
+
 def _classify(name: str, rows: list[list[str]]) -> str | None:
+    # Real Brisnet ZIPs name members TRKMMDDYYYY.1 ... .6 (verified on BEL 2026-10-25).
+    m = re.search(r"\.(\d)$", name)
+    if m and m.group(1) in SUFFIX_KIND:
+        return SUFFIX_KIND[m.group(1)]
     n = name.lower()
     for key, kind in [("exotic", "exotic"), ("itm", "itm"), ("start", "start"), ("breed", "breeding"),
                       ("foot", "footnotes"), ("race", "race")]:
@@ -99,8 +113,10 @@ def read_zip(path: str | Path) -> dict[str, list[list[str]]]:
 
 
 def _norm_combo(nums: str, pool: str) -> str:
-    parts = [p for p in re.split(r"[-/,\s]+", nums.strip()) if p]
-    return ("/" if pool in HORIZONTAL_LEGS else "-").join(p.upper() for p in parts)
+    """Canonical form (same as Brisnet): positions/legs joined by '-', and
+    alternative winners within a leg (dead heats, scratch substitutions) by '/'."""
+    legs = [l for l in nums.strip().upper().replace(" ", "").split("-") if l]
+    return "-".join("/".join(sorted(set(l.split("/")), key=lambda x: (len(x), x))) for l in legs)
 
 
 def import_brisnet_zip(con, path: str | Path) -> dict:
@@ -124,7 +140,7 @@ def import_brisnet_zip(con, path: str | Path) -> dict:
         pool = pool_code(wager)
         if not pool:
             stats["skipped_payouts"] += 1
-            if wager not in seen_unknown:
+            if not is_ignored_wager(wager) and wager not in seen_unknown:
                 seen_unknown.add(wager)
                 stats["warnings"].append(f"unmapped wager type '{wager}'")
             continue

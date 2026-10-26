@@ -65,6 +65,12 @@ def _order(con, track, date, race, n):
     return [r["pgm"] for r in rows]
 
 
+def _horizontal_payout(con, track, date, close_race, pool):
+    r = con.execute("SELECT winning_combo, base, payout FROM payouts WHERE track=? AND race_date=? AND race=? "
+                    "AND pool=? ORDER BY payout DESC LIMIT 1", (track, date, close_race, pool)).fetchone()
+    return (r["winning_combo"], r["base"], r["payout"]) if r else (None, None, None)
+
+
 def _payout_for(con, track, date, close_race, pool, combo):
     r = con.execute("SELECT base, payout FROM payouts WHERE track=? AND race_date=? AND race=? AND pool=? "
                     "AND winning_combo=?", (track, date, close_race, pool, combo)).fetchone()
@@ -80,11 +86,20 @@ def grade_tickets(con) -> pd.DataFrame:
         sel = json.loads(r["selections"])
         pool = r["pool"]
         if pool in HORIZONTAL_POOLS:
-            races = list(range(r["race"], r["race"] + len(sel)))
-            res = _winners(con, r["track"], r["race_date"], races)
-            close = races[-1]
-            combo = "/".join(x or "?" for x in res)
-            hit = None if None in res else all(res[i] in sel[i] for i in range(len(sel)))
+            close = r["race"] + len(sel) - 1
+            combo, pay_base, pay = _horizontal_payout(con, r["track"], r["race_date"], close, pool)
+            if combo is None:   # no official payout loaded: fall back to race winners
+                res = _winners(con, r["track"], r["race_date"], list(range(r["race"], close + 1)))
+                combo = "-".join(x or "?" for x in res)
+                pay_base = pay = None
+            legs = [l.split("/") for l in combo.split("-")]
+            hit = None if "?" in combo or len(legs) != len(sel) else \
+                all(any(w in sel[i] for w in legs[i]) for i in range(len(sel)))
+            ret = (pay / pay_base * r["base"]) if (hit and pay) else 0.0
+            out.append(dict(card_id=r["card_id"], ticket_id=r["ticket_id"], label=r["label"], pool=pool,
+                            race=r["race"], cost=r["cost"], result=combo, hit=hit, returned=round(ret, 2),
+                            net=round(ret - r["cost"], 2) if hit is not None else None))
+            continue
         elif pool in VERTICAL_POOLS:
             n = VERTICAL_POOLS[pool]
             res = _order(con, r["track"], r["race_date"], r["race"], n)
@@ -116,16 +131,27 @@ def lott_audit(con) -> pd.DataFrame:
     grades = {(r["card_id"], r["race"], r["pgm"]): r["bucket"]
               for r in con.execute("SELECT card_id, race, pgm, bucket FROM pre_race_grades")}
     graded_ticks = grade_tickets(con)
+    race_winners = {(r[0], r[1], r[2], r[3]) for r in con.execute(
+        "SELECT track, race_date, race, pgm FROM post_race_official WHERE finish_pos = 1")}
     rows = []
     for _, p in pays.iterrows():
         pool = p["pool"]
+        legs = [l.split("/") for l in p["winning_combo"].split("-")]
         if pool in HORIZONTAL_POOLS:
-            pgms = p["winning_combo"].split("/")
-            races = list(range(p["race"] - len(pgms) + 1, p["race"] + 1))
+            races = list(range(p["race"] - len(legs) + 1, p["race"] + 1))
         else:
-            pgms = p["winning_combo"].split("-")
-            races = [p["race"]] * len(pgms)
-        buckets = [grades.get((p["card_id"], rc, pg.upper())) for rc, pg in zip(races, pgms)]
+            races = [p["race"]] * len(legs)
+        # Judge each horizontal leg on the horse(s) that officially won; the payout's extra
+        # credited numbers are often scratch substitutions, not finishers.
+        if pool in HORIZONTAL_POOLS:
+            legs = [[pg for pg in leg if (p["track"], p["race_date"], rc, pg.upper()) in race_winners] or leg
+                    for rc, leg in zip(races, legs)]
+        leg_buckets = [[grades.get((p["card_id"], rc, pg.upper())) for pg in leg] for rc, leg in zip(races, legs)]
+        def best(bs):
+            order = ["A+", "A", "B", "C", "D", "F-", "F"]
+            known = [b for b in bs if b]
+            return min(known, key=order.index) if known else None
+        buckets = [best(bs) for bs in leg_buckets]
         covered = all(b in NON_F for b in buckets)
         hit = False
         if not graded_ticks.empty:
