@@ -46,3 +46,9 @@ Brisnet Comprehensive Charts ZIPs load directly: `python -m pe brisnet charts.zi
 1. Results importer for the chosen data source.
 2. LOTT leak rules (which bucket and modifier combinations consumed budget without returning).
 3. Module 3: ticket generator sized from empirical hit rates, with out-of-sample backtests.
+
+## Grant's distill.py
+
+`tools/distill.py` is Grant's script, unchanged. It turns a Brisnet single-file PP download (`.drf`/`.csv`) into one row per horse:
+`python tools/distill.py --file BEL1025.DRF --output distilled_card.csv`. A sample output is in `examples/distilled_BEL_2026-10-22.csv`.
+It does not assign grades, remove scratches, or compute the Active QSP sum or pace scenario; those happen in the grading step.
