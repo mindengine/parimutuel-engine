@@ -3,27 +3,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: a race-program page. Sticky section bar, one column of sections, wide tables scroll in place.
+/* Dark theme only, by choice. Layout: a race-program page. Sticky section bar, one column of sections, wide tables scroll in place.
    Palette: chalk-white paper and ink, turf green as the accent, tote-board amber for numbers that matter. */
 :root{
-  --paper:#f6f8f5; --panel:#ffffff; --ink:#18221c; --muted:#5d6b62; --rule:#d8e0da;
-  --turf:#1f6b45; --turf-soft:#e3efe7; --tote:#b8730a; --tote-soft:#fbf0dc;
-  --g-ap:#0f5c38; --g-a:#2e8b57; --g-b:#5a7f9e; --g-c:#8a6fb0; --g-d:#b38a2e; --g-f:#9aa39d; --g-fm:#b33a3a;
-  --ok:#2e8b57; --warn:#b8730a; --bad:#b33a3a;
+  --paper:#111714; --panel:#18201b; --ink:#e4ebe6; --muted:#97a69c; --rule:#2c3830;
+  --turf:#5cc48c; --turf-soft:#1d3327; --tote:#f0b44c; --tote-soft:#33281a;
+  --g-ap:#4fd08a; --g-a:#7fcf9f; --g-b:#8fb3d1; --g-c:#b9a0dc; --g-d:#e0b95c; --g-f:#6f7a73; --g-fm:#ef7a7a;
+  --ok:#7fcf9f; --warn:#f0b44c; --bad:#ef7a7a;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#111714; --panel:#18201b; --ink:#e4ebe6; --muted:#97a69c; --rule:#2c3830;
-  --turf:#5cc48c; --turf-soft:#1d3327; --tote:#f0b44c; --tote-soft:#33281a;
-  --g-ap:#4fd08a; --g-a:#7fcf9f; --g-b:#8fb3d1; --g-c:#b9a0dc; --g-d:#e0b95c; --g-f:#6f7a73; --g-fm:#ef7a7a;
-  --ok:#7fcf9f; --warn:#f0b44c; --bad:#ef7a7a; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#111714; --panel:#18201b; --ink:#e4ebe6; --muted:#97a69c; --rule:#2c3830;
-  --turf:#5cc48c; --turf-soft:#1d3327; --tote:#f0b44c; --tote-soft:#33281a;
-  --g-ap:#4fd08a; --g-a:#7fcf9f; --g-b:#8fb3d1; --g-c:#b9a0dc; --g-d:#e0b95c; --g-f:#6f7a73; --g-fm:#ef7a7a;
-  --ok:#7fcf9f; --warn:#f0b44c; --bad:#ef7a7a; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
