@@ -40,14 +40,21 @@ MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "
                                       "august", "september", "october", "november", "december"], 1)}
 
 HEADER_RE = re.compile(
-    r"^RACE\s+(\d{1,2})\s*[—–-]\s*(\d+)\s*yds?\s*/\s*([A-Za-z]+)\s*/\s*(.+?)\s*\|\s*Par Spd:\s*(\d+(?:\.\d+)?)"
-    r"\s*\|\s*Active Pace Scenario:\s*([A-Za-z ]+?)\s*\(Active QSP Sum:\s*(\d+)\)", re.I)
-SCRATCH_RE = re.compile(r"^\(?Scratch(?:es|ed)?:\s*(.+?)\)?$", re.I)
-SCRATCH_ONE = re.compile(r"#(\d{1,2}[A-Z]?)\s+([^#,;]+)")
+    r"^RACE\s+(\d{1,2})\b(?:\s*\([^)]*\))?\s*[—–-]\s*(\d+)\s*(?:yards?|yds?|y)?\s*/\s*([A-Za-z]+)\s*/\s*(.+?)\s*\|\s*Par Spd:\s*"
+    r"(\d+(?:\.\d+)?|[^|]*?)\s*\|\s*Active Pace Scenario:\s*([A-Za-z ]+?)\s*\(Active QSP Sum:\s*(\d+|[^)]*)\)", re.I)
+SCRATCH_LINE = re.compile(r"^\(.*scratch.*$", re.I)
+SCRATCH_ONE = re.compile(r"#(\d{1,2}[A-Z]?)\s+(.+?)(?=\s+(?:and|is|are|was|has|have|were)\b|[;,.):]|\s*#|$)", re.I)
 BUCKET_LINE = re.compile(r"^(A\+|A|B|C|D|F-|F)(?![A-Za-z0-9+\-])[^:]*:\s*(.*)$")
-NAME = r"[A-Z][A-Z0-9'’.&\-]*(?: [A-Z0-9'’.&\-]+)*"
-ENTRY = re.compile(rf"#(\d{{1,2}}[A-Z]?)\s+({NAME})\s+\((\d+(?:\.\d+)?)\)")
-ENTRY_GRADE = re.compile(r"^\s*[—–-]\s*(A\+|A|B|C|D|F-|F)((?:\[[WE]\])*)\s*[—–-]\s*", re.S)
+REMAINING_LINE = re.compile(r"^Remaining\b[^:]{0,40}:\s*(.*)$", re.I)
+NAME_CH = r"[A-Za-z][A-Za-z0-9'’.&\- ]*?"
+SCRATCH_A = re.compile(rf"#(\d{{1,2}}[A-Z]?)\s+({NAME_CH})\s+(?:is |was |has been |were )?scratched\b", re.I)
+SCRATCH_B = re.compile(rf"\bscratch(?:ed|ing|es)?\b\s*(?:removed[^:]*)?:?\s*#(\d{{1,2}}[A-Z]?)\s+({NAME_CH})(?=\s+(?:and|is|are|was)\b|[;,.):]|\s*#|$)", re.I)
+SNIPER_LINE = re.compile(r"^Sniper Action", re.I)
+# "#4 Private Speaker (6.00)", "(4.5 ML)", "(ML 0.5)", "(9/1)", and the unclosed "(30.0 — reason"
+ODDS = r"\(\s*(?:ML\s*)?(\d+(?:\.\d+)?)(?:\s*/\s*(\d+(?:\.\d+)?))?(?:\s*ML)?\s*(?:\)|(?=[—–]))"
+ENTRY = re.compile(rf"#(\d{{1,2}}[A-Z]?)\s+(?:\[Post \d+\]\s*)?([A-Za-z][A-Za-z0-9'’.&\- ]*?)\s+{ODDS}")
+HEAD = re.compile(r"^\s*(?:[—–-]\s*)?(?:Tag:\s*)?(?:None\b\s*)?(?P<g>A\+|A|B|C|D|F-|F)?(?![A-Za-z0-9])"
+                  r"(?P<br>(?:\s*\[[^\]]*\])*)\s*(?:[—–-]\s*)?", re.S)
 SCENARIOS = {"honest": "HONEST", "meltdown": "MELTDOWN", "lone speed": "LONE_SPEED", "lone": "LONE_SPEED"}
 RACE_TYPES = [(r"^md\s*sp", "MSW"), (r"^md", "MCL"), (r"^(o|n)?clm|^claim", "CLM"), (r"^alw|^allow", "ALW"),
               (r"^stk|^stake|^g\d|^grade", "STK"), (r"^ostr|^str", "STR")]
@@ -105,59 +112,132 @@ def race_type_of(cond: str) -> str:
     return cond.strip().split()[0].upper() if cond.strip() else "UNK"
 
 
+def _odds(a: str, b: str | None) -> float | None:
+    x = float(a)
+    if b:
+        y = float(b)
+        return round(x / y, 2) if y else None
+    return x
+
+
+def _f(x):
+    try:
+        return float(x)
+    except ValueError:
+        return None
+
+
+def _i(x):
+    try:
+        return int(x)
+    except ValueError:
+        return None
+
+
 def parse_entries(line_bucket: str, body: str, race: int, notes: list) -> list[Entry]:
     out = []
-    ms = list(ENTRY.finditer(body))
+    body = body.strip()
+    if not body or re.match(r"^none\b", body, re.I):
+        return out
+    ms = []
+    for m in ENTRY.finditer(body):
+        tail = body[m.end():m.end() + 80]
+        h = HEAD.match(tail)
+        has_marker = bool(h and (h.group("g") or h.group("br") or re.match(r"^\s*(?:[—–:-]|\()", tail)
+                                 or re.match(r"^\s*Tag:", tail)))
+        if has_marker:
+            ms.append(m)
     for i, m in enumerate(ms):
         end = ms[i + 1].start() if i + 1 < len(ms) else len(body)
         rest = body[m.end():end].strip().rstrip(",;. ")
-        odds = float(m.group(3))
-        g = ENTRY_GRADE.match(rest)
-        if g:
-            bucket, mods = g.group(1), set(re.findall(r"\[([WE])\]", g.group(2)))
-            reason = rest[g.end():].strip()
-            if bucket != line_bucket:
-                notes.append((race, "warn", f"#{m.group(1)} sits on the {line_bucket} line but is tagged {bucket}; using {bucket}"))
-        else:                                           # F lines: "(reason)" with no grade tag
-            bucket, mods = line_bucket, set()
-            reason = rest[1:-1] if rest.startswith("(") and rest.endswith(")") else rest
+        h = HEAD.match(rest)
+        bucket = h.group("g") or line_bucket
+        br = re.findall(r"\[([^\]]+)\]", h.group("br") or "")
+        mods = {b for b in br if b in ("W", "E")}
         tags = set()
+        if any("UNSEEN" in b.upper() for b in br):
+            tags.add("UNSEEN")
+        if any("RETAIL" in b.upper() or "TRAP" in b.upper() for b in br):
+            tags.add("RETAIL_TRAP")
+        reason = rest[h.end():].strip()
+        if reason.startswith("(") and reason.endswith(")"):
+            reason = reason[1:-1]
+        reason = reason.lstrip(") ").strip()
+        if bucket != line_bucket:
+            notes.append((race, "warn", f"#{m.group(1)} sits on the {line_bucket} line but is tagged {bucket}; using {bucket}"))
         if bucket in ("F", "F-") and re.search(r"public|underlay|chalk|favorite|choice", reason, re.I):
             tags.add("RETAIL_TRAP")
-        out.append(Entry(race, m.group(1).upper(), m.group(2).strip(), odds, bucket, mods, reason, tags))
-    if body.strip() and not re.match(r"^\s*none\b", body, re.I) and not ms:
-        notes.append((race, "warn", f"{line_bucket} line has text but no horses could be read: {body[:60]!r}"))
+        name = m.group(2).strip()
+        out.append(Entry(race, m.group(1).upper(), name,
+                         _odds(m.group(3), m.group(4)), bucket, mods, reason, tags))
+    if not ms:
+        notes.append((race, "warn", f"{line_bucket} line has text but no horses could be read: {body[:70]!r}"))
     return out
 
 
 def parse_lines(lines: list[str]) -> Breakdown:
     bd = Breakdown()
     cur: RaceBlock | None = None
+    label, body = None, []
+
+    def flush():
+        nonlocal label, body
+        if cur is not None and label is not None:
+            cur.entries += parse_entries(label, " ".join(body), cur.race, bd.notes)
+        label, body = None, []
+
     for raw in lines:
         line = raw.strip()
         if not line:
             continue
         h = HEADER_RE.match(line)
         if h:
+            flush()
             cur = RaceBlock(race=int(h.group(1)), dist=int(h.group(2)), surface=h.group(3).upper(),
-                            race_type=race_type_of(h.group(4)), par_spd=float(h.group(5)),
-                            scenario=SCENARIOS.get(h.group(6).strip().lower()), qsp_sum=int(h.group(7)))
+                            race_type=race_type_of(h.group(4)), par_spd=_f(h.group(5)),
+                            scenario=SCENARIOS.get(h.group(6).strip().lower()), qsp_sum=_i(h.group(7)))
             if cur.scenario is None:
                 bd.notes.append((cur.race, "warn", f"unknown pace scenario {h.group(6)!r}"))
             bd.races.append(cur)
             continue
+        if re.match(r"^RACE\s+\d", line, re.I):
+            flush(); cur = None
+            bd.notes.append((None, "error", f"race header not understood, race skipped: {line[:90]!r}"))
+            continue
         if cur is None:
             continue
-        s = SCRATCH_RE.match(line)
-        if s:
-            cur.scratches += [(m.group(1).upper(), m.group(2).strip().rstrip(")")) for m in SCRATCH_ONE.finditer(s.group(1))]
+        s_ = SCRATCH_LINE.match(line)
+        if s_:
+            flush()
+            cur.scratches += [(m.group(1).upper(), m.group(2).strip()) for m in SCRATCH_ONE.finditer(s_.group(0))]
             continue
-        if line.lower().startswith("sniper action"):
+        if not SNIPER_LINE.match(line):                 # scratches mentioned in passing inside other lines
+            for rx in (SCRATCH_A, SCRATCH_B):
+                for m in rx.finditer(line):
+                    cur.scratches.append((m.group(1).upper(), m.group(2).strip()))
+        if SNIPER_LINE.match(line):
+            flush()
             cur.sniper = line.split(":", 1)[-1].strip()
             continue
-        b = BUCKET_LINE.match(line)
-        if b:
-            cur.entries += parse_entries(b.group(1), b.group(2), cur.race, bd.notes)
+        r_ = REMAINING_LINE.match(line)
+        if r_:
+            flush()
+            label, body = "F", [r_.group(1)]
+            continue
+        b_ = BUCKET_LINE.match(line)
+        if b_:
+            flush()
+            label, body = b_.group(1), [b_.group(2)]
+        elif label is not None and line.startswith("#"):
+            body.append(line)
+    flush()
+    for r in bd.races:
+        seen, uniq = set(), []
+        graded = {e.pgm for e in r.entries}
+        for pgm, name in r.scratches:
+            if pgm not in seen and pgm not in graded:
+                seen.add(pgm); uniq.append((pgm, name))
+        r.scratches = uniq
     return bd
 
 
@@ -224,6 +304,12 @@ def ingest_breakdown(con, path: str | Path, track: str | None = None, race_date:
                         " VALUES (?,?,?,?,NULL,1,'explicit')", (card_id, r.race, pgm, name))
         if not r.entries:
             flag(con, card_id, r.race, "error", "no graded horses found in this race block")
+        nums = sorted({int(re.match(r"\d+", p).group()) for p in pgms | {x for x, _ in r.scratches}})
+        gap = sorted(set(range(1, (nums[-1] if nums else 0) + 1)) - set(nums))
+        if gap:
+            flag(con, card_id, r.race, "info", f"program numbers {gap} are neither graded nor listed as scratched")
+        if r.par_spd is None:
+            flag(con, card_id, r.race, "info", "par speed unavailable in the file")
     for race, sev, msg in bd.notes:
         flag(con, card_id, race, sev, msg)
     flags_vs_results(con, card_id, track, race_date)

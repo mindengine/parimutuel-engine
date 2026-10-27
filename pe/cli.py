@@ -6,6 +6,7 @@
   results <results.csv>        load official finish order
   payouts <payouts.csv>        load official payouts
   breakdown <file|folder>...   load Grant's per-race grade breakdowns (.docx/.txt) [--track FL] [--date 2026-10-26]
+                               or --manifest list.csv (columns file,track,date) when the files carry no track/date
   brisnet <charts.zip>...      load Brisnet Comprehensive Charts ZIPs (finish, odds, payouts)
   grade <distilled.csv> --track BEL --date 2026-10-25   rules-grade every starter (load results first)
   validate <tail_block.json>   check a tail block without loading it
@@ -34,8 +35,9 @@ def main(argv=None):
     p.add_argument("--track"); p.add_argument("--date")
     p = sub.add_parser("results"); p.add_argument("file")
     p = sub.add_parser("payouts"); p.add_argument("file")
-    p = sub.add_parser("breakdown"); p.add_argument("files", nargs="+")
+    p = sub.add_parser("breakdown"); p.add_argument("files", nargs="*")
     p.add_argument("--track"); p.add_argument("--date")
+    p.add_argument("--manifest", help="CSV with columns file,track,date (one row per breakdown file)")
     p = sub.add_parser("brisnet"); p.add_argument("files", nargs="+")
     p = sub.add_parser("grade"); p.add_argument("file"); p.add_argument("--track", required=True); p.add_argument("--date", required=True)
     p = sub.add_parser("validate"); p.add_argument("file")
@@ -73,9 +75,19 @@ def main(argv=None):
     elif a.cmd == "breakdown":
         from .breakdown import find_files, ingest_breakdown
         bad = 0
-        for f in find_files(a.files):
+        jobs = [(f, a.track, a.date) for f in find_files(a.files)]
+        if a.manifest:
+            import csv
+            from pathlib import Path
+            base = Path(a.manifest).parent
+            for row in csv.DictReader(open(a.manifest, newline="")):
+                if (row.get("file") or "").strip():
+                    f = Path(row["file"].strip())
+                    jobs.append((f if f.is_absolute() else base / f, (row.get("track") or "").strip() or None,
+                                 (row.get("date") or "").strip() or None))
+        for f, tr, dt in jobs:
             try:
-                cid, st = ingest_breakdown(con, f, a.track, a.date)
+                cid, st = ingest_breakdown(con, f, tr, dt)
                 print(f"{cid}: {st['races']} races, {st['runners']} runners, {st['scratched']} scratched"
                       + ("  (date from file name; check it)" if st["date_assumed"] else ""))
             except ValueError as e:
