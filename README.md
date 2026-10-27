@@ -8,6 +8,7 @@ Post-race forensics database, ticket validator and (next) combinatorial ticket g
 pip install -r requirements.txt
 python -m pe init
 python -m pe legacy data/archive/*.txt                    # archived chat outputs (best effort)
+python -m pe breakdown path/to/folder_of_grant_docx       # Grant's per-race grade breakdowns (.docx/.txt), many at once
 python -m pe ingest examples/tail_block_example.json      # structured output (going forward)
 python -m pe validate examples/tail_block_example.json    # check ticket math before betting
 python -m pe results results.csv && python -m pe payouts payouts.csv
@@ -33,6 +34,7 @@ python -m pe.v2 report
 | `pe/tickets.py` | Combinatorics: horizontal products, vertical permutations, boxes, validation, hit checks |
 | `pe/schema.sql` | SQLite schema: `cards`, `races`, `pre_race_grades`, `tickets`, `post_race_official`, `payouts`, `data_quality_flags` |
 | `pe/db.py` | Tail-block ingest, results/payout CSV import |
+| `pe/breakdown.py` | Loader for Grant's per-race grade breakdown (.docx): every runner's grade, modifiers, reason, pace scenario, scratches |
 | `pe/legacy.py` | Archive parser for pre-tail-block chat outputs |
 | `pe/analytics.py` | Bucket hit rates, ticket grading, LOTT audit, sequence signatures |
 | `app.py` | Streamlit dashboard |

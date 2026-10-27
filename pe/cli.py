@@ -5,6 +5,7 @@
   legacy  <card.txt> [--track BEL] [--date 2026-10-25]   parse an archived chat output
   results <results.csv>        load official finish order
   payouts <payouts.csv>        load official payouts
+  breakdown <file|folder>...   load Grant's per-race grade breakdowns (.docx/.txt) [--track FL] [--date 2026-10-26]
   brisnet <charts.zip>...      load Brisnet Comprehensive Charts ZIPs (finish, odds, payouts)
   grade <distilled.csv> --track BEL --date 2026-10-25   rules-grade every starter (load results first)
   validate <tail_block.json>   check a tail block without loading it
@@ -33,6 +34,8 @@ def main(argv=None):
     p.add_argument("--track"); p.add_argument("--date")
     p = sub.add_parser("results"); p.add_argument("file")
     p = sub.add_parser("payouts"); p.add_argument("file")
+    p = sub.add_parser("breakdown"); p.add_argument("files", nargs="+")
+    p.add_argument("--track"); p.add_argument("--date")
     p = sub.add_parser("brisnet"); p.add_argument("files", nargs="+")
     p = sub.add_parser("grade"); p.add_argument("file"); p.add_argument("--track", required=True); p.add_argument("--date", required=True)
     p = sub.add_parser("validate"); p.add_argument("file")
@@ -67,6 +70,18 @@ def main(argv=None):
         print(db.import_results_csv(con, a.file), "result rows")
     elif a.cmd == "payouts":
         print(db.import_payouts_csv(con, a.file), "payout rows")
+    elif a.cmd == "breakdown":
+        from .breakdown import find_files, ingest_breakdown
+        bad = 0
+        for f in find_files(a.files):
+            try:
+                cid, st = ingest_breakdown(con, f, a.track, a.date)
+                print(f"{cid}: {st['races']} races, {st['runners']} runners, {st['scratched']} scratched"
+                      + ("  (date from file name; check it)" if st["date_assumed"] else ""))
+            except ValueError as e:
+                bad += 1
+                print("SKIPPED", e)
+        sys.exit(1 if bad else 0)
     elif a.cmd == "brisnet":
         from .brisnet import import_brisnet_zip
         for f in a.files:

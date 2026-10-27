@@ -35,8 +35,10 @@ def field_band(n):
     return "<=6" if n <= 6 else "7-9" if n <= 9 else "10+"
 
 
-def bucket_hit_rates(con, by_field_size: bool = False) -> pd.DataFrame:
-    df = _df(con, "SELECT * FROM v_graded_results WHERE finish_pos IS NOT NULL AND bucket IS NOT NULL")
+def bucket_hit_rates(con, by_field_size: bool = False, source: str | None = None) -> pd.DataFrame:
+    """source: only cards from that grader ('grant_docx', 'rules_v1', ...); None = every card."""
+    df = _df(con, "SELECT * FROM v_graded_results WHERE finish_pos IS NOT NULL AND bucket IS NOT NULL"
+                  + (" AND source = ?" if source else ""), (source,) if source else ())
     if df.empty:
         return df
     df["pace_scenario"] = df["pace_scenario"].fillna("UNKNOWN")

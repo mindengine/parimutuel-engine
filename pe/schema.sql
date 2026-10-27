@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS pre_race_grades (
     p_est       REAL,                         -- model-stated probability (logged, not trusted)
     prime_power REAL, last_fig REAL, last_e1 REAL, last_lp REAL, qsp INTEGER,
     grade_confidence TEXT NOT NULL DEFAULT 'explicit', -- explicit | inferred | conflict
+    reason      TEXT,                         -- the grader's written reason, when the source has one
     PRIMARY KEY (card_id, race, pgm),
     FOREIGN KEY (card_id, race) REFERENCES races(card_id, race) ON DELETE CASCADE
 );
@@ -98,9 +99,11 @@ CREATE TABLE IF NOT EXISTS data_quality_flags (
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
--- Grades joined to results.
-CREATE VIEW IF NOT EXISTS v_graded_results AS
-SELECT g.*, c.track, c.race_date, r.pace_scenario, r.field_size, r.qsp_sum,
+-- Grades joined to results. c.source separates Grant's grades from the rules grader's for the same day.
+DROP VIEW IF EXISTS v_bucket_hit_rates;
+DROP VIEW IF EXISTS v_graded_results;
+CREATE VIEW v_graded_results AS
+SELECT g.*, c.track, c.race_date, c.source, r.pace_scenario, r.field_size, r.qsp_sum,
        o.finish_pos, o.final_odds
 FROM pre_race_grades g
 JOIN cards c USING (card_id)
@@ -111,7 +114,7 @@ LEFT JOIN post_race_official o
 WHERE g.scratched = 0;
 
 -- Module 2: bucket hit rates by pace scenario.
-CREATE VIEW IF NOT EXISTS v_bucket_hit_rates AS
+CREATE VIEW v_bucket_hit_rates AS
 SELECT bucket, pace_scenario,
        COUNT(*)                                            AS starters,
        SUM(finish_pos = 1)                                 AS wins,

@@ -21,6 +21,10 @@ def connect(path: str | Path = DEFAULT_DB) -> sqlite3.Connection:
     con = sqlite3.connect(path)
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA.read_text())
+    cols = {r[1] for r in con.execute("PRAGMA table_info(pre_race_grades)")}
+    if "reason" not in cols:   # databases made before the column existed
+        con.execute("ALTER TABLE pre_race_grades ADD COLUMN reason TEXT")
+        con.executescript(SCHEMA.read_text())
     return con
 
 
