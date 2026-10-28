@@ -7,6 +7,7 @@
   payouts <payouts.csv>        load official payouts
   breakdown <file|folder>...   load Grant's per-race grade breakdowns (.docx/.txt) [--track FL] [--date 2026-10-26]
                                or --manifest list.csv (columns file,track,date) when the files carry no track/date
+  picks <file.csv>...          load Grant's picks_and_tags / master_merged CSVs (A+..F, D-INT, D-DOM)
   brisnet <charts.zip>...      load Brisnet Comprehensive Charts ZIPs (finish, odds, payouts)
   grade <distilled.csv> --track BEL --date 2026-10-25   rules-grade every starter (load results first)
   validate <tail_block.json>   check a tail block without loading it
@@ -38,6 +39,8 @@ def main(argv=None):
     p = sub.add_parser("breakdown"); p.add_argument("files", nargs="*")
     p.add_argument("--track"); p.add_argument("--date")
     p.add_argument("--manifest", help="CSV with columns file,track,date (one row per breakdown file)")
+    p = sub.add_parser("picks"); p.add_argument("files", nargs="+")
+    p.add_argument("--track"); p.add_argument("--date")
     p = sub.add_parser("brisnet"); p.add_argument("files", nargs="+")
     p = sub.add_parser("grade"); p.add_argument("file"); p.add_argument("--track", required=True); p.add_argument("--date", required=True)
     p = sub.add_parser("validate"); p.add_argument("file")
@@ -94,6 +97,11 @@ def main(argv=None):
                 bad += 1
                 print("SKIPPED", e)
         sys.exit(1 if bad else 0)
+    elif a.cmd == "picks":
+        from .picks_csv import ingest_picks_csv
+        for f in a.files:
+            cid, st = ingest_picks_csv(con, f, a.track, a.date)
+            print(f"{cid}: {st['races']} races, {st['runners']} runners" + (" (with distilled inputs)" if st["merged"] else ""))
     elif a.cmd == "brisnet":
         from .brisnet import import_brisnet_zip
         for f in a.files:
