@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ticket Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#111714; --panel:#18201b; --panel2:#1e2822; --ink:#e4ebe6; --muted:#97a69c; --rule:#2c3830;
+  --turf:#5cc48c; --tote:#f0b44c; --tote-soft:#33281a;
+  --g-ap:#4fd08a; --g-a:#7fcf9f; --g-b:#8fb3d1; --g-c:#b9a0dc; --g-d:#e0b95c; --g-f:#6f7a73; --g-fm:#ef7a7a;
+  --ok:#7fcf9f; --bad:#ef7a7a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0}
+h2{font-size:1.8rem} h3{font-size:1.25rem;font-weight:600}
+p{margin:0;max-width:70ch}
+.lede{color:var(--muted)}
+.label{font:600 .72rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--tote);outline-offset:2px}
+button,select,input{font:inherit;color:inherit}
+header.mast{background:var(--ink);color:var(--paper)}
+header.mast .wrap{padding-block:24px 20px;display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between}
+header.mast h1{font-size:clamp(2rem,6vw,3rem)} header.mast h1 span{color:#c98a1c}
+header.mast p{color:#2f3a33;max-width:60ch}
+.tote{display:flex;gap:4px;flex-wrap:wrap}
+.tote div{background:#d3dcd6;border:1px solid #b9c4bd;padding:8px 12px;min-width:92px}
+.tote b{display:block;font:600 1.5rem/1 var(--mono);color:#a8700f}
+.tote small{font:600 .66rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:#4b574f}
+main{display:grid;gap:28px;padding-block:24px 64px}
+.box{background:var(--panel);border:1px solid var(--rule);padding:16px;display:grid;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+select,input[type=number]{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:7px 10px}
+input[type=number]{width:84px;font-family:var(--mono)}
+.btn{background:var(--panel2);border:1px solid var(--rule);border-radius:4px;padding:7px 12px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--turf);color:#0d1410;border-color:var(--turf)}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--panel)}
+.seg button{font:600 .9rem var(--mono);background:none;border:0;border-right:1px solid var(--rule);padding:8px 11px;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.racehead{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+.racehead .big{font:700 1.6rem/1 var(--display)}
+.pace{font:700 .9rem var(--display);letter-spacing:.05em;text-transform:uppercase;padding:2px 9px;border-radius:3px;background:var(--tote-soft);color:var(--tote)}
+.field{display:grid;gap:6px}
+.tier{display:grid;grid-template-columns:54px 1fr;gap:8px;align-items:start}
+.gb{display:inline-block;min-width:38px;text-align:center;padding:3px 6px;border-radius:3px;color:#0f1612;font:700 .95rem/1.2 var(--display)}
+.horses{display:flex;flex-wrap:wrap;gap:6px}
+.h{display:inline-flex;gap:6px;align-items:center;background:var(--panel2);border:1px solid var(--rule);border-radius:4px;padding:4px 8px;cursor:pointer;font-size:.92rem}
+.h b{font-family:var(--mono)}
+.h small{color:var(--muted);font-family:var(--mono)}
+.h.scr{opacity:.45;text-decoration:line-through}
+.tag{font:600 .64rem/1 var(--mono);padding:2px 4px;border:1px solid var(--rule);border-radius:3px;color:var(--muted)}
+.tickets{display:grid;gap:8px}
+.tk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--turf);padding:10px 12px}
+.tk.b2{border-left-color:var(--g-b)} .tk.b3{border-left-color:var(--g-d)} .tk.off{opacity:.5}
+.tk .t{font-weight:600}
+.tk .legs{font-family:var(--mono);font-size:.92rem;grid-column:1/-1;overflow-wrap:anywhere}
+.tk .cost{font:600 1.05rem var(--mono);color:var(--tote);text-align:right}
+.tk .why{grid-column:1/-1;color:var(--muted);font-size:.85rem}
+.sum{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--panel2);border:1px solid var(--rule)}
+.ok{color:var(--ok)} .bad{color:var(--bad)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+textarea{width:100%;min-height:160px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:10px;font:.85rem/1.5 var(--mono)}
+.drop{border:1px dashed var(--rule);padding:12px;border-radius:4px;color:var(--muted)}
+.drop.over{border-color:var(--turf);color:var(--ink)}
+footer{color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.two{grid-template-columns:1fr}.tier{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+  <div style="display:grid;gap:8px">
+    <div class="label" style="color:#a8700f">Equine OverlayAI</div>
+    <h1>Ticket <span>Builder</span></h1>
+    <p>Load Grant's grades, scratch what's out, and get the tickets: per-race Exactas and Trifectas, and Daily Doubles through Pick 5s, with exact costs and no combination paid for twice.</p>
+  </div>
+  <div class="tote" id="tote"></div>
+</div></header>
+
+<main class="wrap">
+  <section class="box">
+    <div class="controls">
+      <label class="label" for="cardSel">Card</label>
+      <select id="cardSel"></select>
+      <label class="btn primary" for="file">Load a grades CSV</label>
+      <input id="file" type="file" accept=".csv,.txt" hidden>
+      <span class="lede" id="loadMsg" style="font-size:.9rem"></span>
+    </div>
+    <div class="drop" id="drop">Or drop Grant's <span class="num">picks_and_tags</span> / <span class="num">master_merged</span> CSV here. Columns needed: Race, Post or Prog, Horse, Grade (Modifiers, ML_Odds, Retail_Radar optional). Grades A+ A B C D D-INT D-DOM F- F.</div>
+  </section>
+
+  <section class="box">
+    <h2>Race tickets</h2>
+    <div class="controls">
+      <div class="seg" id="raceSeg" role="group" aria-label="Race"></div>
+    </div>
+    <div class="racehead" id="raceHead"></div>
+    <p class="lede" style="font-size:.9rem">Click a horse to scratch it (or un-scratch). Every ticket rebuilds.</p>
+    <div class="field" id="field"></div>
+    <div class="controls">
+      <span class="label">Trifecta bases</span>
+      <label>Hammer $<input type="number" id="b1" value="1" min="0.1" step="0.1"></label>
+      <label>3rd-slot bombs $<input type="number" id="b2" value="0.5" min="0.1" step="0.1"></label>
+      <label>2nd-slot scavenger $<input type="number" id="b3" value="0.5" min="0.1" step="0.1"></label>
+      <label>Exacta $<input type="number" id="bx" value="1" min="0.5" step="0.5"></label>
+    </div>
+    <div class="tickets" id="raceTickets"></div>
+  </section>
+
+  <section class="box">
+    <h2>Sequences</h2>
+    <div class="controls">
+      <select id="seqType"><option value="2">Daily Double</option><option value="3">Pick 3</option><option value="4" selected>Pick 4</option><option value="5">Pick 5</option><option value="6">Pick 6</option></select>
+      <label class="label" for="seqStart">Starting race</label><select id="seqStart"></select>
+      <label>Base $<input type="number" id="bs" value="0.5" min="0.1" step="0.1"></label>
+      <label><input type="checkbox" id="single"> Single a lone A+</label>
+      <label class="label" for="backDepth">Backups</label>
+      <select id="backDepth"><option value="B">B only</option><option value="BC">B + C</option><option value="BCD" selected>B + C + D</option></select>
+    </div>
+    <div class="tickets" id="seqTickets"></div>
+  </section>
+
+  <section class="box">
+    <div class="two">
+      <div style="display:grid;gap:10px">
+        <h3>How the tickets are built</h3>
+        <p class="lede" style="font-size:.92rem"><b>Trifecta.</b> Win slot: A+ and A only. Hammer: win slot over the A, B[W] and B contenders in 2nd and 3rd. Bombs: same top two slots, with only the C and D horses in 3rd. Scavenger: win slot over the C and D horses in 2nd, anything playable in 3rd. The three never share a combination.</p>
+        <p class="lede" style="font-size:.92rem"><b>Exacta.</b> A+/A over the A and B contenders, plus a saver with the C and D horses underneath.</p>
+        <p class="lede" style="font-size:.92rem"><b>Sequences.</b> Main ticket: A+ and A in every leg (a lone A+ can be singled). One backup per leg: that leg's B (and C, D) horses, plus any A left off a singled leg, with the main horses everywhere else. Each backup covers one leg going wrong, and none overlaps another. F and F- are never used anywhere.</p>
+      </div>
+      <div style="display:grid;gap:10px">
+        <h3>All tickets on this card</h3>
+        <textarea id="out" readonly></textarea>
+        <div class="controls"><button class="btn primary" id="copy">Copy tickets</button><span id="copied" class="lede"></span></div>
+      </div>
+    </div>
+  </section>
+  <footer id="foot"></footer>
+</main>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ORDER = ["A+","A","B","C","D","F-","F"];
+const GCOL = {"A+":"--g-ap","A":"--g-a","B":"--g-b","C":"--g-c","D":"--g-d","F":"--g-f","F-":"--g-fm"};
+const money = v => "$" + v.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const odds = v => v == null ? "" : (Number.isInteger(v) ? v : +v.toFixed(1)) + "-1";
+
+let cards = D.cards, curKey = Object.keys(cards)[0], curRace = null;
+const scratched = {};   // key -> Set of "race:pgm"
+const isScr = (k, r, p) => (scratched[k] || new Set()).has(r + ":" + p);
+
+/* ---------- loading a CSV ---------- */
+function parseCSV(text){
+  const rows = []; let row = [], f = "", q = false;
+  for (let i = 0; i < text.length; i++){
+    const c = text[i];
+    if (q){ if (c === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ","){ row.push(f); f = ""; }
+    else if (c === "\n" || c === "\r"){ if (c === "\r" && text[i+1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+    else f += c;
+  }
+  if (f.length || row.length){ row.push(f); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim()));
+}
+function loadCSV(text, fname){
+  const rows = parseCSV(text), head = rows[0].map(h => h.trim());
+  const col = n => head.findIndex(h => h.toLowerCase() === n.toLowerCase());
+  const iR = col("Race"), iP = col("Prog") > -1 ? col("Prog") : col("Post"), iH = col("Horse"), iG = col("Grade");
+  if ([iR, iP, iH, iG].some(i => i < 0)) throw new Error("needs Race, Post (or Prog), Horse and Grade columns");
+  const iM = col("Modifiers"), iO = col("ML_Odds"), iX = col("Retail_Radar"), iT = col("Track"), iD = col("Date");
+  const m = (fname || "").match(/([A-Za-z]{2,4})_?(\d{8})/);
+  const track = (iT > -1 ? rows[1][iT] : m ? m[1] : "CARD").toUpperCase();
+  const date = iD > -1 ? rows[1][iD] : m ? m[2] : "";
+  const races = {};
+  for (const r of rows.slice(1)){
+    const race = parseInt(r[iR], 10); if (!race) continue;
+    const g = (r[iG] || "").trim().toUpperCase();
+    const radar = iX > -1 ? (r[iX] || "").toUpperCase() : "";
+    const mods = iM > -1 ? (r[iM].match(/\[([WE])\]/g) || []).map(x => x[1]) : [];
+    (races[race] = races[race] || []).push({pgm: r[iP].trim().toUpperCase(), name: r[iH].trim(), ml: iO > -1 ? parseFloat(r[iO]) || null : null,
+      grade: g.startsWith("D-") ? "D" : g, sub: g.startsWith("D-") ? g : null, w: mods.includes("W"), e: mods.includes("E"),
+      trap: radar.includes("TRAP"), unseen: radar.includes("UNSEEN")});
+  }
+  const key = `${track}_${date || Date.now()}`;
+  const base = cards[`${track}_${date}`];
+  cards[key] = {name: `${base ? base.name : track + " " + date} · ${fname || "loaded"}`,
+    races: Object.keys(races).map(Number).sort((a, b) => a - b).map(n => {
+      const b = base && base.races.find(x => x.race === n);
+      return {...(b || {race: n}), race: n, horses: races[n]}; })};
+  curKey = key; curRace = null; drawCards(); drawAll();
+  $("#loadMsg").textContent = `Loaded ${Object.values(races).flat().length} horses in ${Object.keys(races).length} races.`;
+}
+function readFile(f){ const rd = new FileReader(); rd.onload = () => { try { loadCSV(rd.result, f.name); } catch (e){ $("#loadMsg").textContent = "Couldn't read that file: " + e.message; } }; rd.readAsText(f); }
+$("#file").addEventListener("change", e => e.target.files[0] && readFile(e.target.files[0]));
+const drop = $("#drop");
+drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("over"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && readFile(e.dataTransfer.files[0]); });
+
+/* ---------- groups ---------- */
+const card = () => cards[curKey];
+function groups(race){
+  const live = race.horses.filter(h => !isScr(curKey, race.race, h.pgm) && h.grade);
+  const by = g => live.filter(h => h.grade === g);
+  const top = [...by("A+"), ...by("A")];
+  const bw = by("B").filter(h => h.w), bo = by("B").filter(h => !h.w);
+  const mid = [...bw, ...bo];
+  return {live, ap: by("A+"), a: by("A"), top, mid, c: by("C"), d: by("D"), bombs: [...by("C"), ...by("D")]};
+}
+const nums = hs => hs.map(h => h.pgm).join(",");
+function countVertical(slots){   // distinct-horse permutations across slots
+  let n = 0; const rec = (i, used) => { if (i === slots.length){ n++; return; } for (const h of slots[i]) if (!used.has(h)){ used.add(h); rec(i+1, used); used.delete(h); } };
+  rec(0, new Set()); return n;
+}
+function combosVertical(slots){
+  const out = []; const rec = (i, acc) => { if (i === slots.length){ out.push(acc.join("-")); return; } for (const h of slots[i]) if (!acc.includes(h)) rec(i+1, acc.concat(h)); };
+  rec(0, []); return out;
+}
+
+/* ---------- race tickets ---------- */
+function raceTickets(race){
+  const g = groups(race), P = h => h.pgm, T = [];
+  const b1 = +$("#b1").value || 1, b2 = +$("#b2").value || 0.5, b3 = +$("#b3").value || 0.5, bx = +$("#bx").value || 1;
+  if (!g.top.length) return {tickets: [], note: "No A+ or A horse in this race: pass the verticals, or use it as a spread leg."};
+  const S1 = g.top.map(P), S2 = [...g.top, ...g.mid].map(P), S3 = g.bombs.map(P), ALL = [...S2, ...S3];
+  const add = (cls, t, pool, base, slots, why) => { const n = countVertical(slots); if (n) T.push({cls, t, pool, base, slots, n, cost: n * base, why}); };
+  add("", "Exacta", "EX", bx, [S1, S2], "A+/A on top, A and B contenders underneath.");
+  add("b3", "Exacta saver", "EX", bx / 2, [S1, S3], "A+/A over the C and D horses.");
+  add("", "Trifecta · hammer", "TRI", b1, [S1, S2, S2], "Win slot A+/A; 2nd and 3rd from the A and B contenders.");
+  add("b2", "Trifecta · 3rd-slot bombs", "TRI", b2, [S1, S2, S3], "Same top two slots, only C and D horses in 3rd.");
+  add("b3", "Trifecta · 2nd-slot scavenger", "TRI", b3, [S1, S3, ALL], "C and D horses splitting the A's and the rest.");
+  return {tickets: T, note: ""};
+}
+
+/* ---------- sequences ---------- */
+function seqTickets(){
+  const n = +$("#seqType").value, start = +$("#seqStart").value, base = +$("#bs").value || 0.5;
+  const rs = card().races, i0 = rs.findIndex(r => r.race === start), legs = rs.slice(i0, i0 + n);
+  if (legs.length < n) return {tickets: [], note: `This card ends before a ${n}-leg sequence starting at R${start} would.`};
+  const depth = $("#backDepth").value;
+  const main = legs.map(r => { const g = groups(r); return ($("#single").checked && g.ap.length === 1) ? g.ap : g.top; });
+  // A horses left off a singled leg go into that leg's backup, so nothing graded A is ever dropped.
+  const back = legs.map((r, i) => { const g = groups(r); return [...g.top.filter(h => !main[i].includes(h)), ...g.mid, ...(depth.includes("C") ? g.c : []), ...(depth.includes("D") ? g.d : [])]; });
+  const empties = legs.filter((r, i) => !main[i].length).map(r => "R" + r.race);
+  const T = [], name = {2: "Daily Double", 3: "Pick 3", 4: "Pick 4", 5: "Pick 5", 6: "Pick 6"}[n];
+  const cnt = ls => ls.reduce((a, l) => a * l.length, 1);
+  if (!empties.length) T.push({cls: "", t: `${name} · main`, pool: "P" + n, base, legs: main.map(l => l.map(h => h.pgm)), n: cnt(main), cost: cnt(main) * base, why: "A+/A in every leg."});
+  legs.forEach((r, i) => {
+    if (!back[i].length) return;
+    const ls = main.map((l, j) => j === i ? back[i] : l);
+    if (ls.some(l => !l.length)) return;
+    T.push({cls: "b2", t: `${name} · backup R${r.race}`, pool: "P" + n, base, legs: ls.map(l => l.map(h => h.pgm)), n: cnt(ls), cost: cnt(ls) * base,
+      why: `R${r.race} goes to the ${depth.split("").join("/")} horses; main horses everywhere else.`});
+  });
+  return {tickets: T, note: empties.length ? `No A+/A in ${empties.join(", ")}: the main ticket needs one, so only backups through those legs are shown.` : ""};
+}
+function overlapCheck(tks, horizontal){
+  const seen = new Map(); let dup = 0;
+  for (const t of tks){
+    const combos = horizontal ? t.legs.reduce((a, l) => a.flatMap(p => l.map(x => p.concat(x))), [[]]).map(p => t.pool + p.join("/"))
+                              : combosVertical(t.slots).map(c => t.pool + c);
+    for (const c of combos){ if (seen.has(c)) dup++; seen.set(c, 1); }
+  }
+  return dup;
+}
+
+/* ---------- drawing ---------- */
+function drawCards(){
+  $("#cardSel").innerHTML = Object.entries(cards).map(([k, c]) => `<option value="${k}" ${k===curKey?"selected":""}>${esc(c.name)}</option>`).join("");
+}
+function tkHTML(t, horiz){
+  const legs = horiz ? t.legs.map(l => l.join(",")).join(" / ") : t.slots.map(s => s.join(",")).join(" / ");
+  return `<div class="tk ${t.cls}"><div class="t">${esc(t.t)} <span class="label">${money(t.base)} base · ${t.n} combos</span></div><div class="cost">${money(t.cost)}</div>
+    <div class="legs">${esc(legs)}</div><div class="why">${esc(t.why)}</div></div>`;
+}
+function drawRace(){
+  const c = card(), rs = c.races;
+  if (!rs.find(r => r.race === curRace)) curRace = rs[0].race;
+  $("#raceSeg").innerHTML = rs.map(r => `<button aria-pressed="${r.race===curRace}" data-r="${r.race}">R${r.race}</button>`).join("");
+  const r = rs.find(x => x.race === curRace);
+  $("#raceHead").innerHTML = `<span class="big">Race ${r.race}</span>${r.title ? `<span class="pace">${esc(r.title)}</span>` : ""}${r.info ? `<span class="lede num" style="font-size:.9rem">${esc(r.info)}</span>` : ""}`;
+  const graded = r.horses.some(h => h.grade);
+  $("#field").innerHTML = !graded ? `<p class="lede">No grades loaded for this card yet. Load Grant's CSV above.</p>` :
+    ORDER.map(g => { const hs = r.horses.filter(h => h.grade === g); if (!hs.length) return "";
+      return `<div class="tier"><span><span class="gb" style="background:var(${GCOL[g]})">${g}</span></span><div class="horses">${hs.map(h => {
+        const tags = [h.sub, h.w && "W", h.e && "E", h.trap && "TRAP", h.unseen && "UNSEEN"].filter(Boolean);
+        return `<button class="h ${isScr(curKey, r.race, h.pgm) ? "scr" : ""}" data-p="${esc(h.pgm)}" title="Click to scratch / unscratch"><b>${esc(h.pgm)}</b> ${esc(h.name)} <small>${odds(h.ml)}</small>${tags.map(t => `<span class="tag">${t}</span>`).join("")}</button>`; }).join("")}</div></div>`; }).join("");
+  const {tickets, note} = raceTickets(r);
+  const tot = tickets.reduce((a, t) => a + t.cost, 0), dup = overlapCheck(tickets, false);
+  $("#raceTickets").innerHTML = (note ? `<p class="lede">${note}</p>` : "") + tickets.map(t => tkHTML(t, false)).join("") +
+    (tickets.length ? `<div class="sum"><span>Race ${r.race} total <b class="num">${money(tot)}</b></span><span class="${dup ? "bad" : "ok"}">${dup ? dup + " overlapping combinations" : "No overlapping combinations"}</span></div>` : "");
+}
+function drawSeq(){
+  const rs = card().races, n = +$("#seqType").value, prev = +$("#seqStart").value;
+  $("#seqStart").innerHTML = rs.slice(0, Math.max(rs.length - n + 1, 1)).map(r => `<option value="${r.race}" ${r.race===prev?"selected":""}>R${r.race}</option>`).join("");
+  const {tickets, note} = seqTickets();
+  const tot = tickets.reduce((a, t) => a + t.cost, 0), dup = overlapCheck(tickets, true);
+  $("#seqTickets").innerHTML = (note ? `<p class="lede">${note}</p>` : "") + tickets.map(t => tkHTML(t, true)).join("") +
+    (tickets.length ? `<div class="sum"><span>Sequence total <b class="num">${money(tot)}</b></span><span class="${dup ? "bad" : "ok"}">${dup ? dup + " overlapping combinations" : "No overlapping combinations"}</span></div>` : "");
+}
+function drawOut(){
+  const c = card(), lines = [c.name];
+  let total = 0;
+  for (const r of c.races){
+    const {tickets} = raceTickets(r);
+    tickets.forEach(t => { total += t.cost; lines.push(`R${r.race}  ${t.pool.padEnd(3)} ${money(t.base).padStart(6)}  ${t.slots.map(s => s.join(",")).join(" / ")}   = ${money(t.cost)}`); });
+  }
+  const s = seqTickets();
+  s.tickets.forEach(t => { total += t.cost; lines.push(`R${$("#seqStart").value}  ${t.pool.padEnd(3)} ${money(t.base).padStart(6)}  ${t.legs.map(l => l.join(",")).join(" / ")}   = ${money(t.cost)}`); });
+  lines.push(`TOTAL ${money(total)}`);
+  $("#out").value = lines.join("\n");
+  const live = c.races.flatMap(r => r.horses.filter(h => !isScr(curKey, r.race, h.pgm)));
+  $("#tote").innerHTML = [["Races", c.races.length], ["Graded", live.filter(h => h.grade).length], ["Scratched", (scratched[curKey] || new Set()).size], ["Card total", money(total)]]
+    .map(([k, v]) => `<div><b>${v}</b><small>${k}</small></div>`).join("");
+}
+function drawAll(){ drawRace(); drawSeq(); drawOut(); }
+
+$("#cardSel").addEventListener("change", e => { curKey = e.target.value; curRace = null; drawAll(); });
+$("#raceSeg").addEventListener("click", e => { const b = e.target.closest("button"); if (b){ curRace = +b.dataset.r; drawAll(); }});
+$("#field").addEventListener("click", e => { const b = e.target.closest(".h"); if (!b) return;
+  const s = scratched[curKey] = scratched[curKey] || new Set(), k = curRace + ":" + b.dataset.p; s.has(k) ? s.delete(k) : s.add(k); drawAll(); });
+["#b1","#b2","#b3","#bx","#bs","#seqType","#seqStart","#single","#backDepth"].forEach(id => $(id).addEventListener("input", drawAll));
+$("#seqType").addEventListener("change", drawAll);
+$("#copy").addEventListener("click", async () => { try { await navigator.clipboard.writeText($("#out").value); $("#copied").textContent = "Copied."; } catch { $("#out").select(); $("#copied").textContent = "Select-all is on; press Ctrl+C."; } });
+
+/* preloaded scratches from the grade files */
+for (const [k, c] of Object.entries(cards)) for (const r of c.races) for (const h of r.horses) if (h.scr) (scratched[k] = scratched[k] || new Set()).add(r.race + ":" + h.pgm);
+$("#foot").textContent = `Built ${D.builtAt}. Grades are Grant's; numbers are morning-line. Tickets are built from grades only, not live odds: check prices before betting.`;
+drawCards(); drawAll();
+</script>
+</body>
+</html>
