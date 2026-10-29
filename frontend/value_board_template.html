@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Value Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#111714; --panel:#18201b; --panel2:#1e2822; --ink:#e4ebe6; --muted:#97a69c; --rule:#2c3830;
+  --turf:#5cc48c; --tote:#f0b44c; --tote-soft:#33281a;
+  --g-ap:#4fd08a; --g-a:#7fcf9f; --g-b:#8fb3d1; --g-c:#b9a0dc; --g-d:#e0b95c; --g-f:#6f7a73; --g-fm:#ef7a7a;
+  --ok:#7fcf9f; --bad:#ef7a7a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0}
+h2{font-size:1.8rem} h3{font-size:1.25rem;font-weight:600}
+p{margin:0;max-width:70ch}
+.lede{color:var(--muted)}
+.label{font:600 .72rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--tote);outline-offset:2px}
+button,select,input{font:inherit;color:inherit}
+header.mast{background:var(--ink);color:var(--paper)}
+header.mast .wrap{padding-block:24px 20px;display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between}
+header.mast h1{font-size:clamp(2rem,6vw,3rem)} header.mast h1 span{color:#c98a1c}
+header.mast p{color:#2f3a33;max-width:60ch}
+.tote{display:flex;gap:4px;flex-wrap:wrap}
+.tote div{background:#d3dcd6;border:1px solid #b9c4bd;padding:8px 12px;min-width:92px}
+.tote b{display:block;font:600 1.5rem/1 var(--mono);color:#a8700f}
+.tote small{font:600 .66rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:#4b574f}
+main{display:grid;gap:28px;padding-block:24px 64px}
+.box{background:var(--panel);border:1px solid var(--rule);padding:16px;display:grid;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+select,input[type=number]{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:7px 10px}
+input[type=number]{width:84px;font-family:var(--mono)}
+.btn{background:var(--panel2);border:1px solid var(--rule);border-radius:4px;padding:7px 12px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--turf);color:#0d1410;border-color:var(--turf)}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--panel)}
+.seg button{font:600 .9rem var(--mono);background:none;border:0;border-right:1px solid var(--rule);padding:8px 11px;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.racehead{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+.racehead .big{font:700 1.6rem/1 var(--display)}
+.pace{font:700 .9rem var(--display);letter-spacing:.05em;text-transform:uppercase;padding:2px 9px;border-radius:3px;background:var(--tote-soft);color:var(--tote)}
+.field{display:grid;gap:6px}
+.tier{display:grid;grid-template-columns:54px 1fr;gap:8px;align-items:start}
+.gb{display:inline-block;min-width:38px;text-align:center;padding:3px 6px;border-radius:3px;color:#0f1612;font:700 .95rem/1.2 var(--display)}
+.horses{display:flex;flex-wrap:wrap;gap:6px}
+.h{display:inline-flex;gap:6px;align-items:center;background:var(--panel2);border:1px solid var(--rule);border-radius:4px;padding:4px 8px;cursor:pointer;font-size:.92rem}
+.h b{font-family:var(--mono)}
+.h small{color:var(--muted);font-family:var(--mono)}
+.h.scr{opacity:.45;text-decoration:line-through}
+.tag{font:600 .64rem/1 var(--mono);padding:2px 4px;border:1px solid var(--rule);border-radius:3px;color:var(--muted)}
+.tickets{display:grid;gap:8px}
+.tk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--turf);padding:10px 12px}
+.tk.b2{border-left-color:var(--g-b)} .tk.b3{border-left-color:var(--g-d)} .tk.off{opacity:.5}
+.tk .t{font-weight:600}
+.tk .legs{font-family:var(--mono);font-size:.92rem;grid-column:1/-1;overflow-wrap:anywhere}
+.tk .cost{font:600 1.05rem var(--mono);color:var(--tote);text-align:right}
+.tk .why{grid-column:1/-1;color:var(--muted);font-size:.85rem}
+.sum{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--panel2);border:1px solid var(--rule)}
+.ok{color:var(--ok)} .bad{color:var(--bad)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+textarea{width:100%;min-height:160px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:10px;font:.85rem/1.5 var(--mono)}
+.drop{border:1px dashed var(--rule);padding:12px;border-radius:4px;color:var(--muted)}
+.drop.over{border-color:var(--turf);color:var(--ink)}
+footer{color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.two{grid-template-columns:1fr}.tier{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<style>
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th{font:600 .7rem/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px;border-bottom:1px solid var(--rule)}
+td{padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:middle}
+td.r,th.r{text-align:right}
+tr.scr td{opacity:.4;text-decoration:line-through}
+tr.green td{background:#1c3326} tr.nuke td{background:#3a2c12}
+.odds{width:76px;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:4px 6px;font:600 .9rem var(--mono);text-align:right}
+.pill{font:700 .7rem/1 var(--mono);padding:3px 6px;border-radius:3px}
+.pill.g{background:var(--turf);color:#0d1410} .pill.n{background:var(--tote);color:#1a1205}
+.mult{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mult label{display:flex;justify-content:space-between;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--rule);padding:6px 8px;border-radius:4px}
+.mult input{width:80px}
+textarea.paste{min-height:110px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+</style>
+
+<header class="mast"><div class="wrap">
+  <div style="display:grid;gap:8px">
+    <div class="label" style="color:#a8700f">Equine OverlayAI</div>
+    <h1>Value <span>Board</span></h1>
+    <p>Paste the live odds board. The page applies Grant's grade multipliers to the tote's probabilities and flags every horse, Exacta and Daily Double that's paying more than our picks say it should.</p>
+  </div>
+  <div class="tote" id="tote"></div>
+</div></header>
+
+<main class="wrap">
+  <section class="box">
+    <div class="controls">
+      <label class="label" for="cardSel">Card</label>
+      <select id="cardSel"></select>
+      <label class="btn" for="file">Load a grades CSV</label>
+      <input id="file" type="file" accept=".csv,.txt" hidden>
+      <span class="lede" id="loadMsg" style="font-size:.9rem"></span>
+    </div>
+    <div class="drop" id="drop">Drop Grant's <span class="num">picks_and_tags</span> / <span class="num">master_merged</span> CSV here to load another card. Friday's Breeders' Cup grades are preloaded.</div>
+    <div class="controls"><span class="label">Race</span><div class="seg" id="raceSeg" role="group" aria-label="Race"></div></div>
+    <div class="racehead" id="raceHead"></div>
+  </section>
+
+  <section class="box" style="padding:0;border:0;background:none">
+    <div class="box" style="align-content:start">
+      <h2>Grade multipliers</h2>
+      <p class="lede" style="font-size:.9rem">How much likelier than the tote each grade is to win. Defaults are from Grant's spec. "Wednesday measured" uses what his grades actually did on 10/28 (8 tracks, one day). F and F- are always 0.</p>
+      <div class="controls"><button class="btn" id="presetSpec">Grant's spec</button><button class="btn" id="presetWed">Wednesday measured</button></div>
+      <div class="mult" id="mult"></div>
+      <div class="controls">
+        <label>Overlay at <input type="number" id="thG" value="1.25" step="0.05"></label>
+        <label>Nuclear at <input type="number" id="thN" value="1.5" step="0.05"></label>
+      </div>
+    </div>
+  </section>
+  <section class="box" style="padding:0;border:0;background:none">
+    <div class="box">
+      <h2>Win odds</h2>
+      <p class="lede" style="font-size:.9rem">Paste the board (any layout with program numbers and odds, e.g. <span class="num">1 5-2</span>, <span class="num">#4 Horse 9/2</span>, <span class="num">7 12.40</span>, <span class="num">SCR</span>) or type straight into the odds boxes. Starts from the morning line.</p>
+      <textarea class="paste" id="winPaste" placeholder="Paste the win odds board here"></textarea>
+      <div class="controls"><button class="btn primary" id="winApply">Read odds</button><button class="btn" id="winReset">Back to morning line</button><span class="lede" id="winMsg" style="font-size:.9rem"></span></div>
+      <div class="tablebox" style="overflow-x:auto"><table id="winTbl"></table></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>Exacta value</h2>
+    <p class="lede" style="font-size:.9rem">Paste the Exacta probables grid (top row = 2nd-place numbers, each row starts with the winner's number) for real payoffs. Without it, payoffs are estimated from the win pool (Harville) and marked <span class="label">est</span>. Estimates only show where our grades disagree with the board, and when heavily bet F horses are thrown out, most remaining combinations look overlaid. Paste the real probables before acting on an Exacta.</p>
+    <textarea class="paste" id="exPaste" placeholder="Optional: paste Exacta probables"></textarea>
+    <div class="controls"><label>Probables base $<select id="exBase"><option value="1">1</option><option value="2" selected>2</option></select></label><label>Exacta takeout <input type="number" id="tkE" value="0.195" step="0.005"></label><button class="btn primary" id="exApply">Read probables</button><span class="lede" id="exMsg" style="font-size:.9rem"></span></div>
+    <div class="tablebox"><table id="exTbl"></table></div>
+  </section>
+
+  <section class="box">
+    <h2>Daily Double value</h2>
+    <p class="lede" style="font-size:.9rem">This race into the next. Leg 2 uses its odds boxes (morning line until you update that race, since its win pool is thin this early). Paste the DD probables grid (top row = leg 2 numbers, each row starts with the leg 1 number).</p>
+    <textarea class="paste" id="ddPaste" placeholder="Paste Daily Double probables"></textarea>
+    <div class="controls"><label>Probables base $<select id="ddBase"><option value="1">1</option><option value="2" selected>2</option></select></label><button class="btn primary" id="ddApply">Read probables</button><span class="lede" id="ddMsg" style="font-size:.9rem"></span></div>
+    <div class="tablebox"><table id="ddTbl"></table></div>
+  </section>
+
+  <footer id="foot">Value = our probability × what the board pays. Above 1.00 is a positive expectation if our probabilities are right; that rests entirely on the multipliers, which are still being measured. Nothing here places a bet. Odds are only what you paste or type.</footer>
+</main>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const GCOL = {"A+":"--g-ap","A":"--g-a","B":"--g-b","C":"--g-c","D":"--g-d","F":"--g-f","F-":"--g-fm"};
+const ORDER = ["A+","A","B","C","D","F-","F"];
+const money = v => "$" + v.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const odds = v => v == null ? "" : (Number.isInteger(v) ? v : +v.toFixed(1)) + "-1";
+let cards = D.cards, curKey = Object.keys(cards)[0], curRace = null;
+const scratched = {};
+const isScr = (k, r, p) => (scratched[k] || new Set()).has(r + ":" + p);
+const live = {};          // key -> {race: {pgm: odds}}
+const exProb = {}, ddProb = {};   // "key:race" -> {"a-b": payout per $1}
+
+/* ---------- loading a CSV ---------- */
+function parseCSV(text){
+  const rows = []; let row = [], f = "", q = false;
+  for (let i = 0; i < text.length; i++){
+    const c = text[i];
+    if (q){ if (c === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ","){ row.push(f); f = ""; }
+    else if (c === "\n" || c === "\r"){ if (c === "\r" && text[i+1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+    else f += c;
+  }
+  if (f.length || row.length){ row.push(f); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim()));
+}
+function loadCSV(text, fname){
+  const rows = parseCSV(text), head = rows[0].map(h => h.trim());
+  const col = n => head.findIndex(h => h.toLowerCase() === n.toLowerCase());
+  const iR = col("Race"), iP = col("Prog") > -1 ? col("Prog") : col("Post"), iH = col("Horse"), iG = col("Grade");
+  if ([iR, iP, iH, iG].some(i => i < 0)) throw new Error("needs Race, Post (or Prog), Horse and Grade columns");
+  const iM = col("Modifiers"), iO = col("ML_Odds"), iX = col("Retail_Radar"), iT = col("Track"), iD = col("Date");
+  const m = (fname || "").match(/([A-Za-z]{2,4})_?(\d{8})/);
+  const track = (iT > -1 ? rows[1][iT] : m ? m[1] : "CARD").toUpperCase();
+  const date = iD > -1 ? rows[1][iD] : m ? m[2] : "";
+  const races = {};
+  for (const r of rows.slice(1)){
+    const race = parseInt(r[iR], 10); if (!race) continue;
+    const g = (r[iG] || "").trim().toUpperCase();
+    const radar = iX > -1 ? (r[iX] || "").toUpperCase() : "";
+    const mods = iM > -1 ? (r[iM].match(/\[([WE])\]/g) || []).map(x => x[1]) : [];
+    (races[race] = races[race] || []).push({pgm: r[iP].trim().toUpperCase(), name: r[iH].trim(), ml: iO > -1 ? parseFloat(r[iO]) || null : null,
+      grade: g.startsWith("D-") ? "D" : g, sub: g.startsWith("D-") ? g : null, w: mods.includes("W"), e: mods.includes("E"),
+      trap: radar.includes("TRAP"), unseen: radar.includes("UNSEEN")});
+  }
+  const key = `${track}_${date || Date.now()}`;
+  const base = cards[`${track}_${date}`];
+  cards[key] = {name: `${base ? base.name : track + " " + date} · ${fname || "loaded"}`,
+    races: Object.keys(races).map(Number).sort((a, b) => a - b).map(n => {
+      const b = base && base.races.find(x => x.race === n);
+      return {...(b || {race: n}), race: n, horses: races[n]}; })};
+  curKey = key; curRace = null; drawCards(); drawAll();
+  $("#loadMsg").textContent = `Loaded ${Object.values(races).flat().length} horses in ${Object.keys(races).length} races.`;
+}
+function readFile(f){ const rd = new FileReader(); rd.onload = () => { try { loadCSV(rd.result, f.name); } catch (e){ $("#loadMsg").textContent = "Couldn't read that file: " + e.message; } }; rd.readAsText(f); }
+$("#file").addEventListener("change", e => e.target.files[0] && readFile(e.target.files[0]));
+const drop = $("#drop");
+drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("over"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && readFile(e.dataTransfer.files[0]); });
+
+
+
+/* ---------- multipliers ---------- */
+const KEYS = ["A+","A+[W]","A","A[W]","B","B[W]","C","D","D[W]"];
+const SPEC = {"A+":1.30,"A+[W]":1.30,"A":1.15,"A[W]":1.35,"B":1.00,"B[W]":1.20,"C":1.10,"D":1.00,"D[W]":1.05};
+const WED = D.measured;
+let M = {...SPEC};
+function drawMult(){ $("#mult").innerHTML = KEYS.map(k => `<label><span class="num">${k}</span><input type="number" step="0.05" data-k="${k}" value="${M[k]}"></label>`).join(""); }
+$("#mult").addEventListener("input", e => { const k = e.target.dataset.k; if (k){ M[k] = +e.target.value || 0; drawAll(); }});
+$("#presetSpec").addEventListener("click", () => { M = {...SPEC}; drawMult(); drawAll(); });
+$("#presetWed").addEventListener("click", () => { M = {...SPEC, ...WED}; drawMult(); drawAll(); });
+const alpha = h => !h.grade || h.grade.startsWith("F") ? 0 : (M[h.grade + (h.w ? "[W]" : "")] ?? M[h.grade] ?? 1);
+
+/* ---------- odds parsing ---------- */
+function parseOdds(tok){
+  tok = tok.trim().toUpperCase();
+  if (/^(EVN|EVEN|EVENS)$/.test(tok)) return 1;
+  let m = tok.match(/^(\d{1,3})\s*[-\/]\s*(\d{1,2})$/); if (m) return +m[1] / +m[2];
+  m = tok.match(/^\d{1,3}(\.\d+)?$/); if (m) return +tok;
+  return null;
+}
+function parseBoard(text, pgms){
+  const out = {}, scr = new Set();
+  const want = new Set(pgms);
+  const toks = text.replace(/[|\t,]/g, " ").split(/\n/);
+  for (const line of toks){
+    const t = line.trim().split(/\s+/).filter(Boolean);
+    for (let i = 0; i < t.length; i++){
+      const p = t[i].replace(/^#/, "").toUpperCase();
+      if (!want.has(p) || out[p] != null) continue;
+      for (let j = i + 1; j < Math.min(t.length, i + 12); j++){
+        const nx = t[j].replace(/^#/, "").toUpperCase();
+        if (/^SCR/.test(nx)){ scr.add(p); break; }
+        if (want.has(nx) && j === i + 1) break;
+        const o = j + 2 < t.length + 1 && /^\d{1,3}$/.test(t[j]) && t[j+1] === "-" ? parseOdds(t[j] + "-" + t[j+2]) : parseOdds(t[j]);
+        if (o != null && !(j === i + 1 && /^\d{1,2}$/.test(t[j]) && want.has(t[j]))){ out[p] = o; i = j; break; }
+      }
+    }
+  }
+  return {out, scr};
+}
+function parseGrid(text, sameOK){
+  const lines = text.split(/\n/).map(l => l.trim()).filter(Boolean).map(l => l.replace(/[|\t,]/g, " ").split(/\s+/));
+  const hi = lines.findIndex(l => l.length >= 2 && l.every(x => /^\d{1,2}[A-Z]?$/i.test(x)));
+  if (hi < 0) return null;
+  const head = lines[hi].map(x => x.toUpperCase()), grid = {};
+  for (const l of lines.slice(hi + 1)){
+    const a = l[0].toUpperCase().replace(/^#/, ""); const vals = l.slice(1);
+    if (!/^\d{1,2}[A-Z]?$/.test(a)) continue;
+    const off = vals.length === head.length ? 0 : vals.length === head.length - 1 ? -1 : 0;
+    head.forEach((b, j) => { const v = vals[j + off]; if (v != null && (sameOK || b !== a)){ const n = parseFloat(v.replace(/\$/g, "")); if (n > 0) grid[a + "-" + b] = n; } });
+  }
+  return grid;
+}
+
+/* ---------- model ---------- */
+const card = () => cards[curKey];
+const raceOf = n => card().races.find(r => r.race === n);
+const curOdds = (r, h) => (live[curKey]?.[r.race]?.[h.pgm]) ?? h.ml;
+function model(r){
+  const hs = r.horses.filter(h => !isScr(curKey, r.race, h.pgm) && curOdds(r, h) != null);
+  const raw = hs.map(h => 1 / (curOdds(r, h) + 1)), sr = raw.reduce((a, b) => a + b, 0) || 1;
+  const mkt = raw.map(x => x / sr);
+  const adj = hs.map((h, i) => mkt[i] * alpha(h)), sa = adj.reduce((a, b) => a + b, 0) || 1;
+  return hs.map((h, i) => ({h, o: curOdds(r, h), mkt: mkt[i], P: adj[i] / sa, val: adj[i] / sa * (curOdds(r, h) + 1)}));
+}
+const flag = v => v >= +$("#thN").value ? "nuke" : v >= +$("#thG").value ? "green" : "";
+const pill = v => v >= +$("#thN").value ? '<span class="pill n">NUCLEAR</span>' : v >= +$("#thG").value ? '<span class="pill g">OVERLAY</span>' : "";
+const gb = h => h.grade ? `<span class="gb" style="background:var(${GCOL[h.grade]})">${h.grade}</span>` : "—";
+const tg = h => [h.sub, h.w && "W", h.e && "E", h.trap && "TRAP", h.unseen && "UNSEEN"].filter(Boolean).map(t => `<span class="tag">${t}</span>`).join(" ");
+const pct = v => (100 * v).toFixed(1) + "%";
+
+/* ---------- drawing ---------- */
+function drawCards(){ $("#cardSel").innerHTML = Object.entries(cards).map(([k, c]) => `<option value="${k}" ${k===curKey?"selected":""}>${esc(c.name)}</option>`).join(""); }
+function drawWin(r){
+  const m = model(r), by = Object.fromEntries(m.map(x => [x.h.pgm, x]));
+  const rows = [...r.horses].sort((a, b) => ORDER.indexOf(a.grade) - ORDER.indexOf(b.grade));
+  $("#winTbl").innerHTML = `<thead><tr><th>Grade</th><th>#</th><th>Horse</th><th class="r">ML</th><th class="r">Live odds</th><th class="r">Tote %</th><th class="r">Our %</th><th class="r">Fair odds</th><th class="r">Value</th><th></th></tr></thead><tbody>` +
+    rows.map(h => { const x = by[h.pgm], s = isScr(curKey, r.race, h.pgm);
+      return `<tr class="${s ? "scr" : x ? flag(x.val) : ""}"><td>${gb(h)} ${tg(h)}</td><td class="num"><button class="btn" style="padding:2px 6px" data-s="${esc(h.pgm)}" title="Scratch / unscratch">${esc(h.pgm)}</button></td><td>${esc(h.name)}</td>
+      <td class="r num">${odds(h.ml)}</td><td class="r"><input class="odds" data-o="${esc(h.pgm)}" value="${curOdds(r, h) ?? ""}"></td>
+      <td class="r num">${x ? pct(x.mkt) : ""}</td><td class="r num">${x ? pct(x.P) : ""}</td><td class="r num">${x && x.P > 0 ? odds(1 / x.P - 1) : "—"}</td>
+      <td class="r num">${x ? x.val.toFixed(2) : ""}</td><td>${x ? pill(x.val) : ""}</td></tr>`; }).join("") + "</tbody>";
+}
+function harville(ps, i, j){ return ps[i] * ps[j] / (1 - ps[i]); }
+function drawEx(r){
+  const m = model(r).filter(x => x.P > 0), key = curKey + ":" + r.race, grid = exProb[key], base = +$("#exBase").value, R = 1 - (+$("#tkE").value || 0.195);
+  const mk = model(r), idx = Object.fromEntries(mk.map((x, i) => [x.h.pgm, i])), mp = mk.map(x => x.mkt);
+  const rows = [];
+  for (const a of m) for (const b of m){ if (a === b) continue;
+    const pTrue = a.P * b.P / (1 - a.P);
+    const real = grid?.[a.h.pgm + "-" + b.h.pgm];
+    const pay1 = real ? real / base : R / harville(mp, idx[a.h.pgm], idx[b.h.pgm]);
+    rows.push({a, b, pTrue, pay1, real: !!real, val: pTrue * pay1}); }
+  rows.sort((x, y) => y.val - x.val);
+  $("#exTbl").innerHTML = `<thead><tr><th>Exacta</th><th>Grades</th><th class="r">$1 payoff</th><th class="r">Our chance</th><th class="r">Fair $1</th><th class="r">Value</th><th></th></tr></thead><tbody>` +
+    rows.slice(0, 15).map(x => `<tr class="${flag(x.val)}"><td class="num">${esc(x.a.h.pgm)}-${esc(x.b.h.pgm)} <span class="lede">${esc(x.a.h.name)} / ${esc(x.b.h.name)}</span></td><td>${gb(x.a.h)} ${gb(x.b.h)}</td>
+      <td class="r num">${money(x.pay1)}${x.real ? "" : ' <span class="label">est</span>'}</td><td class="r num">${pct(x.pTrue)}</td><td class="r num">${money(1 / x.pTrue)}</td><td class="r num">${x.val.toFixed(2)}</td><td>${pill(x.val)}</td></tr>`).join("") +
+    `</tbody>` + (rows.length > 15 ? `<caption class="lede" style="caption-side:bottom;text-align:left;padding:8px;font-size:.85rem">Top 15 of ${rows.length} combinations without F/F- horses.</caption>` : "");
+}
+function drawDD(r){
+  const r2 = raceOf(r.race + 1);
+  if (!r2){ $("#ddTbl").innerHTML = `<tbody><tr><td class="lede">Last race on the card: no Daily Double from here.</td></tr></tbody>`; return; }
+  const m1 = model(r).filter(x => x.P > 0), m2 = model(r2).filter(x => x.P > 0), grid = ddProb[curKey + ":" + r.race], base = +$("#ddBase").value;
+  if (!grid){ $("#ddTbl").innerHTML = `<tbody><tr><td class="lede">Paste the R${r.race}–R${r2.race} Daily Double probables above to see value. Our probabilities are ready: ${m1.length} × ${m2.length} playable combinations.</td></tr></tbody>`; return; }
+  const rows = [];
+  for (const a of m1) for (const b of m2){ const pay = grid[a.h.pgm + "-" + b.h.pgm]; if (!pay) continue; const p = a.P * b.P; rows.push({a, b, p, pay1: pay / base, val: p * pay / base}); }
+  rows.sort((x, y) => y.val - x.val);
+  $("#ddTbl").innerHTML = `<thead><tr><th>R${r.race} / R${r2.race}</th><th>Grades</th><th class="r">$1 payoff</th><th class="r">Our chance</th><th class="r">Fair $1</th><th class="r">Value</th><th></th></tr></thead><tbody>` +
+    rows.slice(0, 20).map(x => `<tr class="${flag(x.val)}"><td class="num">${esc(x.a.h.pgm)} / ${esc(x.b.h.pgm)} <span class="lede">${esc(x.a.h.name)} / ${esc(x.b.h.name)}</span></td><td>${gb(x.a.h)} ${gb(x.b.h)}</td>
+      <td class="r num">${money(x.pay1)}</td><td class="r num">${pct(x.p)}</td><td class="r num">${money(1 / x.p)}</td><td class="r num">${x.val.toFixed(2)}</td><td>${pill(x.val)}</td></tr>`).join("") + "</tbody>";
+}
+function drawAll(){
+  const c = card(); if (!c.races.find(r => r.race === curRace)) curRace = c.races[0].race;
+  $("#raceSeg").innerHTML = c.races.map(r => `<button aria-pressed="${r.race===curRace}" data-r="${r.race}">R${r.race}</button>`).join("");
+  const r = raceOf(curRace);
+  $("#raceHead").innerHTML = `<span class="big">Race ${r.race}</span>${r.title ? `<span class="pace">${esc(r.title)}</span>` : ""}${r.info ? `<span class="lede num" style="font-size:.9rem">${esc(r.info)}</span>` : ""}`;
+  if (!r.horses.some(h => h.grade)) $("#loadMsg").textContent = "No grades on this card yet: load Grant's CSV.";
+  drawWin(r); drawEx(r); drawDD(r);
+  const m = model(r), ov = m.filter(x => x.val >= +$("#thG").value).length;
+  $("#tote").innerHTML = [["Race", "R" + r.race], ["Win overlays", ov], ["Best value", m.length ? Math.max(...m.map(x => x.val)).toFixed(2) : "—"]].map(([k, v]) => `<div><b>${v}</b><small>${k}</small></div>`).join("");
+}
+function drawRace(){ drawAll(); }
+
+/* ---------- events ---------- */
+$("#cardSel").addEventListener("change", e => { curKey = e.target.value; curRace = null; drawAll(); });
+$("#raceSeg").addEventListener("click", e => { const b = e.target.closest("button"); if (b){ curRace = +b.dataset.r; drawAll(); }});
+$("#winTbl").addEventListener("change", e => { const p = e.target.dataset.o; if (!p) return; const v = parseOdds(e.target.value);
+  ((live[curKey] = live[curKey] || {})[curRace] = live[curKey][curRace] || {})[p] = v; drawAll(); });
+$("#winTbl").addEventListener("click", e => { const p = e.target.dataset?.s; if (!p) return; const s = scratched[curKey] = scratched[curKey] || new Set(), k = curRace + ":" + p; s.has(k) ? s.delete(k) : s.add(k); drawAll(); });
+$("#winApply").addEventListener("click", () => { const r = raceOf(curRace), {out, scr} = parseBoard($("#winPaste").value, r.horses.map(h => h.pgm));
+  const L = (live[curKey] = live[curKey] || {})[curRace] = {...(live[curKey][curRace] || {}), ...out};
+  const s = scratched[curKey] = scratched[curKey] || new Set(); scr.forEach(p => s.add(curRace + ":" + p));
+  $("#winMsg").textContent = `Read odds for ${Object.keys(out).length} of ${r.horses.length} horses${scr.size ? `, ${scr.size} scratched` : ""}.`; drawAll(); });
+$("#winReset").addEventListener("click", () => { if (live[curKey]) delete live[curKey][curRace]; $("#winMsg").textContent = "Back to morning line."; drawAll(); });
+$("#exApply").addEventListener("click", () => { const g = parseGrid($("#exPaste").value); if (!g){ $("#exMsg").textContent = "Couldn't find a header row of program numbers."; return; }
+  exProb[curKey + ":" + curRace] = g; $("#exMsg").textContent = `Read ${Object.keys(g).length} Exacta payoffs.`; drawAll(); });
+$("#ddApply").addEventListener("click", () => { const g = parseGrid($("#ddPaste").value, true); if (!g){ $("#ddMsg").textContent = "Couldn't find a header row of program numbers."; return; }
+  ddProb[curKey + ":" + curRace] = g; $("#ddMsg").textContent = `Read ${Object.keys(g).length} Daily Double payoffs.`; drawAll(); });
+["#thG","#thN","#tkE","#exBase","#ddBase"].forEach(id => $(id).addEventListener("input", drawAll));
+for (const [k, c] of Object.entries(cards)) for (const r of c.races) for (const h of r.horses) if (h.scr) (scratched[k] = scratched[k] || new Set()).add(r.race + ":" + h.pgm);
+drawCards(); drawMult(); drawAll();
+</script>
+</body>
+</html>
