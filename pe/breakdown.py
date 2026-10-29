@@ -157,7 +157,7 @@ def parse_entries(line_bucket: str, body: str, race: int, notes: list) -> list[E
         tags = set()
         if any("UNSEEN" in b.upper() for b in br):
             tags.add("UNSEEN")
-        if any("RETAIL" in b.upper() or "TRAP" in b.upper() for b in br):
+        if any("TRAP" in b.upper() for b in br):
             tags.add("RETAIL_TRAP")
         reason = rest[h.end():].strip()
         if reason.startswith("(") and reason.endswith(")"):
