@@ -64,14 +64,18 @@ def bc_cards(con, paths):
             m = re.match(r"(BC[A-Za-z]+)-G1", cls)
             qsp = sum(num(x) or 0 for x in g.QSP)
             gi = grace.get(race, {})
+            if "Status" in g:
+                g = g.copy()
+            act = g[~g.Status.isin(["SCRATCHED", "AE_OUT"])] if "Status" in g else g
+            qsp = sum(num(x) or 0 for x in act.QSP)
             pp = {r.Prog: num(r.Prime_Power) for r in g.itertuples()}
-            ranked = sorted([v for v in pp.values() if v], reverse=True)
+            ranked = sorted([num(x) for x in act.Prime_Power if num(x)], reverse=True)
             par = num(first.Par_Spd)
             races.append({"race_id": rid, "track_code": "KEE", "race_date": int(date), "race_num": race,
                           "today_dist_yds": num(first.Today_Dist_Yds), "today_surf": first.Today_Surf, "today_class": cls,
-                          "today_purse": num(first.Today_Purse), "active_starters": len(g),
-                          "active_qsp_sum": gi.get("qsp_sum") or int(qsp),
-                          "pace_scenario": gi.get("pace_scenario") or pace(qsp), "par_spd": par,
+                          "today_purse": num(first.Today_Purse), "active_starters": len(act),
+                          "active_qsp_sum": int(qsp),
+                          "pace_scenario": pace(qsp), "par_spd": par,
                           "name": f"BC {BC_NAMES[m.group(1)]}" if m and m.group(1) in BC_NAMES else None, "settled": False})
             for r in g.itertuples():
                 k = (race, r.Prog.strip().upper())
@@ -86,9 +90,9 @@ def bc_cards(con, paths):
                 qp = lambda s: " | ".join(s.split(" | ")[:2])
                 runners.append({
                     "race_id": rid, "prog_num": r.Prog, "horse_name": r.Horse.title(),
-                    "is_scratched": int(G.get("scratched") or 0), "is_fts": int(r.Run_Style == "FTS"),
+                    "is_scratched": int(bool(G.get("scratched")) or getattr(r, "Status", "RUNNING") in ("SCRATCHED", "AE_OUT")), "is_fts": int(r.Run_Style == "FTS"),
                     "ml_odds": num(r.ML_Odds), "run_style": None if r.Run_Style in ("N/A", "FTS", "NA", "") else r.Run_Style,
-                    "qsp": num(r.QSP), "prime_power": pp[r.Prog], "pp_rank": ranked.index(pp[r.Prog]) + 1 if pp[r.Prog] else None,
+                    "qsp": num(r.QSP), "prime_power": pp[r.Prog], "pp_rank": ranked.index(pp[r.Prog]) + 1 if pp[r.Prog] and pp[r.Prog] in ranked and r.Prog in set(act.Prog) else None,
                     "last_fig_delta": fig - par if fig is not None and par else None,
                     "bris_class": num(r.Bris_Current_Class), "form_sig": r.Form_Sig, "last_out": " · ".join(last),
                     "trip_note": r.Last_Intl_Trip_Note or None, "qp_pos": qp(r.QP_Positive) or None, "qp_neg": qp(r.QP_Negative) or None,

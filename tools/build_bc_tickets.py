@@ -41,17 +41,18 @@ def build(con, paths):
             surf = {"T": "turf", "D": "dirt"}.get(first.Today_Surf, first.Today_Surf)
             purse = num(first.Today_Purse)
             horses = []
-            for r in g.itertuples():
+            for r in g.itertuples():   # Status (from tools/apply_changes.py) marks scratches and AEs not drawn in
                 G = grades.get((race, r.Prog.strip().upper()), {})
                 tags = (G.get("tags") or "").split(",")
                 mods = (G.get("modifiers") or "").split(",")
                 sub = next((t for t in tags if t in ("D-INT", "D-DOM")), None)
                 horses.append({"pgm": r.Prog.strip().upper(), "name": r.Horse.title(), "ml": num(r.ML_Odds),
                                "grade": G.get("bucket"), "sub": sub, "w": "W" in mods, "e": "E" in mods,
-                               "trap": "RETAIL_TRAP" in tags, "unseen": "UNSEEN" in tags, "scr": int(G.get("scratched") or 0)})
+                               "trap": "RETAIL_TRAP" in tags, "unseen": "UNSEEN" in tags,
+                               "scr": int(bool(G.get("scratched")) or getattr(r, "Status", "RUNNING") in ("SCRATCHED", "AE_OUT"))})
             races.append({"race": race,
                           "title": f"BC {BC_NAMES[m.group(1)]}" if m and m.group(1) in BC_NAMES else first.Today_Class,
-                          "info": f"{yds / 220:g}f {surf} · ${purse:,.0f} · {len(g)} entered" if yds and purse else "",
+                          "info": (f"{yds / 220:g}f {surf} · ${purse:,.0f} · " + (f"{(~g.Status.isin(['SCRATCHED', 'AE_OUT'])).sum()} running" if "Status" in g else f"{len(g)} entered")) if yds and purse else "",
                           "horses": horses})
         day = "Friday" if date.endswith("30") else "Saturday"
         graded = any(h["grade"] for r in races for h in r["horses"])

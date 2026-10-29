@@ -1,0 +1,15 @@
+{"source": "Changes list from Grant/Pete, Oct 29 2026 15:49 PT",
+ "races": {
+  "Fri BCJuvnle": {"out": ["Earth Song", "Gaudreau", "Net Par"]},
+  "Fri BCJuvFil": {"out": ["Dotsy"]},
+  "Fri BCJuvTrf": {"out": ["Man's Best Friend", "Induction"], "expected_out": ["Great Barrier Reef"]},
+  "Fri BCJvFlTf": {"out": ["Serenas Ghost", "Voyager", "So Lovely", "Go For Launch"], "in": ["Scommessa Sicura", "Silent Beauty"], "next_in": ["Ballinea Star"]},
+  "Fri BCJvTfSp": {"out": ["Nabadi", "Drazinda", "Carry the Flag"], "in": ["Crownbreaker"], "next_in": ["Sale Shark", "Ruiva"]},
+  "Sat BCClasic": {"out": ["Magnitude", "Further Ado", "Forged Steel", "Phileas Fogg"]},
+  "Sat BCDistaf": {"out": ["Splendora", "Scottish Lassie"]},
+  "Sat BCMile": {"out": ["Ten Bob Tony", "Gstaad", "Constitution River", "Power Blue", "Zulu Kingdom"], "in": ["Ask Ikigomi", "Puerto Rico", "Qirat"], "next_in": ["Lugal", "Brilliant Berti"]},
+  "Sat BCDirtMi": {"out": ["Knightsbridge", "Napoleon Solo", "Vina Arana"], "in": ["Further Ado", "Forged Steel", "Bracket Buster", "Coal Battle"]},
+  "Sat BCTurf": {"out": ["Ombudsman", "Lambourn", "Minnie Hauk", "Almaquam", "Test Score"], "in": ["Johanna Walsh", "Far Bridge", "Map of Stars"], "next_in": ["El Cordobes"]},
+  "Sat BCFMTrf": {"out": ["Eccentric", "Evershed"], "in": ["Vina Arana"]},
+  "Sat BCFMSprt": {"out": ["Nooni", "Praying"]}
+ }}
