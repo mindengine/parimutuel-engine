@@ -41,11 +41,11 @@ MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "
 
 HEADER_RE = re.compile(
     r"^RACE\s+(\d{1,2})\b(?:\s*\([^)]*\))?\s*[—–-]\s*(\d+)\s*(?:yards?|yds?|y)?\s*/\s*([A-Za-z]+)\s*/\s*(.+?)\s*\|\s*Par Spd:\s*"
-    r"(\d+(?:\.\d+)?|[^|]*?)\s*\|\s*Active Pace Scenario:\s*([A-Za-z ]+?)\s*\(Active QSP Sum:\s*(\d+|[^)]*)\)", re.I)
+    r"(\d+(?:\.\d+)?|[^|]*?)\s*\|\s*Active Pace Scenario:\s*([A-Za-z ]+?)\s*\(Active QSP Sum:\s*(\d+|[^)|]*?)\s*(?:\|\s*Implied QSP:\s*(\d+)\s*)?\)", re.I)
 SCRATCH_LINE = re.compile(r"^\(.*scratch.*$", re.I)
 SCRATCH_ONE = re.compile(r"#(\d{1,2}[A-Z]?)\s+(.+?)(?=\s+(?:and|is|are|was|has|have|were)\b|[;,.):]|\s*#|$)", re.I)
 BUCKET_LINE = re.compile(r"^(A\+|A|B|C|D|F-|F)(?![A-Za-z0-9+\-])[^:]*:\s*(.*)$")
-REMAINING_LINE = re.compile(r"^Remaining\b[^:]{0,40}:\s*(.*)$", re.I)
+REMAINING_LINE = re.compile(r"^(?:Remaining|Primary Public|Outclassed)\b[^:]{0,140}:\s*(.*)$", re.I)
 NAME_CH = r"[A-Za-z][A-Za-z0-9'’.&\- ]*?"
 SCRATCH_A = re.compile(rf"#(\d{{1,2}}[A-Z]?)\s+({NAME_CH})\s+(?:is |was |has been |were )?scratched\b", re.I)
 SCRATCH_B = re.compile(rf"\bscratch(?:ed|ing|es)?\b\s*(?:removed[^:]*)?:?\s*#(\d{{1,2}}[A-Z]?)\s+({NAME_CH})(?=\s+(?:and|is|are|was)\b|[;,.):]|\s*#|$)", re.I)
@@ -53,7 +53,7 @@ SNIPER_LINE = re.compile(r"^Sniper Action", re.I)
 # "#4 Private Speaker (6.00)", "(4.5 ML)", "(ML 0.5)", "(9/1)", and the unclosed "(30.0 — reason"
 ODDS = r"\(\s*(?:ML\s*)?(\d+(?:\.\d+)?)(?:\s*/\s*(\d+(?:\.\d+)?))?(?:\s*ML)?\s*(?:\)|(?=[—–]))"
 ENTRY = re.compile(rf"#(\d{{1,2}}[A-Z]?)\s+(?:\[Post \d+\]\s*)?([A-Za-z][A-Za-z0-9'’.&\- ]*?)\s+{ODDS}")
-HEAD = re.compile(r"^\s*(?:[—–-]\s*)?(?:Tag:\s*)?(?:None\b\s*)?(?P<g>A\+|A|B|C|D|F-|F)?(?![A-Za-z0-9])"
+HEAD = re.compile(r"^\s*(?:[—–-]\s*)?(?:Tag:\s*)?(?:None\b\s*)?(?P<g>A\+|A|B|C|D-INT|D-DOM|D|F-|F)?(?![A-Za-z0-9])"
                   r"(?P<br>(?:\s*\[[^\]]*\])*)\s*(?:[—–-]\s*)?", re.S)
 SCENARIOS = {"honest": "HONEST", "meltdown": "MELTDOWN", "lone speed": "LONE_SPEED", "lone": "LONE_SPEED"}
 RACE_TYPES = [(r"^md\s*sp", "MSW"), (r"^md", "MCL"), (r"^(o|n)?clm|^claim", "CLM"), (r"^alw|^allow", "ALW"),
@@ -137,7 +137,7 @@ def _i(x):
 def parse_entries(line_bucket: str, body: str, race: int, notes: list) -> list[Entry]:
     out = []
     body = body.strip()
-    if not body or re.match(r"^none\b", body, re.I):
+    if not body or re.match(r"^(none|covered above)\b", body, re.I):
         return out
     ms = []
     for m in ENTRY.finditer(body):
@@ -163,6 +163,9 @@ def parse_entries(line_bucket: str, body: str, race: int, notes: list) -> list[E
         if reason.startswith("(") and reason.endswith(")"):
             reason = reason[1:-1]
         reason = reason.lstrip(") ").strip()
+        if bucket in ("D-INT", "D-DOM"):            # Breeders' Cup D split: stored as D plus a tag
+            tags.add(bucket)
+            bucket = "D"
         if bucket != line_bucket:
             notes.append((race, "warn", f"#{m.group(1)} sits on the {line_bucket} line but is tagged {bucket}; using {bucket}"))
         if bucket in ("F", "F-") and re.search(r"public|underlay|chalk|favorite|choice", reason, re.I):
