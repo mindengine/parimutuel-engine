@@ -36,7 +36,7 @@ def main():
             d, bc = race_key.split()
             if d != day:
                 continue
-            in_race = df._bc == bc
+            in_race = (df.Race.astype(int) == int(bc[1:])) if re.fullmatch(r"R\d+", bc) else (df._bc == bc)  # "Sat R3" for undercard races
             if not in_race.any():
                 print(f"  {bc}: race not on this card"); continue
             rnum = int(df[in_race].Race.iloc[0])

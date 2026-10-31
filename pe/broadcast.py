@@ -122,11 +122,16 @@ def ingest(con, path: str | Path, card_id: str, track: str, race_date: str, sour
     races = parse(Path(path).read_text(encoding="utf-8"))
     if not races:
         raise ValueError(f"{path}: no '🏁 RACE n' sections found")
+    return races, write(con, races, path, card_id, track, race_date, source)
+
+
+def write(con, races, path, card_id: str, track: str, race_date: str, source: str):
+    """Replace card_id's grades with `races` (list of Race). Returns a list of problems found."""
     con.execute("DELETE FROM pre_race_grades WHERE card_id=?", (card_id,))
     con.execute("DELETE FROM races WHERE card_id=?", (card_id,))
     con.execute("DELETE FROM cards WHERE card_id=?", (card_id,))
     con.execute("INSERT INTO cards(card_id,track,race_date,source,source_file,notes) VALUES (?,?,?,?,?,?)",
-                (card_id, track, race_date, source, Path(path).name, "Grant's broadcast packet (final fields)"))
+                (card_id, track, race_date, source, Path(path).name, f"Grant's grades ({source})"))
     problems = []
     for r in races:
         con.execute("INSERT INTO races(card_id,race,surface,distance_yds,field_size,qsp_sum,pace_scenario,par_spd,"
@@ -147,4 +152,4 @@ def ingest(con, path: str | Path, card_id: str, track: str, race_date: str, sour
                 con.execute("INSERT INTO pre_race_grades(card_id,race,pgm,horse_name,bucket,scratched,grade_confidence)"
                             " VALUES (?,?,?,?,NULL,1,'explicit')", (card_id, r.race, pgm, name))
     con.commit()
-    return races, problems
+    return problems
