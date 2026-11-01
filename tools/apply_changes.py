@@ -12,7 +12,11 @@ import json
 import re
 from pathlib import Path
 
+import sys
+
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 
 def key(s):
@@ -55,6 +59,12 @@ def main():
                 print(f"  R{rnum} {bc}: {n} [in] " + (f"#{df[m].Prog.iloc[0]} running" if m.any() else "NOT on this race's card in Brisnet's file"))
             n_run = (in_race & df.Status.isin(["RUNNING", "EXPECTED_SCR"])).sum()
             print(f"  R{rnum} {bc}: {n_run} runners after changes" + ("  <-- more than 14: some also-eligibles' status unknown" if n_run > 14 else ""))
+        if "Race_QSP_Sum" in df:   # v3.1 cards: recompute race QSP / pace for the horses still running
+            from distill_v3 import race_pace
+            run = df.Status.isin(["RUNNING", "EXPECTED_SCR"])
+            for race, g in df[run].groupby("Race"):
+                for k, v in race_pace(g[["QSP", "Run_Style"]].to_dict("records")).items():
+                    df.loc[df.Race == race, k] = v
         stem = Path(p).stem
         df.drop(columns=["_k", "_bc"]).to_csv(out / f"{stem}_status.csv", index=False)
         df[df.Status.isin(["RUNNING", "EXPECTED_SCR"])].drop(columns=["_k", "_bc"]).to_csv(out / f"{stem}_final.csv", index=False)

@@ -19,6 +19,24 @@ and appends, per horse (matched on Race + Prog):
   Trn_Yr_Sts, Trn_Yr_Win_Pct, Jock_Yr_Sts, Jock_Yr_Win_Pct   current-year totals (all tracks),
                     not the current-meet numbers that read 0% on opening week
 
+v3.1 additions (Grant, Nov 1). Field numbers checked against the Keeneland 10/30-31 files;
+where his list differed from the actual file layout, the file wins:
+  Med_Code, Med             today's medication, field 62 (codes below; Breeders' Cup files are all 9)
+  Equip_Chg                 field 64: BLINKERS_ON (1, verified: Dormie, Avec Toi 10/30) | BLINKERS_OFF (2)
+  Claimed_Last              True when the last start was a claim ('c' in field 1046)
+  Days_2Back                days between the last start and the one before (field 266)
+  Trn_Angle_1..3            Brisnet key trainer stats, fields 1337-1366: "category sts win% roi"
+  Dist_Rec / Trk_Rec / Turf_Rec / Wet_Rec   starts-wins-2nds-3rds (fields 65-84)
+  Trk_Wins                  wins at today's track (field 71)
+  Best_Fast / Best_Turf / Best_Wet / Best_Dist   career-best Brisnet speed figures (fields 1178-1181)
+  Ped_Dirt / Ped_Mud / Ped_Turf / Ped_Dist      Brisnet pedigree ratings, * = estimated (fields 1264-1267)
+  E1_Last3 / E1_Avg3 / E1_Best3, LP_Last3 / LP_Best3   early pace and late pace for each of the
+                            last 3 starts (each race's own sprint/route call), so one bad break
+                            does not hide a speed horse
+  Race_QSP_Sum, Race_EEP, Race_Pace   whole-field QSP total, count of E and E/P runners, and
+                            LONE_SPEED (<=15) / HONEST / MELTDOWN (>=30) for the entered field
+                            (tools/apply_changes.py recomputes these after scratches)
+
 Nothing in the original 47 columns is changed; the new columns sit to the right.
 """
 from __future__ import annotations
@@ -36,7 +54,19 @@ OFF = {"date": 0, "track": 20, "odds": 260, "class": 280, "fin": 360, "margin": 
        "fig": 590, "grade": 830}
 NEW = ["Form_Sig", "Work_1_Bullet", "Work_1_Time_Abs", "Last_Fin", "Fin_2Back", "Fin_3Back",
        "Last_Btn_Len", "Last_Win_Margin", "Last_Odds", "Last_Class_Raw", "Last_Group_Class", "Last_Foreign",
-       "Trn_Yr_Sts", "Trn_Yr_Win_Pct", "Jock_Yr_Sts", "Jock_Yr_Win_Pct"]
+       "Trn_Yr_Sts", "Trn_Yr_Win_Pct", "Jock_Yr_Sts", "Jock_Yr_Win_Pct",
+       # v3.1
+       "Med_Code", "Med", "Equip_Chg", "Claimed_Last", "Days_2Back",
+       "Trn_Angle_1", "Trn_Angle_2", "Trn_Angle_3",
+       "Dist_Rec", "Trk_Rec", "Trk_Wins", "Turf_Rec", "Wet_Rec",
+       "Best_Fast", "Best_Turf", "Best_Wet", "Best_Dist",
+       "Ped_Dirt", "Ped_Mud", "Ped_Turf", "Ped_Dist",
+       "E1_Last3", "E1_Avg3", "E1_Best3", "LP_Last3", "LP_Best3",
+       "Race_QSP_Sum", "Race_EEP", "Race_Pace"]
+# Brisnet single-file medication codes (field 62). 9 = not reported (e.g. Breeders' Cup, no race-day Lasix).
+MED = {"0": "NONE", "1": "LASIX", "2": "BUTE", "3": "BUTE_LASIX", "4": "LASIX_1ST",
+       "5": "BUTE_LASIX_1ST", "9": "NOT_REPORTED"}
+EQUIP = {"1": "BLINKERS_ON", "2": "BLINKERS_OFF"}
 
 
 def f(row, i):
@@ -105,6 +135,25 @@ def extras(row) -> dict:
         out["Work_1_Time_Abs"] = f"{abs(wt):g}"
     out["Trn_Yr_Sts"], out["Trn_Yr_Win_Pct"] = f(row, 1146), pct(f(row, 1147), f(row, 1146))
     out["Jock_Yr_Sts"], out["Jock_Yr_Win_Pct"] = f(row, 1156), pct(f(row, 1157), f(row, 1156))
+    # --- v3.1 (0-based index = Brisnet field number - 1) ---
+    out["Med_Code"] = f(row, 61)
+    out["Med"] = MED.get(f(row, 61), f(row, 61))
+    out["Equip_Chg"] = EQUIP.get(f(row, 63), "")
+    rec = lambda i: "-".join(f(row, i + k) or "0" for k in range(4))
+    out["Dist_Rec"], out["Trk_Rec"], out["Turf_Rec"], out["Wet_Rec"] = rec(64), rec(69), rec(74), rec(79)
+    out["Trk_Wins"] = f(row, 70)
+    for k, name in enumerate(("Best_Fast", "Best_Turf", "Best_Wet", "Best_Dist")):
+        v = f(row, 1177 + k)
+        out[name] = "" if v in ("", "0") else v
+    for k, name in enumerate(("Ped_Dirt", "Ped_Mud", "Ped_Turf", "Ped_Dist")):
+        out[name] = f(row, 1263 + k)
+    angles = []
+    for i in range(1336, 1366, 5):
+        cat = f(row, i)
+        if cat:
+            angles.append(f"{cat} {f(row, i + 1)} {num(f(row, i + 2)) or 0:.0f}% roi {f(row, i + 4)}")
+    for k in range(3):
+        out[f"Trn_Angle_{k + 1}"] = angles[k] if k < len(angles) else ""
     if not has_pp:
         return out
     b = d_idx
@@ -122,7 +171,33 @@ def extras(row) -> dict:
     out["Last_Group_Class"] = group_class(f(row, b + OFF["grade"]), raw)
     # A start with no Brisnet speed figure and no pace figures was run abroad.
     out["Last_Foreign"] = str(f(row, b + OFF["fig"]) == "" and f(row, b + 560) == "" and f(row, b + 510) == "")
+    out["Claimed_Last"] = str(f(row, 1045).lower() == "c")
+    out["Days_2Back"] = f(row, b + 10)
+    e1s, lps = [], []
+    for k in range(3):
+        if not f(row, b + k):
+            break
+        dist = num(f(row, b + 60 + k)) or 0
+        e1s.append(f(row, b + (520 if abs(dist) >= 1760 else 510) + k))
+        lps.append(f(row, b + 560 + k))
+    out["E1_Last3"], out["LP_Last3"] = "/".join(e1s), "/".join(lps)
+    e1n = [num(x) for x in e1s if num(x)]
+    lpn = [num(x) for x in lps if num(x)]
+    out["E1_Avg3"] = f"{sum(e1n) / len(e1n):.0f}" if e1n else ""
+    out["E1_Best3"] = f"{max(e1n):g}" if e1n else ""
+    out["LP_Best3"] = f"{max(lpn):g}" if lpn else ""
     return out
+
+
+def pace_label(q):
+    return "LONE_SPEED" if q <= 15 else "MELTDOWN" if q >= 30 else "HONEST"
+
+
+def race_pace(rows):
+    """Race_QSP_Sum / Race_EEP / Race_Pace for one race's horses (dicts with QSP and Run_Style)."""
+    q = sum(num(r["QSP"]) or 0 for r in rows)
+    eep = sum(1 for r in rows if r["Run_Style"] in ("E", "E/P"))
+    return {"Race_QSP_Sum": f"{q:g}", "Race_EEP": str(eep), "Race_Pace": pace_label(q)}
 
 
 def main(argv=None):
@@ -153,6 +228,11 @@ def main(argv=None):
     head, body = rows[0], rows[1:]
     ri, pi = head.index("Race"), head.index("Prog")
     missing = 0
+    qi, si = head.index("QSP"), head.index("Run_Style")
+    by_race = {}
+    for r in body:
+        by_race.setdefault(r[ri].strip(), []).append({"QSP": r[qi], "Run_Style": r[si]})
+    pace = {k: race_pace(v) for k, v in by_race.items()}
     with open(a.output, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(head + NEW)
@@ -161,6 +241,7 @@ def main(argv=None):
             if e is None:
                 missing += 1
                 e = {k: "" for k in NEW}
+            e = {**e, **pace[r[ri].strip()]}
             w.writerow(r + [e[k] for k in NEW])
     v2.unlink()
     if missing:
