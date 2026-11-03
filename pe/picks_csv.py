@@ -57,7 +57,7 @@ def ingest_picks_csv(con, path, track: str | None = None, race_date: str | None 
     con.execute("INSERT INTO cards(card_id,track,race_date,source,source_file,notes) VALUES (?,?,?,?,?,?)",
                 (card_id, track, race_date, source, path.name,
                  "Grant's merged inputs + grades" if merged else "Grant's picks and tags"))
-    pgm_col = "Prog" if "Prog" in df.columns else "Post"
+    pgm_col = "Prog" if "Prog" in df.columns else "Pgm" if "Pgm" in df.columns else "Post"
     if pgm_col == "Post":
         flag(con, card_id, None, "info", "file has post positions only; post is used as the program number")
 
