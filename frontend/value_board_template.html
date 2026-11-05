@@ -114,7 +114,7 @@ main,.box{grid-template-columns:minmax(0,1fr)} main>section,.box{min-width:0} se
       <input id="file" type="file" accept=".csv,.txt" hidden>
       <span class="lede" id="loadMsg" style="font-size:.9rem"></span>
     </div>
-    <div class="drop" id="drop">Drop Grant's <span class="num">picks_and_tags</span> / <span class="num">master_merged</span> CSV here to load another card. Friday's Breeders' Cup grades are preloaded.</div>
+    <div class="drop" id="drop">Drop Grant's <span class="num">picks_and_tags</span> / <span class="num">master_merged</span> CSV here to load another card. The latest cards are preloaded.</div>
     <div class="controls"><span class="label">Race</span><div class="seg" id="raceSeg" role="group" aria-label="Race"></div></div>
     <div class="racehead" id="raceHead"></div>
   </section>
@@ -122,7 +122,7 @@ main,.box{grid-template-columns:minmax(0,1fr)} main>section,.box{min-width:0} se
   <section class="box" style="padding:0;border:0;background:none">
     <div class="box" style="align-content:start">
       <h2>Grade multipliers</h2>
-      <p class="lede" style="font-size:.9rem">How much likelier than the tote each grade is to win. Defaults are from Grant's spec. "Week measured" uses what his grades actually did 10/28&ndash;10/31: <span id="measN"></span>, scored against the official charts, with small groups pulled toward 1.00 so one lucky longshot doesn't swing them. F and F- are always 0.</p>
+      <p class="lede" style="font-size:.9rem">How much likelier than the tote each grade is to win. Defaults are from Grant's spec. "Week measured" uses what his grades actually did <span id="measN"></span>, scored against the official charts, with small groups pulled toward 1.00 so one lucky longshot doesn't swing them. F and F- are always 0.</p>
       <div class="controls"><button class="btn" id="presetSpec">Grant's spec</button><button class="btn" id="presetWed">Week measured</button></div>
       <div class="mult" id="mult"></div>
       <div class="controls">
@@ -228,8 +228,8 @@ drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("
 /* ---------- multipliers ---------- */
 const KEYS = ["A+","A+[W]","A","A[W]","B","B[W]","C","D","D[W]"];
 const SPEC = {"A+":1.30,"A+[W]":1.30,"A":1.15,"A[W]":1.35,"B":1.00,"B[W]":1.20,"C":1.10,"D":1.00,"D[W]":1.05};
-const {_n: MEAS_N, _races: MEAS_R, ...WED} = D.measured;
-$("#measN").textContent = `${MEAS_N} starters in ${MEAS_R} races across 24 track-days`;
+const {_n: MEAS_N, _races: MEAS_R, _days: MEAS_DAYS, _span: MEAS_SPAN, ...WED} = D.measured;
+$("#measN").textContent = `${MEAS_SPAN}: ${MEAS_N} starters in ${MEAS_R} races across ${MEAS_DAYS} track-days`;
 let M = {...SPEC};
 function drawMult(){ $("#mult").innerHTML = KEYS.map(k => `<label><span class="num">${k}</span><input type="number" step="0.05" data-k="${k}" value="${M[k]}"></label>`).join(""); }
 $("#mult").addEventListener("input", e => { const k = e.target.dataset.k; if (k){ M[k] = +e.target.value || 0; drawAll(); }});
